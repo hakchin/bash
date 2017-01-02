@@ -1,0 +1,54 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=${0}
+LOGDIR=./log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+#gpconfig -c gp_autostats_mode              -v none
+gpconfig -c gp_workfile_compress_algorithm -v zlib --masteronly
+gpconfig -c gp_external_grant_privileges   -v on   # necessary to restart db
+gpconfig -c max_connections                -v 1000 -m 950
+gpconfig -c max_prepared_transactions      -v 1000
+
+gpconfig -c shared_buffers -v 256MB
+gpconfig -c statement_mem  -v 256MB
+
+gpconfig -c gp_vmem_protect_limit -v 16384 -m 8192
+gpconfig -c shared_buffers -v 256MB -m 125MB
+gpconfig -c statement_mem  -v 256MB -m 128MB
+gpconfig -c max_statement_mem -v 3000MB -m 200MB
+#gpconfig -c max_resource_queues -v 15
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+
+
+########################################################################
+# LGE 때 메모리를 64GB --> 128GB 로 증설 했을 때 세팅
+########################################################################
+#gp_vmem_protect_limit = 8192  --> 16384
+#shared_buffers = 125MB  --> 256MB    (실제로는 125MB 로 수행함)
+#statement_mem = 128MB --> 256MB      (실제로는 128MB 로 수행함) ---> out of memory 등 방지....
+#max_statement_mem = 2000MB --> 3000MB
+
+
+########################################################################
+# gpfdist Related
+########################################################################
+#gpconfig -c gp_external_max_segs -v 96 --masteronly
+
+
+#Ref : 
+#iconv -c -f euckr -t utf-8 gpconfig.shl > gpconfig2.shl

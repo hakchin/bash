@@ -1,0 +1,22 @@
+#!/bin/bash
+# to shutdown master segment
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1
+
+echo $SHELLFILE":Start Time:"$START_TM1 >  $LOGFILE
+
+###### query start
+#gpstop -m &>> $LOGFILE 
+gpstop -m 
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

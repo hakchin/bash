@@ -1,0 +1,141 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment nodemaster
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+
+\timing on
+--SET SEARCH_PATH = masdapdw, masdacmn, masdainf, masdapdm, public;
+--SELECT create_external_table('masdapdw','tb_fda_pdw_apd_detail');
+--SELECT create_external_table('masdapdw','tb_fda_pdw_gls_insp_pnl_detail');
+--SELECT create_external_table('masdapdw','tb_fda_pdw_gls_insp_def_detail');
+--SELECT create_external_table('masdapdw','tb_fda_pdw_gls_insp_def_h');
+--SELECT create_external_table('masdapdw','tb_fda_pdw_gls_insp_detail');
+
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_apd_detail_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_apd_detail_w ( LIKE masdapdw.tb_fda_pdw_apd_detail )
+  LOCATION (
+              'gpfdist://etl3:8091/tb_fda_pdw_apd_detail.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_apd_detail_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_apd_detail_r ( LIKE masdapdw.tb_fda_pdw_apd_detail )
+  LOCATION (
+              'gpfdist://etl3:8091/tb_fda_pdw_apd_detail.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_pnl_detail_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_pnl_detail_w ( LIKE masdapdw.tb_fda_pdw_gls_insp_pnl_detail )
+  LOCATION (
+              'gpfdist://etl3:8092/tb_fda_pdw_gls_insp_pnl_detail.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_pnl_detail_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_pnl_detail_r ( LIKE masdapdw.tb_fda_pdw_gls_insp_pnl_detail )
+  LOCATION (
+              'gpfdist://etl3:8092/tb_fda_pdw_gls_insp_pnl_detail.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_def_detail_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_def_detail_w ( LIKE masdapdw.tb_fda_pdw_gls_insp_def_detail )
+  LOCATION (
+              'gpfdist://etl3:8093/tb_fda_pdw_gls_insp_def_detail.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_def_detail_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_def_detail_r ( LIKE masdapdw.tb_fda_pdw_gls_insp_def_detail )
+  LOCATION (
+              'gpfdist://etl3:8093/tb_fda_pdw_gls_insp_def_detail.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_def_h_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_def_h_w ( LIKE masdapdw.tb_fda_pdw_gls_insp_def_h )
+  LOCATION (
+              'gpfdist://etl3:8094/tb_fda_pdw_gls_insp_def_h.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_def_h_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_def_h_r ( LIKE masdapdw.tb_fda_pdw_gls_insp_def_h )
+  LOCATION (
+              'gpfdist://etl3:8094/tb_fda_pdw_gls_insp_def_h.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_detail_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_detail_w ( LIKE masdapdw.tb_fda_pdw_gls_insp_detail )
+  LOCATION (
+              'gpfdist://etl3:8095/tb_fda_pdw_gls_insp_detail.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_detail_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_detail_r ( LIKE masdapdw.tb_fda_pdw_gls_insp_detail )
+  LOCATION (
+              'gpfdist://etl3:8095/tb_fda_pdw_gls_insp_detail.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+
+##order by size desc## 
+#tb_fda_pdw_apd_detail
+#tb_fda_pdw_gls_insp_pnl_detail
+#tb_fda_pdw_gls_insp_def_detail
+#tb_fda_pdw_gls_insp_def_h
+#tb_fda_pdw_gls_insp_detail
+
+

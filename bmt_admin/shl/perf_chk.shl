@@ -1,0 +1,39 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+psql -U gpadmin -d gpperfmon -e >> $LOGFILE 2>&1 <<-!
+\timing on
+SELECT
+       ROUND(AVG(MEM_TOTAL)/1024.0^3::NUMERIC,2)                    "MEM_TOTAL(GB)",
+       ROUND(AVG(MEM_ACTUAL_USED*100.0/MEM_TOTAL)::NUMERIC,2)       "MEM_USED(%)",
+       ROUND(AVG(CPU_USER)::NUMERIC,2)                              "CPU_USER(%)",
+       ROUND(AVG(CPU_SYS)::NUMERIC,2)                               "CPU_SYS(%)",
+       ROUND(AVG(CPU_IDLE)::NUMERIC,2)                              "CPU_IDLE(%)",
+       ROUND(AVG(DISK_RB_RATE/1024.0^2)::NUMERIC,2)                 "DISK_RB_RATE(MB)",
+       ROUND(AVG(DISK_WB_RATE/1024.0^2)::NUMERIC,2)                 "DISK_WB_RATE(MB)",
+       ROUND(AVG(NET_RB_RATE/1024.0^2)::NUMERIC,2)                  "NET_RB_RATE(MB)",
+       ROUND(AVG(NET_WB_RATE/1024.0^2)::NUMERIC,2)                  "NET_WB_RATE(MB)"
+       FROM gpperfmon.public.SYSTEM_HISTORY
+  WHERE CTIME >=
+              '${1}'
+    AND CTIME <
+              '${2}'
+    AND hostname LIKE 'sdw%';
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

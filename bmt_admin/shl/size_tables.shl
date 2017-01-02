@@ -1,0 +1,170 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+select sotaidschemaname    schema_nm
+     , split_part(sotaidtablename, '_1_prt', 1)     tb_nm
+     , sum((sotaidtablesize/1024/1024)::int) tb_size_mb
+     , sum((sotaididxsize/1024/1024)::int) ix_size_mb
+from  gp_toolkit.gp_size_of_table_and_indexes_disk
+where split_part(sotaidtablename, '_1_prt', 1) in
+(
+ 'tb_dda_cmn_amc_specification_info'
+,'tb_dda_cmn_apd_3d_chart_m'
+,'tb_dda_cmn_apd_gr_m'
+,'tb_dda_cmn_apd_m'
+,'tb_dda_cmn_apd_path_cd'
+,'tb_dda_cmn_cell_af_prcs_map_m'
+,'tb_dda_cmn_condition_m'
+,'tb_dda_cmn_contact_map_m'
+,'tb_dda_cmn_def_cd'
+,'tb_dda_cmn_def_m'
+,'tb_dda_cmn_dms_specification_info'
+,'tb_dda_cmn_ea_equipment_m'
+,'tb_dda_cmn_ea_parts_m'
+,'tb_dda_cmn_ea_process_m'
+,'tb_dda_cmn_ea_user_m'
+,'tb_dda_cmn_eas_cd'
+,'tb_dda_cmn_equip_gr_m'
+,'tb_dda_cmn_equipment_m'
+,'tb_dda_cmn_etl_status'
+,'tb_dda_cmn_general_cd'
+,'tb_dda_cmn_judge_attr_m'
+,'tb_dda_cmn_judge_cd_m'
+,'tb_dda_cmn_mg_equipment_m'
+,'tb_dda_cmn_mg_model_m'
+,'tb_dda_cmn_mg_parts_m'
+,'tb_dda_cmn_mg_process_m'
+,'tb_dda_cmn_mg_user_m'
+,'tb_dda_cmn_model_m'
+,'tb_dda_cmn_multi_lang_dict_m'
+,'tb_dda_cmn_panel_map_m'
+,'tb_dda_cmn_parts_m'
+,'tb_dda_cmn_process_m'
+,'tb_dda_cmn_qlty_cd_field_item_m'
+,'tb_dda_cmn_qlty_cd_field_m'
+,'tb_dda_cmn_qlty_cd_field_seq_m'
+,'tb_dda_cmn_qlty_cd_m'
+,'tb_dda_cmn_rel_prcs_m'
+,'tb_dda_cmn_representative_def'
+,'tb_dda_cmn_representative_def_m'
+,'tb_dda_cmn_sdc2_def_cond_m'
+,'tb_dda_cmn_sdc2_insp_data_m'
+,'tb_dda_cmn_sdc2_judge_cond_m'
+,'tb_dda_cmn_sdc2_spec_cont_m'
+,'tb_dda_cmn_sdc2_spec_gr_m'
+,'tb_dda_cmn_sdc2_spec_m'
+,'tb_dda_cmn_spc_apd_m'
+,'tb_dda_cmn_spc_chart_info_m'
+,'tb_dda_cmn_spc_chart_m'
+,'tb_dda_cmn_spc_chart_raw_data_m'
+,'tb_dda_cmn_spc_measr_equip_gr_m'
+,'tb_dda_cmn_spc_prod_equip_gr_m'
+,'tb_dda_cmn_spc_spec_cont_m'
+,'tb_dda_cmn_spc_spec_gr_m'
+,'tb_dda_cmn_spc_spec_m'
+,'tb_dda_cmn_tfo_policy_m'
+,'tb_dda_cmn_tpfo_policy_m'
+,'tb_dda_cmn_tpfom_policy_m'
+,'tb_dda_cmn_user_def_gr_detail_m'
+,'tb_dda_cmn_user_def_gr_m'
+,'tb_dda_cmn_user_m'
+,'tb_dda_inf_ea_def_cd'
+,'tb_dda_inf_ea_multi_lang_dict_m'
+,'tb_dda_inf_ea_user_profile_m'
+,'tb_dda_inf_mg_model_m'
+,'tb_dda_inf_mg_part_no_m'
+,'tb_dda_inf_mg_worker_m'
+,'tb_fda_inf_ea_apd_detail'
+,'tb_fda_inf_ea_apd_h'
+,'tb_fda_inf_ea_apd_pre_prcs'
+,'tb_fda_inf_ea_def_cell_af_def_h'
+,'tb_fda_inf_ea_def_cell_af_pnl_detail'
+,'tb_fda_inf_ea_def_cell_af_pnl_h'
+,'tb_fda_inf_ea_def_cell_bf_pnl_detail'
+,'tb_fda_inf_ea_def_cf_def_detail'
+,'tb_fda_inf_ea_def_cf_def_h'
+,'tb_fda_inf_ea_def_cf_gls_detail'
+,'tb_fda_inf_ea_def_cf_pnl_detail'
+,'tb_fda_inf_ea_def_cot_judge_reason'
+,'tb_fda_inf_ea_def_tft_def_detail'
+,'tb_fda_inf_ea_def_tft_def_h'
+,'tb_fda_inf_ea_def_tft_gls_detail'
+,'tb_fda_inf_ea_def_tft_gls_h'
+,'tb_fda_inf_ea_def_tft_pnl_detail'
+,'tb_fda_inf_ea_spc_point_h'
+,'tb_fda_inf_mg_mod_insp_defect_h'
+,'tb_fda_inf_mg_mod_prod_process_h'
+,'tb_fda_inf_op_cmd_list_h_i'
+,'tb_fda_inf_op_lot_history_p_i'
+,'tb_fda_inf_op_product_history_p_i'
+,'tb_fda_inf_op_run_note'
+,'tb_fda_inf_op_transport_event_h_i'
+,'tb_fda_pdm_product_equip_h'
+,'tb_fda_pdm_product_h_s'
+,'tb_fda_pdm_product_h_s_t'
+,'tb_fda_pdm_product_m'
+,'tb_fda_pdm_product_m_t1'
+,'tb_fda_pdm_product_m_t2'
+,'tb_fda_pdm_product_prog_insp_h'
+,'tb_fda_pdm_product_prog_insp_h_t1'
+,'tb_fda_pdm_product_prog_insp_h_t2'
+,'tb_fda_pdm_product_prog_insp_h_t3'
+,'tb_fda_pdw_apd_detail'
+,'tb_fda_pdw_apd_detail_t'
+,'tb_fda_pdw_apd_h'
+,'tb_fda_pdw_apd_pre_prcs'
+,'tb_fda_pdw_ememo_file'
+,'tb_fda_pdw_ememo_h'
+,'tb_fda_pdw_ememo_lot'
+,'tb_fda_pdw_equip_h'
+,'tb_fda_pdw_equip_work_order_h'
+,'tb_fda_pdw_gls_insp_def_detail'
+,'tb_fda_pdw_gls_insp_def_detail_t'
+,'tb_fda_pdw_gls_insp_def_h'
+,'tb_fda_pdw_gls_insp_def_h_t'
+,'tb_fda_pdw_gls_insp_def_img'
+,'tb_fda_pdw_gls_insp_detail'
+,'tb_fda_pdw_gls_insp_detail_t'
+,'tb_fda_pdw_gls_insp_flag'
+,'tb_fda_pdw_gls_insp_h'
+,'tb_fda_pdw_gls_insp_pnl_detail'
+,'tb_fda_pdw_gls_insp_pnl_detail_t'
+,'tb_fda_pdw_gls_insp_pnl_h'
+,'tb_fda_pdw_lot_h'
+,'tb_fda_pdw_mod_product_h'
+,'tb_fda_pdw_pnl_insp_def_h'
+,'tb_fda_pdw_pnl_insp_detail'
+,'tb_fda_pdw_pnl_insp_h'
+,'tb_fda_pdw_pnl_insp_h_t'
+,'tb_fda_pdw_product_h'
+,'tb_fda_pdw_product_h_t'
+,'tb_fda_pdw_recipe_change_h'
+,'tb_fda_pdw_run_note'
+,'tb_fda_pdw_spc_point_h'
+,'tb_fda_pdw_transport_command_h'
+,'tb_fda_pdw_transport_event_h'
+)
+group by 1,2
+order by 1,2
+;
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

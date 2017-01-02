@@ -1,0 +1,222 @@
+------------------------------------------------------------------------
+DB Stauts
+------------------------------------------------------------------------
+20130203 Sunday
+--Sanghee Lee--
+masda_init=# select 'masda_init' dbname, pg_size_pretty(pg_Database_size('masda_init'));
+   dbname   | pg_size_pretty
+------------+----------------
+ masda_init | 701 GB
+(1 row)
+
+
+------------------------------------------------------------------------
+Backup --> First Original Size Copy
+gpcrondump -x masda_init -u /backup/DCA-01 -g -G -b -a --rsyncable
+[gpadmin@mdw shl]$ cat ../log/backup.shl.log 
+backup.shl:Start Time:2013-03-03 12:45:41
+backup.shl:End Time  :2013-03-03 12:59:45
+
+------------------------------------------------------------------------
+Backup --> Second Original Size Copy (Correct One and ..._back table included)
+gpcrondump -x masda_init -u /backup/DCA-01 -g -G -b -a --rsyncable
+[gpadmin@mdw shl]$ more ../log/backup.shl.log 
+backup.shl:Start Time:2013-03-03 23:34:56
+backup.shl:End Time  :2013-03-03 23:48:48
+
+---> About 740 GB
+------------------------------------------------------------------------
+Backup --> Third 5 Times Size Copy (Correct One and Not Compressed)
+--> About 5.43 TB
+
+masda=# select 'masda' dbname, pg_size_pretty(pg_Database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | 5556 GB
+(1 row)
+
+gpcrondump -x masda -u /backup/DCA-01 -g -G -b -a --rsyncable
+[gpadmin@mdw shl]$ more ../log/backup.shl.log 
+backup.shl:Start Time:2013-03-04 08:21:32
+backup.shl:End Time  :2013-03-04 08:55:50
+
+[gpadmin@mdw shl]$ sh backup.shl 
+backup.shl:Start Time:2013-03-04 08:21:32
+20130304:08:21:32:002461 gpcrondump:mdw:gpadmin-[INFO]:-Starting gpcrondump
+with args: -x masda -u /backup/DCA-01 -g -G -b -a --rsyncable
+20130304:08:21:35:002461 gpcrondump:mdw:gpadmin-[INFO]:-Directory
+/backup/DCA-01/db_dumps/20130304 not found, will try to create
+20130304:08:21:35:002461 gpcrondump:mdw:gpadmin-[INFO]:-Created
+/backup/DCA-01/db_dumps/20130304
+20130304:08:21:35:002461 gpcrondump:mdw:gpadmin-[INFO]:-Checked /backup/DCA-01
+on master
+20130304:08:21:35:002461 gpcrondump:mdw:gpadmin-[INFO]:-Directory
+/data/master/gpxeg-1/db_dumps/20130304 not found, will try to create
+20130304:08:21:35:002461 gpcrondump:mdw:gpadmin-[INFO]:-Created
+/data/master/gpxeg-1/db_dumps/20130304
+20130304:08:21:35:002461 gpcrondump:mdw:gpadmin-[INFO]:-Checked
+/data/master/gpxeg-1 on master
+20130304:08:21:37:002461 gpcrondump:mdw:gpadmin-[INFO]:-Configuring for single
+database dump
+20130304:08:21:37:002461 gpcrondump:mdw:gpadmin-[INFO]:-Adding compression
+parameter
+20130304:08:21:37:002461 gpcrondump:mdw:gpadmin-[INFO]:-Dump command line
+gp_dump -p 5432 -U gpadmin --gp-d=/backup/DCA-01/db_dumps/20130304
+--gp-r=/data/master/gpxeg-1/db_dumps/20130304 --gp-s=p --gp-c masda
+--rsyncable
+20130304:08:21:37:002461 gpcrondump:mdw:gpadmin-[INFO]:-Starting dump process
+
+------------------------------------------------------------------------
+Backup --> Forth 5 Times Size Copy (Real Correct One and Not Compressed)
+--> About 3.6 TB  (Not included Scale Table)
+
+masda=# select 'masda' dbname, pg_size_pretty(pg_Database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | 3609 GB
+(1 row)
+
+gpcrondump -x masda -u /backup/DCA-01 -g -G -b -a --rsyncable
+[gpadmin@mdw shl]$ more ../log/backup.shl.log 
+backup.shl:Start Time:2013-03-04 17:16:02
+backup.shl:End Time  :2013-03-04 17:40:07
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------
+Backup --> Forth 5 Times Size Copy (Online test with load)
+--> About xxx TB
+
+masda=# select 'masda' dbname, pg_size_pretty(pg_Database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | xxxxx GB
+(1 row)
+
+[gpadmin@mdw shl]$ more ../log/backup.shl.log 
+backup.shl:Start Time:
+backup.shl:End Time  :
+
+
+
+
+
+------------------------------------------------------------------------
+20130309SA DBSTATUS
+
+masda=# select 'masda' dbname, pg_size_pretty(pg_database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | 13 TB
+(1 row)
+
+infa=# select 'infa' dbname, pg_size_pretty(pg_database_size('infa'));
+ dbname | pg_size_pretty 
+--------+----------------
+ infa   | 13 TB
+(1 row)
+
+[gpadmin@sdw1 ~]$ df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda2              31G  3.3G   26G  12% /
+tmpfs                  32G     0   32G   0% /dev/shm
+/dev/sda1            1008M   89M  869M  10% /boot
+/dev/sdc              2.7T  2.2T  546G  80% /data1
+/dev/sdf              2.7T  2.2T  561G  80% /data2
+/dev/sde1              32G  4.6G   26G  16% /var/crash
+/dev/rssda            642G  198M  610G   1% /data3
+df: `/var/lib/nfs/rpc_pipefs': Permission denied
+dd890:/backup/DCA-01/Seg01
+                       21T  3.7T   18T  18% /backup/DCA-01
+
+------------------------------------------------------------------------
+20130310SU DBSTATUS
+
+
+masda=#  select 'infa' dbname, pg_size_pretty(pg_database_size('infa'));
+ dbname | pg_size_pretty 
+--------+----------------
+ infa   | 10 TB
+(1 row)
+
+[gpadmin@sdw1 ~]$ df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda2              31G  3.3G   26G  12% /
+tmpfs                  32G     0   32G   0% /dev/shm
+/dev/sda1            1008M   89M  869M  10% /boot
+/dev/sdc              2.7T  1.7T  980G  64% /data1
+/dev/sdf              2.7T  1.7T  991G  64% /data2
+/dev/sde1              32G  4.6G   26G  16% /var/crash
+/dev/rssda            642G  198M  610G   1% /data3
+df: `/var/lib/nfs/rpc_pipefs': Permission denied
+dd890:/backup/DCA-01/Seg01
+                       21T  3.8T   18T  18% /backup/DCA-01
+
+
+
+
+------------------------------------------------------------------------
+20130311MO DBSTATUS   --> Dawn,... I backed up ....
+
+masda=#  select 'masda' dbname, pg_size_pretty(pg_database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | 12 TB
+(1 row)
+
+
+
+
+
+
+
+------------------------------------------------------------------------
+20130320WE DBSTATUS   --> Dawn,... I backed up .... (Correct one, 3/4 Rack, 15
+times increased size)
+[gpadmin@mdw shl]$ psql
+psql (8.2.15)
+Type "help" for help.
+
+masda=# SELECT 'masda' dbname, pg_size_pretty(pg_Database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | 13 TB
+(1 row)
+
+
+
+
+
+------------------------------------------------------------------------
+20130320WE DBSTATUS   --> I backed up .... (Correct one, 3/4 Rack, 15
+times increased size, Data is good, Schema is good. !!!!)
+[gpadmin@mdw shl]$ more ../log/backup.shl.log
+backup.shl:Start Time:2013-03-20 17:45:31
+backup.shl:End Time  :2013-03-20 18:29:25
+
+[gpadmin@mdw shl]$ psql
+psql (8.2.15)
+Type "help" for help.
+
+masda=# SELECT 'masda' dbname, pg_size_pretty(pg_Database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | 11 TB
+(1 row)
+
+--> Timestamp key = 20130320174536
+--> Make sure masdacmn.tb_dda_cmn_def_m be broad casted in 2_REPORT.sh Process
+
+------------------------------------------------------------------------
+

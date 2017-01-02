@@ -1,0 +1,51 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment nodemaster
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+
+\timing on
+--SET SEARCH_PATH = sdmin, public;
+--SELECT create_external_table('sdmin','dm_order_dtl_fact');
+
+--
+DROP EXTERNAL TABLE IF EXISTS sdmin.ext_dm_order_dtl_fact_w;
+CREATE WRITABLE EXTERNAL TABLE sdmin.ext_dm_order_dtl_fact_w ( LIKE sdmin.dm_order_dtl_fact )
+  LOCATION (
+              'gpfdist://sdw9:8091/dm_order_dtl_fact.csv'
+            )
+  FORMAT 'csv' (delimiter '|' NULL '' ESCAPE '"' QUOTE '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS sdmin.ext_dm_order_dtl_fact_r;
+CREATE EXTERNAL TABLE sdmin.ext_dm_order_dtl_fact_r ( LIKE sdmin.dm_order_dtl_fact )
+  LOCATION (
+              'gpfdist://sdw9:8091/dm_order_dtl_fact.csv'
+            )
+--  FORMAT 'csv' (delimiter '|' NULL '' ESCAPE '"' QUOTE '"')
+  FORMAT 'csv' (delimiter '|' ESCAPE '"' QUOTE '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO sdmin.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

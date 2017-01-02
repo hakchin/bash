@@ -1,0 +1,14 @@
+#!/bin/bash
+# Usage : sh hecho.shl sn2ro abc
+source ../cmn/env.profile
+SHELLFILE=${0}
+SCHEMA=${1}
+TABLE=${2}
+
+echo "INSERT INTO "$SCHEMA"."$TABLE"_bk SELECT * FROM "$SCHEMA"."$TABLE";"
+echo "ALTER TABLE "$SCHEMA"."$TABLE" RENAME TO "$TABLE"_b9;" 
+echo "ALTER TABLE "$SCHEMA"."$TABLE"_bk RENAME TO "$TABLE";" 
+
+
+echo "SELECT count(*) FROM "$SCHEMA"."$TABLE"_b9;" 
+echo "SELECT count(*) FROM "$SCHEMA"."$TABLE";" 

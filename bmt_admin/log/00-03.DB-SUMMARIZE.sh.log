@@ -1,0 +1,10 @@
+Timing is on.
+SELECT 'pil' dbname, pg_size_pretty(pg_Database_size('pil'));
+ dbname | pg_size_pretty 
+--------+----------------
+ pil    | 3490 MB
+(1 row)
+
+Time: 534.980 ms
+00-03.DB-SUMMARIZE.sh|Start Time         |End Time
+00-03.DB-SUMMARIZE.sh|2013-11-12 12:43:12|2013-11-12 12:43:13

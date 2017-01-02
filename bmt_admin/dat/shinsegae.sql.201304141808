@@ -1,0 +1,785 @@
+--
+-- Greenplum Database database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+SET default_with_oids = false;
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: gpadmin
+--
+
+COMMENT ON SCHEMA public IS 'Standard public schema';
+
+
+--
+-- Name: sdmin; Type: SCHEMA; Schema: -; Owner: gpadmin
+--
+
+CREATE SCHEMA sdmin;
+
+
+ALTER SCHEMA sdmin OWNER TO gpadmin;
+
+--
+-- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: gpadmin
+--
+
+CREATE PROCEDURAL LANGUAGE plpgsql;
+ALTER FUNCTION plpgsql_call_handler() OWNER TO gpadmin;
+ALTER FUNCTION plpgsql_validator(oid) OWNER TO gpadmin;
+
+
+SET search_path = sdmin, pg_catalog;
+
+SET default_tablespace = '';
+
+--
+-- Name: co_code_dtl; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE co_code_dtl (
+    comm_code_id character varying(6) NOT NULL,
+    code_id character varying(6) NOT NULL,
+    code_grp_id character varying(6),
+    grp_code_name character varying(100),
+    code_name character varying(200),
+    disp_name character varying(200),
+    mapping_code_val character varying(100),
+    code_path character varying(200),
+    code_desc character varying(2000),
+    sort_seq smallint,
+    use_yn character(1),
+    insert_datetime timestamp without time zone,
+    insert_id character varying(50),
+    modify_datetime timestamp without time zone,
+    modify_id character varying(50),
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (comm_code_id ,code_id);
+
+
+ALTER TABLE sdmin.co_code_dtl OWNER TO letl;
+
+--
+-- Name: co_olap_date; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE co_olap_date (
+    date_code_i bigint NOT NULL,
+    date_code character(8) NOT NULL,
+    date_name character varying(100),
+    year_code character(4),
+    quarter_code character(6),
+    quarter_name character varying(7),
+    month_code character(6) NOT NULL,
+    month_name character varying(7),
+    month_week_code character(8),
+    month_week_name character varying(11),
+    year_week_code character(6),
+    year_week_name character varying(8),
+    season_code character varying(6),
+    season_name character varying(100),
+    week_code character varying(6),
+    week_name character varying(100),
+    weekend_yn character(1),
+    holiday_yn character(1),
+    holiday_gubun_code character varying(6)
+) DISTRIBUTED BY (date_code_i);
+
+
+ALTER TABLE sdmin.co_olap_date OWNER TO letl;
+
+--
+-- Name: co_yn; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE co_yn (
+    yn_code character(1) NOT NULL,
+    yn_name character varying(100),
+    sort_seq smallint
+) DISTRIBUTED BY (yn_code);
+
+
+ALTER TABLE sdmin.co_yn OWNER TO letl;
+
+--
+-- Name: cu_vendor; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE cu_vendor (
+    vendor_id bigint NOT NULL,
+    vendor_name character varying(200),
+    contr_system_vendor_id character varying(20),
+    base_dprice_policy_id bigint,
+    ship_base_addr_id bigint,
+    base_sendback_place_addr_id bigint,
+    vendor_addr_id bigint,
+    mail_addr_id bigint,
+    upper_vendor_id bigint,
+    dept_story_code character varying(6),
+    dept_yn character(1),
+    gift_packing_yn character(1),
+    gift_copacking_yn character(1),
+    metro_deli_yn character(1),
+    province_deli_yn character(1),
+    fixed_margin_rate_yn character(1),
+    quick_deli_yn character(1),
+    sale_bounty_apply_yn character(1),
+    holiday_deli_yn character(1),
+    hope_deli_yn character(1),
+    vat_inc_yn character(1),
+    contr_start_date character(8),
+    contr_end_date character(8),
+    item_upkeep bigint,
+    gift_pack_cost bigint,
+    quick_dprice bigint,
+    sale_poss_qty bigint,
+    metro_leadtime character varying(2),
+    province_leadtime character varying(2),
+    boss_name character varying(50),
+    dept_flow_no bigint,
+    biz_no character varying(50),
+    biz_type character varying(50),
+    vendor_auth_level character varying(6),
+    biz_condition character varying(50),
+    vendor_proc_stat_code character varying(6),
+    receipt_issue_pos_yn character(1),
+    receipt_issue_yn character(1),
+    avg_margin_rate numeric(15,7),
+    contract_route character varying(2),
+    dept_unit_yn character(1),
+    tax_gubun_code character varying(6),
+    event_margin_rate numeric(15,7),
+    iteminfo_upkeep_impos_yn character(1),
+    penalty_dely_yn character(1),
+    penalty_oos_yn character(1),
+    recovery_delicomp_code character varying(6),
+    recovery_method_code character varying(6),
+    recovery_delicost bigint,
+    rep_item_grp character varying(50),
+    settle_std_code character varying(6),
+    std_ctg_id bigint,
+    deli_form_code character varying(6),
+    deli_main_code character varying(6),
+    settle_cycle_code character varying(6),
+    settle_type_code character varying(6),
+    install_hope_deli_yn character(1),
+    close_business_date character(8),
+    shop_create_auth_yn character(1),
+    no_business_date character(8),
+    insert_id character varying(50),
+    insert_datetime timestamp without time zone,
+    modify_id character varying(50),
+    modify_datetime timestamp without time zone,
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (vendor_id);
+
+
+ALTER TABLE sdmin.cu_vendor OWNER TO letl;
+
+--
+-- Name: dm_campaign_cust_effect; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE dm_campaign_cust_effect (
+    std_date character(8) NOT NULL,
+    daily_sum_yn character(2) NOT NULL,
+    campaign_code character varying(32) NOT NULL,
+    proc_step_code character varying(6) NOT NULL,
+    cell_id bigint NOT NULL,
+    gender_code character(1) NOT NULL,
+    age_code character varying(6) NOT NULL,
+    job_gubun_code character varying(6) NOT NULL,
+    married_yn character(1) NOT NULL,
+    zipcode character(6) NOT NULL,
+    child_yn character(1) NOT NULL,
+    child_cnt smallint NOT NULL,
+    member_grade_id character(2) NOT NULL,
+    value_base_seg_code character varying(6) NOT NULL,
+    potential_value_seg_code character varying(6) NOT NULL,
+    cgrp_cust_cnt bigint DEFAULT 0,
+    rgrp_cust_cnt bigint DEFAULT 0,
+    rgrp_buy_cust_cnt bigint DEFAULT 0,
+    cgrp_buy_cust_cnt bigint DEFAULT 0,
+    upsale_rgrp_cust_cnt bigint DEFAULT 0,
+    upsale_cgrp_cust_cnt bigint DEFAULT 0,
+    upsale_rgrp_natural_sale_amt bigint DEFAULT 0,
+    upsale_cgrp_natural_sale_amt bigint DEFAULT 0,
+    upsale_cgrp_natural_sale_amt_up_cust_cnt bigint DEFAULT 0,
+    upsale_rsvramt_use_cust_cnt bigint DEFAULT 0,
+    upsale_rsvramt_use_amt bigint DEFAULT 0,
+    upsale_direct_chnnl_order_cust_cnt bigint DEFAULT 0,
+    upsale_direct_channel_order_amt bigint DEFAULT 0,
+    odrswitch_rgrp_cust_cnt bigint DEFAULT 0,
+    odrswitch_cgrp_cust_cnt bigint DEFAULT 0,
+    odrswitch_target_exp_odr_switch_cust_cnt bigint DEFAULT 0,
+    odrswitch_rgrp_odr_switch_cust_cnt bigint DEFAULT 0,
+    odrswitch_cgrp_odr_switch_cust_cnt bigint DEFAULT 0,
+    odrswitch_target_exp_odr_switch_amt bigint DEFAULT 0,
+    odrswitch_rgrp_order_amt bigint DEFAULT 0,
+    odrswitch_cgrp_order_amt bigint DEFAULT 0,
+    custtran_rgrp_cust_cnt bigint DEFAULT 0,
+    custtran_cgrp_cust_cnt bigint DEFAULT 0,
+    custtran_rgrp_order_cnt bigint DEFAULT 0,
+    custtran_cgrp_order_cnt bigint DEFAULT 0,
+    custtran_rgrp_order_unit_amt_inc_cust_cnt bigint DEFAULT 0,
+    custtran_rgrp_order_unit_amt_inc_buy_amt bigint DEFAULT 0,
+    custtran_rgrp_order_unit_amt_inc_buy_cnt bigint DEFAULT 0,
+    custtran_rgrp_order_amt bigint DEFAULT 0,
+    custtran_cgrp_order_amt bigint DEFAULT 0,
+    custinfo_rgrp_cust_cnt bigint DEFAULT 0,
+    custinfo_rgrp_info_gain_cust_cnt bigint DEFAULT 0,
+    royalty_rgrp_cust_cnt bigint DEFAULT 0,
+    royalty_cgrp_cust_cnt bigint DEFAULT 0,
+    royalty_rgrp_natural_sale_amt bigint DEFAULT 0,
+    royalty_cgrp_natural_sale_amt bigint DEFAULT 0,
+    royalty_member_grade_keep_cust_cnt bigint DEFAULT 0,
+    royalty_member_grade_up_cust_cnt bigint DEFAULT 0,
+    royalty_item_eval_cnt bigint DEFAULT 0,
+    royalty_item_eval_cust_cnt bigint DEFAULT 0,
+    load_date character(8)
+) DISTRIBUTED BY (std_date ,campaign_code ,cell_id ,daily_sum_yn);
+
+
+ALTER TABLE sdmin.dm_campaign_cust_effect OWNER TO letl;
+
+--
+-- Name: dm_order_dtl_fact; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE dm_order_dtl_fact (
+    order_id character varying(14) NOT NULL,
+    item_id bigint NOT NULL,
+    unit_id bigint NOT NULL,
+    payment_finish_date_i bigint,
+    payment_finish_date character(8) NOT NULL,
+    payment_time_range_code character varying(6) NOT NULL,
+    sale_shop_id bigint NOT NULL,
+    o_id character varying(20),
+    post_name character varying(200),
+    dprice_amt bigint,
+    disp_ctg_id bigint,
+    shop_type_code character varying(6),
+    order_chnl_code character varying(6),
+    channel_gubun_code character varying(6),
+    mall_id character varying(3),
+    cust_zipcode character(6),
+    std_dtl_ctg_id bigint,
+    order_date_i bigint,
+    order_date character(8),
+    order_time_range_code character varying(6),
+    b2e_memcomp_id bigint,
+    channel_id bigint,
+    cust_id bigint,
+    member_gubun_code character varying(6),
+    gender_code character varying(6),
+    age_code character varying(6),
+    member_grade_id character varying(2),
+    fix_grade_code character varying(6),
+    item_type_code character varying(6),
+    brand_id bigint,
+    vendor_id bigint,
+    organize_code character varying(6),
+    buyer_id character varying(50),
+    coupon_id bigint,
+    shop_area_id bigint,
+    order_yn character(1),
+    natural_order_yn character(1),
+    buy_yn character(1),
+    cancel_yn character(1),
+    shortage_cancel_yn character(1),
+    general_cancel_yn character(1),
+    return_yn character(1),
+    chng_yn character(1),
+    unsatify_reason_code character varying(6),
+    order_act_cnt bigint,
+    cancel_act_cnt bigint,
+    general_cancel_act_cnt bigint,
+    shortage_cancel_act_cnt bigint,
+    return_act_cnt bigint,
+    chng_act_cnt bigint,
+    order_amt bigint,
+    order_qty bigint,
+    order_sku_cnt bigint,
+    natural_order_amt bigint,
+    natural_order_qty bigint,
+    natural_order_sku_cnt bigint,
+    buy_amt bigint,
+    buy_qty bigint,
+    buy_sku_cnt bigint,
+    cancel_amt bigint,
+    cancel_qty bigint,
+    cancel_sku_cnt bigint,
+    shortage_cancel_amt bigint,
+    shortage_cancel_qty bigint,
+    shortage_cancel_sku_cnt bigint,
+    general_cancel_amt bigint,
+    general_cancel_qty bigint,
+    general_cancel_sku_cnt bigint,
+    return_amt bigint,
+    return_qty bigint,
+    return_sku_cnt bigint,
+    chng_amt bigint,
+    chng_qty bigint,
+    chng_sku_cnt bigint,
+    margin_amt bigint,
+    supply_cost bigint,
+    vat_exp_supply_cost bigint,
+    item_price bigint,
+    vat_exp_item_price bigint,
+    sale_amt bigint,
+    vat_exp_sale_amt bigint,
+    natural_sale_amt bigint,
+    vat_exp_natural_sale_amt bigint,
+    dc_inc_sale_amt bigint,
+    vat_exp_dc_inc_sale_amt bigint,
+    buy_origin_cost bigint,
+    vat_exp_buy_origin_cost bigint,
+    ssg_dc_amt bigint,
+    vat_exp_ssg_dc_amt bigint,
+    md_dc_amt bigint,
+    vat_exp_md_dc_amt bigint,
+    mkt_dc_amt bigint,
+    vat_exp_mkt_dc_amt bigint,
+    vendor_dc_amt bigint,
+    vat_exp_vendor_dc_amt bigint,
+    dc_amt bigint,
+    vat_exp_dc_amt bigint,
+    item_sale_profit_amt bigint,
+    promo_dc_amt bigint,
+    promo_vendor_charge_dc_amt bigint,
+    promo_mkt_charge_dc_amt bigint,
+    promo_buyer_charge_dc_amt bigint,
+    coupon_dc_amt bigint,
+    coupon_vendor_charge_dc_amt bigint,
+    coupon_mkt_charge_dc_amt bigint,
+    coupon_buyer_charge_dc_amt bigint,
+    manual_dc_amt bigint,
+    vat_exp_manual_dc_amt bigint,
+    real_dc_amt bigint,
+    rsvramt bigint,
+    vendor_charge_rsvramt bigint,
+    rsvr_ssg_point bigint,
+    rsvr_okcashbag_point bigint,
+    load_date character(8)
+) DISTRIBUTED BY (order_id ,item_id ,unit_id ,payment_finish_date_i);
+
+
+ALTER TABLE sdmin.dm_order_dtl_fact OWNER TO letl;
+
+--
+-- Name: mk_uc_campaign_dtl; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE mk_uc_campaign_dtl (
+    campaign_code character varying(32) NOT NULL,
+    campaign_name character varying(64),
+    campaign_type_code character varying(6),
+    campaign_detail_type_code character varying(6),
+    pilot_yn character(1),
+    assc_flowchartid bigint,
+    campaign_purpose_code character varying(6),
+    campaign_purpose_desc character varying(2000),
+    operation_start_datetime character varying(14),
+    operation_end_datetime character varying(14),
+    apply_start_time1 character varying(2),
+    apply_end_time1 character varying(2),
+    apply_start_time2 character varying(2),
+    apply_end_time2 character varying(2),
+    apply_start_time3 character varying(2),
+    apply_end_time3 character varying(2),
+    action_week_code character varying(6),
+    disp_period_day integer,
+    buysum_event_yn character(1),
+    buysum_cardcomp_id character varying(4),
+    buysum_amt_cnt_yn character(1),
+    oper_esti_cust_cnt bigint,
+    cost_effcnc_rate numeric(6,2),
+    last_proc_step_code character varying(6),
+    last_proc_job_datetime timestamp without time zone,
+    campaignid bigint NOT NULL,
+    upper_buyer_id character varying(50),
+    buyer_id character varying(50),
+    insert_depart_code character varying(10),
+    notice_yn character(1),
+    demand_dc_for_shopping_amt_yn character(1),
+    insert_id character varying(50),
+    insert_datetime timestamp without time zone,
+    modify_id character varying(50),
+    modify_datetime timestamp without time zone,
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (campaign_code);
+
+
+ALTER TABLE sdmin.mk_uc_campaign_dtl OWNER TO letl;
+
+--
+-- Name: mk_uc_campaign_effect_goal; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE mk_uc_campaign_effect_goal (
+    campaign_code character varying(32) NOT NULL,
+    effect_sucess_std_code character varying(6) NOT NULL,
+    effect_goal_cust_cnt bigint,
+    effect_goal_natural_sale_amt bigint,
+    insert_id character varying(50),
+    insert_datetime timestamp without time zone,
+    modify_id character varying(50),
+    modify_datetime timestamp without time zone,
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (campaign_code ,effect_sucess_std_code);
+
+
+ALTER TABLE sdmin.mk_uc_campaign_effect_goal OWNER TO letl;
+
+--
+-- Name: olap_co_b2e_channel; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE olap_co_b2e_channel (
+    channel_gubun_code character varying(2),
+    channel_gubun_name character varying(9),
+    channel_id bigint,
+    channel_name character varying(200),
+    rep_channel_id bigint,
+    rep_channel_name character varying(50),
+    channel_type_id bigint,
+    ckwhere character varying(50)
+) DISTRIBUTED BY (channel_gubun_code);
+
+
+ALTER TABLE sdmin.olap_co_b2e_channel OWNER TO letl;
+
+--
+-- Name: olap_disp_ctg_connect; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE olap_disp_ctg_connect (
+    main_level character varying(1),
+    main_disp_ctg_id bigint NOT NULL,
+    main_disp_ctg_name character varying(200),
+    sub_level smallint,
+    sub_disp_ctg_id bigint NOT NULL,
+    sub_disp_ctg_name character varying(200)
+) DISTRIBUTED BY (main_level);
+
+
+ALTER TABLE sdmin.olap_disp_ctg_connect OWNER TO letl;
+
+--
+-- Name: olap_or_buyer; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE olap_or_buyer (
+    buyer_id character varying(50) NOT NULL,
+    mis_buyer_yn character(1),
+    user_id character varying(50),
+    user_name character varying(50),
+    organize_code character varying(6),
+    code_name character varying(200),
+    sort_seq smallint,
+    buyer_ctg_name character varying(200),
+    buyer_ctg_seq smallint
+) DISTRIBUTED BY (buyer_id);
+
+
+ALTER TABLE sdmin.olap_or_buyer OWNER TO letl;
+
+--
+-- Name: pd_brand; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE pd_brand (
+    brand_id bigint NOT NULL,
+    brand_name character varying(100),
+    use_yn character(1),
+    vendor_brand_id character varying(20),
+    vendor_brand_name character varying(200),
+    vendor_exclusive_use_yn character(1),
+    luxury_yn character varying(1),
+    insert_id character varying(50),
+    insert_datetime timestamp without time zone,
+    modify_id character varying(50),
+    modify_datetime timestamp without time zone,
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (brand_id);
+
+
+ALTER TABLE sdmin.pd_brand OWNER TO letl;
+
+--
+-- Name: pd_disp_ctg; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE pd_disp_ctg (
+    disp_ctg_id bigint NOT NULL,
+    disp_ctg_name character varying(200),
+    upper_id bigint,
+    leaf_yn character varying(1),
+    ctg_kind_lcode character varying(6),
+    period_type_code character varying(6),
+    disp_proc_stat_code character varying(6),
+    template_id bigint,
+    disp_seq integer,
+    mall_disp_type_code character varying(6),
+    b2e_memcomp_id character varying(50),
+    adult_ctg_yn character(1),
+    buyer_id character varying(50),
+    vendor_id bigint,
+    disp_start_datetime character varying(12),
+    disp_end_datetime character varying(12),
+    shop_landing_id character varying(4),
+    disp_in_item_page_yn character varying(1),
+    shop_level smallint,
+    grade_apply_method_code character varying(6),
+    join_poss_member_grade_id character varying(2),
+    shop_type_code character varying(6),
+    item_sort_type_code character varying(6),
+    std_ctg_id bigint,
+    ctg_mgmt_owner_code character varying(6),
+    insert_id character varying(50),
+    insert_datetime timestamp without time zone,
+    modify_id character varying(50),
+    modify_datetime timestamp without time zone,
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (disp_ctg_id);
+
+
+ALTER TABLE sdmin.pd_disp_ctg OWNER TO letl;
+
+--
+-- Name: pd_disp_ctg_6_level; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE pd_disp_ctg_6_level (
+    disp_ctg_6_level_id bigint NOT NULL,
+    ctg_kind_lcode character varying(6),
+    disp_ctg_name character varying(200),
+    disp_ctg_5_level_id bigint NOT NULL,
+    disp_ctg_level smallint,
+    disp_ctg_origin_level smallint,
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (disp_ctg_6_level_id);
+
+
+ALTER TABLE sdmin.pd_disp_ctg_6_level OWNER TO letl;
+
+--
+-- Name: pd_item; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE pd_item (
+    item_id bigint NOT NULL,
+    item_name character varying(200),
+    disp_start_datetime character varying(12),
+    disp_end_datetime character varying(12),
+    item_gubun_code character varying(6),
+    item_proc_stat_code character varying(6),
+    mall_disp_type_code character varying(6),
+    gift_cert_yn character(1),
+    cert_gubun_code character varying(6),
+    digital_gubun_code character varying(2),
+    temp_reg_yn character(1),
+    std_dtl_ctg_id bigint,
+    buyer_id character varying(50),
+    vendor_id bigint,
+    sub_vendor_id bigint,
+    vendor_item_id character varying(50),
+    brand_id bigint,
+    ctg_weight_id bigint,
+    origin_id bigint,
+    nutrient_origin character varying(2000),
+    maker_id bigint,
+    dept_gift_code character varying(50),
+    dept_md_code_id bigint,
+    model_name character varying(200),
+    price_mark_yn character(1),
+    soldout_disp_yn character(1),
+    buyer_conf_yn character(1),
+    eco_item_yn character(1),
+    only_shin_yn character(1),
+    dept_yn character(1),
+    adult_item_yn character(1),
+    stock_qty_disp_yn character(1),
+    stock_item_gubun character(1),
+    new_item_yn character(1),
+    best_item_yn character(1),
+    search_yn character(1),
+    srchword character varying(200),
+    cart_gubun_code character varying(6),
+    imm_buy_yn character(1),
+    order_poss_max_qty bigint,
+    order_poss_min_qty bigint,
+    max_order_qty_for_person bigint,
+    grade_up_yn character(1),
+    member_grade_id character varying(2),
+    req_eng_name_yn character(1),
+    foreign_deli_yn character(1),
+    spoint_item_yn character(1),
+    stock_mng_yn character(1),
+    rsrv_qty_mng_yn character(1),
+    rsrv_enter_date character(8),
+    rsrv_start_date character(8),
+    rsrv_end_date character(8),
+    install_hope_deli_yn character(1),
+    install_hope_min_day smallint,
+    metro_deli_yn character(1),
+    metro2_deli_yn character(1),
+    province_deli_yn character(1),
+    metro_leadtime character varying(2),
+    province_leadtime character varying(2),
+    std_spoint bigint,
+    rsvramt_rate numeric(15,4),
+    rsvramt_rate_yn character(1),
+    rsvramt_imm_use_rate numeric(15,7),
+    rsvramt_imm_use_yn character(1),
+    gift_inc_yn character(1),
+    promo_apply_yn character(1),
+    coupon_apply_yn character(1),
+    deli_main_code character varying(6),
+    deli_form_code character varying(6),
+    dprice_policy_id bigint,
+    imm_deli_finish_yn character(1),
+    imm_cancel_poss_yn character(1),
+    first_return_yn character(1),
+    return_prevent_yn character(1),
+    settle_type_code character varying(6),
+    tax_gubun_code character varying(6),
+    taker_conf_yn character(1),
+    delicost_code character varying(6),
+    gift_msg_yn character(1),
+    gift_packing_yn character(1),
+    gift_pack_cost bigint,
+    gift_copacking_yn character(1),
+    multi_unit_yn character(1),
+    multi_price_yn character(1),
+    attr_code_1 character varying(6),
+    attr_code_2 character varying(6),
+    attr_code_3 character varying(6),
+    attr_code_4 character varying(6),
+    attr_code_5 character varying(6),
+    attr_code_1_set_name character varying(100),
+    attr_code_2_set_name character varying(100),
+    attr_code_3_set_name character varying(100),
+    attr_code_4_set_name character varying(100),
+    attr_code_5_set_name character varying(100),
+    insert_date character(8),
+    insert_datetime timestamp without time zone,
+    insert_id character varying(50),
+    modify_datetime timestamp without time zone,
+    modify_id character varying(50),
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (item_id);
+
+
+ALTER TABLE sdmin.pd_item OWNER TO letl;
+
+--
+-- Name: pd_std_dtl_ctg; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE pd_std_dtl_ctg (
+    std_dtl_ctg_id bigint NOT NULL,
+    std_ctg_name character varying(200),
+    std_small_ctg_id bigint,
+    std_ctg_kind_code character varying(6),
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (std_dtl_ctg_id);
+
+
+ALTER TABLE sdmin.pd_std_dtl_ctg OWNER TO letl;
+
+--
+-- Name: pd_std_large_ctg; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE pd_std_large_ctg (
+    std_large_ctg_id bigint NOT NULL,
+    std_ctg_name character varying(200),
+    std_ctg_kind_code character varying(6),
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (std_large_ctg_id);
+
+
+ALTER TABLE sdmin.pd_std_large_ctg OWNER TO letl;
+
+--
+-- Name: pd_std_middle_ctg; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE pd_std_middle_ctg (
+    std_middle_ctg_id bigint NOT NULL,
+    std_ctg_name character varying(200),
+    std_large_ctg_id bigint,
+    std_ctg_kind_code character varying(6),
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (std_middle_ctg_id);
+
+
+ALTER TABLE sdmin.pd_std_middle_ctg OWNER TO letl;
+
+--
+-- Name: pd_std_small_ctg; Type: TABLE; Schema: sdmin; Owner: letl; Tablespace: 
+--
+
+CREATE TABLE pd_std_small_ctg (
+    std_small_ctg_id bigint NOT NULL,
+    std_ctg_name character varying(200),
+    std_middle_ctg_id bigint,
+    std_ctg_kind_code character varying(6),
+    extract_date character(8),
+    load_date character(8)
+) DISTRIBUTED BY (std_small_ctg_id);
+
+
+ALTER TABLE sdmin.pd_std_small_ctg OWNER TO letl;
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: gpadmin
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM gpadmin;
+GRANT ALL ON SCHEMA public TO gpadmin;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+GRANT ALL ON SCHEMA public TO lolap;
+GRANT ALL ON SCHEMA public TO letl;
+GRANT ALL ON SCHEMA public TO ladhoc;
+GRANT ALL ON SCHEMA public TO loltp;
+
+
+--
+-- Name: sdmin; Type: ACL; Schema: -; Owner: gpadmin
+--
+
+REVOKE ALL ON SCHEMA sdmin FROM PUBLIC;
+REVOKE ALL ON SCHEMA sdmin FROM gpadmin;
+GRANT ALL ON SCHEMA sdmin TO gpadmin;
+GRANT ALL ON SCHEMA sdmin TO letl;
+GRANT ALL ON SCHEMA sdmin TO lolap;
+GRANT ALL ON SCHEMA sdmin TO ladhoc;
+GRANT ALL ON SCHEMA sdmin TO ldba;
+GRANT ALL ON SCHEMA sdmin TO loltp;
+
+
+--
+-- Greenplum Database database dump complete
+--
+

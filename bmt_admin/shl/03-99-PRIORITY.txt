@@ -1,0 +1,40 @@
+-- 결산데이터 생성 테스트 월: 2012년12월
+-- ROLAP 테스트 기간: 2012년7월~2013년 6월
+-- 
+-- * 수행 방법
+--  -  10개 list MW_001 병렬 수행 + 10개 list MW_003 병렬 수행
+--    : 동시 list 10개를 병렬로 구성
+--  -  Workload Management 로 다음 비율을 적용하여 각각에 대한 소요 시간 기록
+--    .apps_rolap : apps_ipt = 6 : 4 (MW_001의 평균 부하가 50% 이상인 경우)
+--    .apps_rolap : apps_ipt = 5 : 5
+--    .apps_rolap : apps_ipt = 4 : 6
+--    .apps_rolap : apps_ipt = 3 : 7
+--    .apps_rolap : apps_ipt = 2 : 8
+--    .apps_rolap : apps_ipt = 1 : 9
+
+
+
+--    .apps_rolap : apps_ipt = 6 : 4 (MW_001의 평균 부하가 50% 이상인 경우)
+ALTER RESOURCE QUEUE rq_olap   WITH (priority=high) ;
+ALTER RESOURCE QUEUE rq_batch  WITH (priority=medium) ;
+
+--    .apps_rolap : apps_ipt = 5 : 5
+ALTER RESOURCE QUEUE rq_olap   WITH (priority=medium) ;
+ALTER RESOURCE QUEUE rq_batch  WITH (priority=medium) ;
+
+--    .apps_rolap : apps_ipt = 4 : 6
+ALTER RESOURCE QUEUE rq_olap   WITH (priority=medium) ;
+ALTER RESOURCE QUEUE rq_batch  WITH (priority=high) ;
+
+--    .apps_rolap : apps_ipt = 3 : 7
+ALTER RESOURCE QUEUE rq_olap   WITH (priority=low) ;
+ALTER RESOURCE QUEUE rq_batch  WITH (priority=high) ;
+
+--    .apps_rolap : apps_ipt = 2 : 8
+ALTER RESOURCE QUEUE rq_olap   WITH (priority=min) ;
+ALTER RESOURCE QUEUE rq_batch  WITH (priority=high) ;
+
+--    .apps_rolap : apps_ipt = 1 : 9
+ALTER RESOURCE QUEUE rq_olap   WITH (priority=min) ;
+ALTER RESOURCE QUEUE rq_batch  WITH (priority=max) ;
+

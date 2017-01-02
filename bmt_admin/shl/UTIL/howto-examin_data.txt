@@ -1,0 +1,10 @@
+데이터 파일의 컬럼 갯수를 확인하고자 할 때
+EMC-Sanghee
+(5:16:05 PM) [gpadmin@mdw import]$ head -2 TSUM_DATA.txt  | tail -1 | sed "s/\t/\n/g" | grep "" -n
+1:2013-05-01 00:00:20.0600000
+2:636
+3:11
+4:0
+5:1255195
+6:1789
+

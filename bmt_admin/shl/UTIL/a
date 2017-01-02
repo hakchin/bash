@@ -1,0 +1,65 @@
+--
+-- Greenplum Database cluster dump
+--
+
+\connect postgres
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET escape_string_warning = 'off';
+
+--
+-- Resource Queues
+--
+
+ALTER RESOURCE QUEUE pg_default ACTIVE THRESHOLD 20 NOOVERCOMMIT
+ WITH ( priority=medium,
+ memory_limit=-1) ;
+CREATE RESOURCE QUEUE rqadhoc ACTIVE THRESHOLD 5 COST THRESHOLD 1000000000000000.00 OVERCOMMIT IGNORE THRESHOLD 20000000.00
+ WITH ( priority=max,
+ memory_limit=-1) ;
+CREATE RESOURCE QUEUE rqbatch ACTIVE THRESHOLD 20 COST THRESHOLD 10000000000000000.00 OVERCOMMIT IGNORE THRESHOLD 200000.00
+ WITH ( priority=medium,
+ memory_limit=-1) ;
+CREATE RESOURCE QUEUE rqolap ACTIVE THRESHOLD 6 COST THRESHOLD 1000000000000000.00 OVERCOMMIT IGNORE THRESHOLD 20000000.00
+ WITH ( priority=max,
+ memory_limit=-1) ;
+CREATE RESOURCE QUEUE rqoltp ACTIVE THRESHOLD 100 NOOVERCOMMIT
+ WITH ( priority=max,
+ memory_limit=-1) ;
+
+
+--
+-- Roles
+--
+
+CREATE ROLE gpadmin;
+ALTER ROLE gpadmin WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN PASSWORD 'md5b44a9b06d576a0b083cd60e5f875cf48' RESOURCE QUEUE pg_default CREATEEXTTABLE (protocol='gpfdist', type='readable') CREATEEXTTABLE (protocol='gpfdist', type='writable') CREATEEXTTABLE (protocol='http') CREATEEXTTABLE (protocol='gphdfs', type='readable') CREATEEXTTABLE (protocol='gphdfs', type='writable');
+CREATE ROLE gpmon;
+ALTER ROLE gpmon WITH SUPERUSER INHERIT NOCREATEROLE CREATEDB LOGIN PASSWORD 'md5271fed4320b7ac3aae3ac625420cf73f' RESOURCE QUEUE pg_default;
+CREATE ROLE ladhoc;
+ALTER ROLE ladhoc WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN PASSWORD 'md5c9a1633cb20b1668a1844138cd8ad358' RESOURCE QUEUE rqadhoc;
+ALTER ROLE ladhoc SET search_path TO sdmin, sdmin_err, public, pg_catalog;
+CREATE ROLE ldba;
+ALTER ROLE ldba WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN PASSWORD 'md5f05a42e7217d0c14a130b26e4defa18b' RESOURCE QUEUE pg_default;
+CREATE ROLE letl;
+ALTER ROLE letl WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN PASSWORD 'md5fcfcd0ebc89be17dd36a6001185fc85a' RESOURCE QUEUE rqbatch;
+ALTER ROLE letl SET search_path TO sdmin, sdmin_err, public, pg_catalog;
+CREATE ROLE lolap;
+ALTER ROLE lolap WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN PASSWORD 'md53bcca21b204e722932f6092dcc565faa' RESOURCE QUEUE rqolap;
+ALTER ROLE lolap SET search_path TO sdmin, sdmin_err, public, pg_catalog;
+CREATE ROLE loltp;
+ALTER ROLE loltp WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN PASSWORD 'md5c05d1ddc25d7cb6f67bcc7c33514a40d' RESOURCE QUEUE rqoltp;
+ALTER ROLE loltp SET search_path TO sdmin, sdmin_err, public, pg_catalog;
+
+
+
+
+
+
+
+
+--
+-- PostgreSQL database cluster dump complete
+--
+

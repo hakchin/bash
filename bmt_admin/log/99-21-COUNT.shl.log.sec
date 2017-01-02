@@ -1,0 +1,45 @@
+Timing is on.
+SELECT count(*) FROM sdmin.copy_t;
+ count 
+-------
+  5000
+(1 row)
+
+Time: 397.023 ms
+SELECT count(*) FROM sdmin.eqp_info;
+ count 
+-------
+  2148
+(1 row)
+
+Time: 8.001 ms
+SELECT count(*) FROM sdmin.erd_info;
+ count 
+-------
+     0
+(1 row)
+
+Time: 7.000 ms
+SELECT count(*) FROM sdmin.erd_param_info;
+  count  
+---------
+ 2037777
+(1 row)
+
+Time: 17.001 ms
+SELECT count(*) FROM sdmin.tsum_data;
+    count    
+-------------
+ 11636874720
+(1 row)
+
+Time: 79907.570 ms
+SELECT count(*) FROM sdmin.unit_info;
+ count 
+-------
+ 28242
+(1 row)
+
+Time: 9.001 ms
+99-21-COUNT.shl|Start Time         |End Time
+99-21-COUNT.shl|2013-06-04 17:16:50|2013-06-04 17:18:10

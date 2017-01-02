@@ -1,0 +1,160 @@
+Timing is on.
+/* SCHEMA */
+DROP SCHEMA IF EXISTS sn2ro CASCADE;
+NOTICE:  schema "sn2ro" does not exist, skipping
+DROP SCHEMA
+Time: 488.028 ms
+CREATE SCHEMA sn2ro;
+CREATE SCHEMA
+Time: 821.047 ms
+DROP SCHEMA IF EXISTS sn2ro_err CASCADE;
+NOTICE:  schema "sn2ro_err" does not exist, skipping
+DROP SCHEMA
+Time: 382.022 ms
+CREATE SCHEMA sn2ro_err;
+CREATE SCHEMA
+Time: 188.011 ms
+/* Resource Queue */
+DROP RESOURCE QUEUE rq_batch;
+ERROR:  resource queue "rq_batch" does not exist
+Time: 430.024 ms
+DROP RESOURCE QUEUE rp_olap;
+ERROR:  resource queue "rp_olap" does not exist
+Time: 359.021 ms
+DROP RESOURCE QUEUE rq_adhoc;
+ERROR:  resource queue "rq_adhoc" does not exist
+Time: 320.018 ms
+DROP RESOURCE QUEUE rq_oltp;
+ERROR:  resource queue "rq_oltp" does not exist
+Time: 351.020 ms
+CREATE RESOURCE QUEUE rq_batch WITH (ACTIVE_STATEMENTS=30,PRIORITY=MIN);
+CREATE QUEUE
+Time: 619.036 ms
+CREATE RESOURCE QUEUE rp_olap  WITH (ACTIVE_STATEMENTS=100,PRIORITY=MAX);
+CREATE QUEUE
+Time: 152.008 ms
+CREATE RESOURCE QUEUE rq_adhoc WITH (ACTIVE_STATEMENTS=10,PRIORITY=MEDIUM);
+CREATE QUEUE
+Time: 178.011 ms
+CREATE RESOURCE QUEUE rq_oltp  WITH (ACTIVE_STATEMENTS=100,PRIORITY=MAX);
+CREATE QUEUE
+Time: 121.007 ms
+/* Role */
+
+DROP ROLE IF EXISTS lr_dba;
+NOTICE:  role "lr_dba" does not exist, skipping
+NOTICE:  role "lr_dba" does not exist, skipping  (seg0 mdw:40000 pid=4051)
+NOTICE:  role "lr_dba" does not exist, skipping  (seg1 mdw:40001 pid=4053)
+DROP ROLE
+Time: 410.023 ms
+DROP ROLE IF EXISTS lr_etl;
+NOTICE:  role "lr_etl" does not exist, skipping
+NOTICE:  role "lr_etl" does not exist, skipping  (seg1 mdw:40001 pid=4053)
+NOTICE:  role "lr_etl" does not exist, skipping  (seg0 mdw:40000 pid=4051)
+DROP ROLE
+Time: 370.021 ms
+DROP ROLE IF EXISTS lr_olap;
+NOTICE:  role "lr_olap" does not exist, skipping
+NOTICE:  role "lr_olap" does not exist, skipping  (seg0 mdw:40000 pid=4051)
+NOTICE:  role "lr_olap" does not exist, skipping  (seg1 mdw:40001 pid=4053)
+DROP ROLE
+Time: 359.021 ms
+DROP ROLE IF EXISTS lr_adhoc;
+NOTICE:  role "lr_adhoc" does not exist, skipping
+NOTICE:  role "lr_adhoc" does not exist, skipping  (seg0 mdw:40000 pid=4051)
+NOTICE:  role "lr_adhoc" does not exist, skipping  (seg1 mdw:40001 pid=4053)
+DROP ROLE
+Time: 370.021 ms
+DROP ROLE IF EXISTS lr_oltp;
+NOTICE:  role "lr_oltp" does not exist, skipping
+NOTICE:  role "lr_oltp" does not exist, skipping  (seg0 mdw:40000 pid=4051)
+NOTICE:  role "lr_oltp" does not exist, skipping  (seg1 mdw:40001 pid=4053)
+DROP ROLE
+Time: 391.022 ms
+CREATE ROLE lr_etl   LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rq_batch;
+CREATE ROLE
+Time: 149.009 ms
+CREATE ROLE lr_olap  LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rp_olap;
+CREATE ROLE
+Time: 130.007 ms
+CREATE ROLE lr_adhoc LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rq_adhoc;
+CREATE ROLE
+Time: 101.006 ms
+CREATE ROLE lr_dba   LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE pg_default;
+CREATE ROLE
+Time: 79.004 ms
+CREATE ROLE lr_oltp  LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rq_oltp;
+CREATE ROLE
+Time: 111.007 ms
+/* Role Configuration */
+
+ALTER ROLE lr_etl    SET search_path=sn2ro, sn2ro_err, public, pg_catalog;
+ALTER ROLE
+Time: 119.007 ms
+ALTER ROLE lr_olap   SET search_path=sn2ro, sn2ro_err, public, pg_catalog;
+ALTER ROLE
+Time: 81.004 ms
+ALTER ROLE lr_adhoc  SET search_path=sn2ro, sn2ro_err, public, pg_catalog;
+ALTER ROLE
+Time: 140.008 ms
+ALTER ROLE lr_oltp   SET search_path=sn2ro, sn2ro_err, public, pg_catalog;
+ALTER ROLE
+Time: 129.008 ms
+ALTER ROLE gpadmin SET search_path=sn2ro, sn2ro_err, public, pg_catalog;
+ALTER ROLE
+Time: 70.004 ms
+/* Grant */
+GRANT ALL ON SCHEMA sn2ro TO lr_etl;
+GRANT
+Time: 91.005 ms
+GRANT ALL ON SCHEMA sn2ro TO lr_olap;
+GRANT
+Time: 89.005 ms
+GRANT ALL ON SCHEMA sn2ro TO lr_adhoc;
+GRANT
+Time: 140.008 ms
+GRANT ALL ON SCHEMA sn2ro TO lr_dba;
+GRANT
+Time: 80.005 ms
+GRANT ALL ON SCHEMA sn2ro TO lr_oltp;
+GRANT
+Time: 70.004 ms
+GRANT ALL ON SCHEMA sn2ro_err TO lr_etl;
+GRANT
+Time: 123.007 ms
+GRANT ALL ON SCHEMA sn2ro_err TO lr_olap;
+GRANT
+Time: 118.006 ms
+GRANT ALL ON SCHEMA sn2ro_err TO lr_adhoc;
+GRANT
+Time: 69.004 ms
+GRANT ALL ON SCHEMA sn2ro_err TO lr_dba;
+GRANT
+Time: 102.006 ms
+GRANT ALL ON SCHEMA sn2ro_err TO lr_oltp;
+GRANT
+Time: 118.007 ms
+/* HAK */
+ALTER DATABASE pil SET search_path TO sn2ro, sn2ro_err, public, pg_catalog;
+ALTER DATABASE
+Time: 91.005 ms
+GRANT ALL ON SCHEMA sn2ro     TO lr_olap,lr_etl,lr_adhoc,lr_oltp ;
+GRANT
+Time: 109.006 ms
+GRANT ALL ON SCHEMA sn2ro_err TO lr_olap,lr_etl,lr_adhoc,lr_oltp ;
+GRANT
+Time: 130.008 ms
+GRANT ALL ON SCHEMA public    TO lr_olap,lr_etl,lr_adhoc,lr_oltp ;
+GRANT
+Time: 130.007 ms
+ALTER RESOURCE QUEUE rp_olap   WITH (active_statements=6,  max_cost=1e+15, min_cost=2e+07, cost_overcommit = true,   priority=max,    memory_limit=-1) ;
+ALTER QUEUE
+Time: 131.008 ms
+ALTER RESOURCE QUEUE rq_batch  WITH (active_statements=20, max_cost=1e+16, min_cost=2e+05, cost_overcommit = true,   priority=medium, memory_limit=-1) ;
+ALTER QUEUE
+Time: 79.004 ms
+ALTER RESOURCE QUEUE rq_adhoc  WITH (active_statements=5,  max_cost=1e+15, min_cost=2e+07, cost_overcommit = true,   priority=max,    memory_limit=-1) ;
+ALTER QUEUE
+Time: 90.005 ms
+00-12-CREATE_SCH_RQ_ROLE_AUTH.shl|Start Time         |End Time
+00-12-CREATE_SCH_RQ_ROLE_AUTH.shl|2013-09-15 16:58:47|2013-09-15 16:58:57

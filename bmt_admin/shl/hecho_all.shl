@@ -1,0 +1,10 @@
+#!/bin/bash
+# Usage : sh hecho.shl sn2ro abc
+source ../cmn/env.profile
+
+echo "" > hecho_all.txt
+sh hecho.shl masdapdw tb_fda_pdw_apd_detail            >> hecho_all.txt
+sh hecho.shl masdapdw tb_fda_pdw_gls_insp_def_detail   >> hecho_all.txt
+sh hecho.shl masdapdw tb_fda_pdw_gls_insp_def_h        >> hecho_all.txt
+sh hecho.shl masdapdw tb_fda_pdw_gls_insp_detail       >> hecho_all.txt
+sh hecho.shl masdapdw tb_fda_pdw_gls_insp_pnl_detail   >> hecho_all.txt

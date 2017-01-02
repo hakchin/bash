@@ -1,0 +1,24 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+
+gpload -f ../yml/DM_ORDER_DTL_FACT_LOADTEST1.yml -v > ../log/DM_ORDER_DTL_FACT_LOADTEST1.yml.log 2>&1
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >  $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

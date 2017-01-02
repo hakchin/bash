@@ -1,0 +1,36 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+touch query06.stop
+
+while [ true ];
+do
+
+procs=`ps -ef|grep query06.shl |grep -v grep |wc -l`
+
+if [ $procs -gt 0 ];
+then
+echo "query06 is processing"
+else
+break
+fi
+
+sleep 3
+
+done
+
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

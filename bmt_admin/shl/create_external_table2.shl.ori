@@ -1,0 +1,251 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment nodemaster
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+
+\timing on
+--SET SEARCH_PATH = masdapdw, masdacmn, masdainf, masdapdm, public;
+--SELECT create_external_table('masdapdw','tb_fda_pdw_apd_detail');
+--SELECT create_external_table('masdapdw','tb_fda_pdw_gls_insp_pnl_detail');
+--SELECT create_external_table('masdapdw','tb_fda_pdw_gls_insp_def_detail');
+--SELECT create_external_table('masdapdw','tb_fda_pdw_gls_insp_def_h');
+--SELECT create_external_table('masdapdw','tb_fda_pdw_gls_insp_detail');
+
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_apd_detail_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_apd_detail_w ( LIKE masdapdw.tb_fda_pdw_apd_detail )
+  LOCATION (
+             'gpfdist://sdw1:8091/tb_fda_pdw_apd_detail_1.csv'
+             ,'gpfdist://sdw2:8091/tb_fda_pdw_apd_detail_2.csv'
+             ,'gpfdist://sdw3:8091/tb_fda_pdw_apd_detail_3.csv'
+             ,'gpfdist://sdw4:8091/tb_fda_pdw_apd_detail_4.csv'
+             ,'gpfdist://sdw5:8091/tb_fda_pdw_apd_detail_5.csv'
+             ,'gpfdist://sdw6:8091/tb_fda_pdw_apd_detail_6.csv'
+             ,'gpfdist://sdw7:8091/tb_fda_pdw_apd_detail_7.csv'
+             ,'gpfdist://sdw8:8091/tb_fda_pdw_apd_detail_8.csv'
+             ,'gpfdist://sdw9:8091/tb_fda_pdw_apd_detail_9.csv'
+             ,'gpfdist://sdw10:8091/tb_fda_pdw_apd_detail_10.csv'
+             ,'gpfdist://sdw11:8091/tb_fda_pdw_apd_detail_11.csv'
+             ,'gpfdist://sdw12:8091/tb_fda_pdw_apd_detail_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_apd_detail_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_apd_detail_r ( LIKE masdapdw.tb_fda_pdw_apd_detail )
+  LOCATION (
+             'gpfdist://sdw1:8091/tb_fda_pdw_apd_detail_1.csv'
+             ,'gpfdist://sdw2:8091/tb_fda_pdw_apd_detail_2.csv'
+             ,'gpfdist://sdw3:8091/tb_fda_pdw_apd_detail_3.csv'
+             ,'gpfdist://sdw4:8091/tb_fda_pdw_apd_detail_4.csv'
+             ,'gpfdist://sdw5:8091/tb_fda_pdw_apd_detail_5.csv'
+             ,'gpfdist://sdw6:8091/tb_fda_pdw_apd_detail_6.csv'
+             ,'gpfdist://sdw7:8091/tb_fda_pdw_apd_detail_7.csv'
+             ,'gpfdist://sdw8:8091/tb_fda_pdw_apd_detail_8.csv'
+             ,'gpfdist://sdw9:8091/tb_fda_pdw_apd_detail_9.csv'
+             ,'gpfdist://sdw10:8091/tb_fda_pdw_apd_detail_10.csv'
+             ,'gpfdist://sdw11:8091/tb_fda_pdw_apd_detail_11.csv'
+             ,'gpfdist://sdw12:8091/tb_fda_pdw_apd_detail_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_pnl_detail_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_pnl_detail_w ( LIKE masdapdw.tb_fda_pdw_gls_insp_pnl_detail )
+  LOCATION (
+             'gpfdist://sdw1:8092/tb_fda_pdw_gls_insp_pnl_detail_1.csv'
+             ,'gpfdist://sdw2:8092/tb_fda_pdw_gls_insp_pnl_detail_2.csv'
+             ,'gpfdist://sdw3:8092/tb_fda_pdw_gls_insp_pnl_detail_3.csv'
+             ,'gpfdist://sdw4:8092/tb_fda_pdw_gls_insp_pnl_detail_4.csv'
+             ,'gpfdist://sdw5:8092/tb_fda_pdw_gls_insp_pnl_detail_5.csv'
+             ,'gpfdist://sdw6:8092/tb_fda_pdw_gls_insp_pnl_detail_6.csv'
+             ,'gpfdist://sdw7:8092/tb_fda_pdw_gls_insp_pnl_detail_7.csv'
+             ,'gpfdist://sdw8:8092/tb_fda_pdw_gls_insp_pnl_detail_8.csv'
+             ,'gpfdist://sdw9:8092/tb_fda_pdw_gls_insp_pnl_detail_9.csv'
+             ,'gpfdist://sdw10:8092/tb_fda_pdw_gls_insp_pnl_detail_10.csv'
+             ,'gpfdist://sdw11:8092/tb_fda_pdw_gls_insp_pnl_detail_11.csv'
+             ,'gpfdist://sdw12:8092/tb_fda_pdw_gls_insp_pnl_detail_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_pnl_detail_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_pnl_detail_r ( LIKE masdapdw.tb_fda_pdw_gls_insp_pnl_detail )
+  LOCATION (
+             'gpfdist://sdw1:8092/tb_fda_pdw_gls_insp_pnl_detail_1.csv'
+             ,'gpfdist://sdw2:8092/tb_fda_pdw_gls_insp_pnl_detail_2.csv'
+             ,'gpfdist://sdw3:8092/tb_fda_pdw_gls_insp_pnl_detail_3.csv'
+             ,'gpfdist://sdw4:8092/tb_fda_pdw_gls_insp_pnl_detail_4.csv'
+             ,'gpfdist://sdw5:8092/tb_fda_pdw_gls_insp_pnl_detail_5.csv'
+             ,'gpfdist://sdw6:8092/tb_fda_pdw_gls_insp_pnl_detail_6.csv'
+             ,'gpfdist://sdw7:8092/tb_fda_pdw_gls_insp_pnl_detail_7.csv'
+             ,'gpfdist://sdw8:8092/tb_fda_pdw_gls_insp_pnl_detail_8.csv'
+             ,'gpfdist://sdw9:8092/tb_fda_pdw_gls_insp_pnl_detail_9.csv'
+             ,'gpfdist://sdw10:8092/tb_fda_pdw_gls_insp_pnl_detail_10.csv'
+             ,'gpfdist://sdw11:8092/tb_fda_pdw_gls_insp_pnl_detail_11.csv'
+             ,'gpfdist://sdw12:8092/tb_fda_pdw_gls_insp_pnl_detail_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_def_detail_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_def_detail_w ( LIKE masdapdw.tb_fda_pdw_gls_insp_def_detail )
+  LOCATION (
+             'gpfdist://sdw1:8093/tb_fda_pdw_gls_insp_def_detail_1.csv'
+             ,'gpfdist://sdw2:8093/tb_fda_pdw_gls_insp_def_detail_2.csv'
+             ,'gpfdist://sdw3:8093/tb_fda_pdw_gls_insp_def_detail_3.csv'
+             ,'gpfdist://sdw4:8093/tb_fda_pdw_gls_insp_def_detail_4.csv'
+             ,'gpfdist://sdw5:8093/tb_fda_pdw_gls_insp_def_detail_5.csv'
+             ,'gpfdist://sdw6:8093/tb_fda_pdw_gls_insp_def_detail_6.csv'
+             ,'gpfdist://sdw7:8093/tb_fda_pdw_gls_insp_def_detail_7.csv'
+             ,'gpfdist://sdw8:8093/tb_fda_pdw_gls_insp_def_detail_8.csv'
+             ,'gpfdist://sdw9:8093/tb_fda_pdw_gls_insp_def_detail_9.csv'
+             ,'gpfdist://sdw10:8093/tb_fda_pdw_gls_insp_def_detail_10.csv'
+             ,'gpfdist://sdw11:8093/tb_fda_pdw_gls_insp_def_detail_11.csv'
+             ,'gpfdist://sdw12:8093/tb_fda_pdw_gls_insp_def_detail_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_def_detail_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_def_detail_r ( LIKE masdapdw.tb_fda_pdw_gls_insp_def_detail )
+  LOCATION (
+             'gpfdist://sdw1:8093/tb_fda_pdw_gls_insp_def_detail_1.csv'
+             ,'gpfdist://sdw2:8093/tb_fda_pdw_gls_insp_def_detail_2.csv'
+             ,'gpfdist://sdw3:8093/tb_fda_pdw_gls_insp_def_detail_3.csv'
+             ,'gpfdist://sdw4:8093/tb_fda_pdw_gls_insp_def_detail_4.csv'
+             ,'gpfdist://sdw5:8093/tb_fda_pdw_gls_insp_def_detail_5.csv'
+             ,'gpfdist://sdw6:8093/tb_fda_pdw_gls_insp_def_detail_6.csv'
+             ,'gpfdist://sdw7:8093/tb_fda_pdw_gls_insp_def_detail_7.csv'
+             ,'gpfdist://sdw8:8093/tb_fda_pdw_gls_insp_def_detail_8.csv'
+             ,'gpfdist://sdw9:8093/tb_fda_pdw_gls_insp_def_detail_9.csv'
+             ,'gpfdist://sdw10:8093/tb_fda_pdw_gls_insp_def_detail_10.csv'
+             ,'gpfdist://sdw11:8093/tb_fda_pdw_gls_insp_def_detail_11.csv'
+             ,'gpfdist://sdw12:8093/tb_fda_pdw_gls_insp_def_detail_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_def_h_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_def_h_w ( LIKE masdapdw.tb_fda_pdw_gls_insp_def_h )
+  LOCATION (
+             'gpfdist://sdw1:8094/tb_fda_pdw_gls_insp_def_h_1.csv'
+             ,'gpfdist://sdw2:8094/tb_fda_pdw_gls_insp_def_h_2.csv'
+             ,'gpfdist://sdw3:8094/tb_fda_pdw_gls_insp_def_h_3.csv'
+             ,'gpfdist://sdw4:8094/tb_fda_pdw_gls_insp_def_h_4.csv'
+             ,'gpfdist://sdw5:8094/tb_fda_pdw_gls_insp_def_h_5.csv'
+             ,'gpfdist://sdw6:8094/tb_fda_pdw_gls_insp_def_h_6.csv'
+             ,'gpfdist://sdw7:8094/tb_fda_pdw_gls_insp_def_h_7.csv'
+             ,'gpfdist://sdw8:8094/tb_fda_pdw_gls_insp_def_h_8.csv'
+             ,'gpfdist://sdw9:8094/tb_fda_pdw_gls_insp_def_h_9.csv'
+             ,'gpfdist://sdw10:8094/tb_fda_pdw_gls_insp_def_h_10.csv'
+             ,'gpfdist://sdw11:8094/tb_fda_pdw_gls_insp_def_h_11.csv'
+             ,'gpfdist://sdw12:8094/tb_fda_pdw_gls_insp_def_h_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_def_h_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_def_h_r ( LIKE masdapdw.tb_fda_pdw_gls_insp_def_h )
+  LOCATION (
+             'gpfdist://sdw1:8094/tb_fda_pdw_gls_insp_def_h_1.csv'
+             ,'gpfdist://sdw2:8094/tb_fda_pdw_gls_insp_def_h_2.csv'
+             ,'gpfdist://sdw3:8094/tb_fda_pdw_gls_insp_def_h_3.csv'
+             ,'gpfdist://sdw4:8094/tb_fda_pdw_gls_insp_def_h_4.csv'
+             ,'gpfdist://sdw5:8094/tb_fda_pdw_gls_insp_def_h_5.csv'
+             ,'gpfdist://sdw6:8094/tb_fda_pdw_gls_insp_def_h_6.csv'
+             ,'gpfdist://sdw7:8094/tb_fda_pdw_gls_insp_def_h_7.csv'
+             ,'gpfdist://sdw8:8094/tb_fda_pdw_gls_insp_def_h_8.csv'
+             ,'gpfdist://sdw9:8094/tb_fda_pdw_gls_insp_def_h_9.csv'
+             ,'gpfdist://sdw10:8094/tb_fda_pdw_gls_insp_def_h_10.csv'
+             ,'gpfdist://sdw11:8094/tb_fda_pdw_gls_insp_def_h_11.csv'
+             ,'gpfdist://sdw12:8094/tb_fda_pdw_gls_insp_def_h_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+--
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_detail_w;
+CREATE WRITABLE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_detail_w ( LIKE masdapdw.tb_fda_pdw_gls_insp_detail )
+  LOCATION (
+             'gpfdist://sdw1:8095/tb_fda_pdw_gls_insp_detail_1.csv'
+             ,'gpfdist://sdw2:8095/tb_fda_pdw_gls_insp_detail_2.csv'
+             ,'gpfdist://sdw3:8095/tb_fda_pdw_gls_insp_detail_3.csv'
+             ,'gpfdist://sdw4:8095/tb_fda_pdw_gls_insp_detail_4.csv'
+             ,'gpfdist://sdw5:8095/tb_fda_pdw_gls_insp_detail_5.csv'
+             ,'gpfdist://sdw6:8095/tb_fda_pdw_gls_insp_detail_6.csv'
+             ,'gpfdist://sdw7:8095/tb_fda_pdw_gls_insp_detail_7.csv'
+             ,'gpfdist://sdw8:8095/tb_fda_pdw_gls_insp_detail_8.csv'
+             ,'gpfdist://sdw9:8095/tb_fda_pdw_gls_insp_detail_9.csv'
+             ,'gpfdist://sdw10:8095/tb_fda_pdw_gls_insp_detail_10.csv'
+             ,'gpfdist://sdw11:8095/tb_fda_pdw_gls_insp_detail_11.csv'
+             ,'gpfdist://sdw12:8095/tb_fda_pdw_gls_insp_detail_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  DISTRIBUTED RANDOMLY;
+
+
+DROP EXTERNAL TABLE IF EXISTS masdapdw.ext_tb_fda_pdw_gls_insp_detail_r;
+CREATE EXTERNAL TABLE masdapdw.ext_tb_fda_pdw_gls_insp_detail_r ( LIKE masdapdw.tb_fda_pdw_gls_insp_detail )
+  LOCATION (
+             'gpfdist://sdw1:8095/tb_fda_pdw_gls_insp_detail_1.csv'
+             ,'gpfdist://sdw2:8095/tb_fda_pdw_gls_insp_detail_2.csv'
+             ,'gpfdist://sdw3:8095/tb_fda_pdw_gls_insp_detail_3.csv'
+             ,'gpfdist://sdw4:8095/tb_fda_pdw_gls_insp_detail_4.csv'
+             ,'gpfdist://sdw5:8095/tb_fda_pdw_gls_insp_detail_5.csv'
+             ,'gpfdist://sdw6:8095/tb_fda_pdw_gls_insp_detail_6.csv'
+             ,'gpfdist://sdw7:8095/tb_fda_pdw_gls_insp_detail_7.csv'
+             ,'gpfdist://sdw8:8095/tb_fda_pdw_gls_insp_detail_8.csv'
+             ,'gpfdist://sdw9:8095/tb_fda_pdw_gls_insp_detail_9.csv'
+             ,'gpfdist://sdw10:8095/tb_fda_pdw_gls_insp_detail_10.csv'
+             ,'gpfdist://sdw11:8095/tb_fda_pdw_gls_insp_detail_11.csv'
+             ,'gpfdist://sdw12:8095/tb_fda_pdw_gls_insp_detail_12.csv'
+            )
+  FORMAT 'csv' (delimiter ',' NULL '' ESCAPE '"' quote '"')
+  ENCODING 'UTF8'
+  LOG ERRORS INTO masdapdw.err_external SEGMENT REJECT LIMIT 1000 ROWS;
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+
+##order by size desc## 
+#tb_fda_pdw_apd_detail
+#tb_fda_pdw_gls_insp_pnl_detail
+#tb_fda_pdw_gls_insp_def_detail
+#tb_fda_pdw_gls_insp_def_h
+#tb_fda_pdw_gls_insp_detail
+
+

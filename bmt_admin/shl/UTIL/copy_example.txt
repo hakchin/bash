@@ -1,0 +1,2 @@
+[gpadmin@mdw UTIL]$ psql -d gpperfmon -U gpadmin -c "COPY system_history TO '/home/gpadmin/system_history.txt'"
+COPY 177891

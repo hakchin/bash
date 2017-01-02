@@ -1,0 +1,32 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+###### query start
+#for table_name in `cat main_table.list main_table_3.list cdc_table.list misc_table.list`
+#do
+#    psql -d hanwha -U letl -f $table_name".sql" -e >> $LOGFILE 2>&1
+#done
+cat /dev/null > $LOGFILE
+for i in `cat main_table.list`
+do
+    cmd="ANALYZE ${i};"
+#   echo ${cmd}
+    psql -U letl -d hanwha -ec "${cmd}" >> $LOGFILE 2>&1 
+#   exit
+done
+
+wait
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

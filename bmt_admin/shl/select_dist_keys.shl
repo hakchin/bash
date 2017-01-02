@@ -1,0 +1,46 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment nodemaster
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+SELECT
+  nspname||'.'||relname AS t_name
+, string_agg(attname, ', '
+ORDER BY colorder)
+FROM
+(
+    SELECT
+      localoid
+    , unnest(attrnums) as colnum
+    , generate_series(1, array_upper(attrnums, 1)) as colorder
+    FROM gp_distribution_policy
+)
+ d
+JOIN pg_attribute a
+ ON (d.localoid = a.attrelid
+AND d.colnum = a.attnum)
+JOIN pg_class c
+ ON (d.localoid = c.oid)
+JOIN pg_namespace n
+ ON (c.relnamespace = n.oid)
+GROUP BY nspname
+, relname
+;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

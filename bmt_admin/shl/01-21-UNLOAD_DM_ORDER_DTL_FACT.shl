@@ -1,0 +1,27 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+scp dummy sdw9:/data/bmt/export/dm_order_dtl_fact.csv
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+INSERT INTO sdmin.ext_dm_order_dtl_fact_w            SELECT * FROM sdmin.dm_order_dtl_fact WHERE order_date >= '20130318' AND order_date < '20130419'
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

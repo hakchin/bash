@@ -1,0 +1,29 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+
+gpssh -h sdw9 "pkill gpfdist"
+sleep 1
+gpssh -h sdw9 "gpfdist -d /data/bmt/export -p 8091 -l /data/bmt/log/gpfdist8091.log &"
+gpssh -h sdw9 "gpfdist -d /data/bmt/export -p 8092 -l /data/bmt/log/gpfdist8092.log &"
+gpssh -h sdw9 "gpfdist -d /data/bmt/export -p 8093 -l /data/bmt/log/gpfdist8093.log &"
+gpssh -h sdw9 "gpfdist -d /data/bmt/export -p 8094 -l /data/bmt/log/gpfdist8094.log &"
+gpssh -h sdw9 "gpfdist -d /data/bmt/export -p 8095 -l /data/bmt/log/gpfdist8095.log &"
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+

@@ -1,0 +1,41 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+VACUUM FULL masdapdm.tb_fda_pdm_product_h_s_t;
+VACUUM FULL masdapdm.tb_fda_pdm_product_m_t1;
+VACUUM FULL masdapdm.tb_fda_pdm_product_m_t2;
+VACUUM FULL masdapdm.tb_fda_pdm_product_prog_insp_h_t1;
+VACUUM FULL masdapdm.tb_fda_pdm_product_prog_insp_h_t2;
+VACUUM FULL masdapdm.tb_fda_pdm_product_prog_insp_h_t3;
+
+VACUUM FULL masdapdw.tb_fda_pdw_apd_detail_t;
+VACUUM FULL masdapdw.tb_fda_pdw_gls_insp_def_detail_t;
+VACUUM FULL masdapdw.tb_fda_pdw_gls_insp_def_h_t;
+VACUUM FULL masdapdw.tb_fda_pdw_gls_insp_detail_t;
+VACUUM FULL masdapdw.tb_fda_pdw_gls_insp_pnl_detail_t;
+VACUUM FULL masdapdw.tb_fda_pdw_lot_h_t;
+VACUUM FULL masdapdw.tb_fda_pdw_pnl_insp_h_t;
+VACUUM FULL masdapdw.tb_fda_pdw_product_h_t;
+VACUUM FULL masdapdw.tb_fda_pdw_transport_command_h_t;
+VACUUM FULL masdapdw.tb_fda_pdw_transport_event_h_t;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

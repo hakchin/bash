@@ -1,0 +1,25 @@
+#!/bin/bash
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1
+
+###### query start
+
+#gpssh -h mdw -h smdw -h sdw1 -h sdw2 -h sdw3 -h sdw4 -h sdw5 -h sdw6 -h sdw7 -h sdw8 "pkill nmon"
+#sleep 5
+#gpssh -h mdw -h smdw -h sdw1 -h sdw2 -h sdw3 -h sdw4 -h sdw5 -h sdw6 -h sdw7 -h sdw8 "cd /home/gpadmin/nmon; nmon -fT -s 60 -c 1440"
+
+gpssh -h mdw -h smdw -h sdw1 -h sdw2 -h sdw3 -h sdw4 -h sdw5 -h sdw6 -h sdw7 -h sdw8 "/home/gpadmin/nmon/nmon.sh"
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

@@ -1,0 +1,42 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+
+gpload -f ../yml/CO_CODE_DTL.yml                        -v > ../log//CO_CODE_DTL.yml.log 2>&1
+gpload -f ../yml/CO_OLAP_DATE.yml                       -v > ../log//CO_OLAP_DATE.yml.log 2>&1
+gpload -f ../yml/CO_YN.yml                              -v > ../log//CO_YN.yml.log 2>&1
+gpload -f ../yml/DM_CAMPAIGN_CUST_EFFECT.yml            -v > ../log//DM_CAMPAIGN_CUST_EFFECT.yml.log 2>&1
+gpload -f ../yml/DM_ORDER_DTL_FACT.yml                  -v > ../log//DM_ORDER_DTL_FACT.yml.log 2>&1
+gpload -f ../yml/OLAP_CO_B2E_CHANNEL.yml                -v > ../log//OLAP_CO_B2E_CHANNEL.yml.log 2>&1
+gpload -f ../yml/OLAP_DISP_CTG_CONNECT.yml              -v > ../log//OLAP_DISP_CTG_CONNECT.yml.log 2>&1
+gpload -f ../yml/OLAP_OR_BUYER.yml                      -v > ../log//OLAP_OR_BUYER.yml.log 2>&1
+gpload -f ../yml/CU_VENDOR.yml                          -v > ../log//CU_VENDOR.yml.log 2>&1
+gpload -f ../yml/MK_UC_CAMPAIGN_DTL.yml                 -v > ../log//MK_UC_CAMPAIGN_DTL.yml.log 2>&1
+gpload -f ../yml/MK_UC_CAMPAIGN_EFFECT_GOAL.yml         -v > ../log//MK_UC_CAMPAIGN_EFFECT_GOAL.yml.log 2>&1
+gpload -f ../yml/PD_BRAND.yml                           -v > ../log//PD_BRAND.yml.log 2>&1
+gpload -f ../yml/PD_DISP_CTG_6_LEVEL.yml                -v > ../log//PD_DISP_CTG_6_LEVEL.yml.log 2>&1
+gpload -f ../yml/PD_DISP_CTG.yml                        -v > ../log//PD_DISP_CTG.yml.log 2>&1
+gpload -f ../yml/PD_ITEM.yml                            -v > ../log//PD_ITEM.yml.log 2>&1
+gpload -f ../yml/PD_STD_DTL_CTG.yml                     -v > ../log//PD_STD_DTL_CTG.yml.log 2>&1
+gpload -f ../yml/PD_STD_LARGE_CTG.yml                   -v > ../log//PD_STD_LARGE_CTG.yml.log 2>&1
+gpload -f ../yml/PD_STD_MIDDLE_CTG.yml                  -v > ../log//PD_STD_MIDDLE_CTG.yml.log 2>&1
+gpload -f ../yml/PD_STD_SMALL_CTG.yml                   -v > ../log//PD_STD_SMALL_CTG.yml.log 2>&1
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >  $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

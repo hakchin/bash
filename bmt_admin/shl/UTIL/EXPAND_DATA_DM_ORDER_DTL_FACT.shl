@@ -1,0 +1,357 @@
+ource ./env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d shinsegae -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+VACUUM ANALYZE dm_order_dtl_fact;
+
+DROP TABLE IF EXISTS dm_order_dtl_fact_ori;
+CREATE TABLE dm_order_dtl_fact_ori          (LIKE dm_order_dtl_fact)      ;
+INSERT INTO dm_order_dtl_fact_ori
+SELECT * FROM dm_order_dtl_fact;
+
+VACUUM ANALYZE dm_order_dtl_fact_ori;
+
+TRUNCATE TABLE dm_order_dtl_fact;
+
+DROP TABLE IF EXISTS dm_order_dtl_fact_4years;
+CREATE TABLE dm_order_dtl_fact_4years       (LIKE dm_order_dtl_fact)
+DISTRIBUTED BY (order_id)
+PARTITION BY RANGE(payment_finish_date_i)
+(
+PARTITION p200901 START ('20090101'::bigint) INCLUSIVE END ('20090201'::bigint) EXCLUSIVE,
+PARTITION p200902 START ('20090201'::bigint) INCLUSIVE END ('20090301'::bigint) EXCLUSIVE,
+PARTITION p200903 START ('20090301'::bigint) INCLUSIVE END ('20090401'::bigint) EXCLUSIVE,
+PARTITION p200904 START ('20090401'::bigint) INCLUSIVE END ('20090501'::bigint) EXCLUSIVE,
+PARTITION p200905 START ('20090501'::bigint) INCLUSIVE END ('20090601'::bigint) EXCLUSIVE,
+PARTITION p200906 START ('20090601'::bigint) INCLUSIVE END ('20090701'::bigint) EXCLUSIVE,
+PARTITION p200907 START ('20090701'::bigint) INCLUSIVE END ('20090801'::bigint) EXCLUSIVE,
+PARTITION p200908 START ('20090801'::bigint) INCLUSIVE END ('20090901'::bigint) EXCLUSIVE,
+PARTITION p200909 START ('20090901'::bigint) INCLUSIVE END ('20091001'::bigint) EXCLUSIVE,
+PARTITION p200910 START ('20091001'::bigint) INCLUSIVE END ('20091101'::bigint) EXCLUSIVE,
+PARTITION p200911 START ('20091101'::bigint) INCLUSIVE END ('20091201'::bigint) EXCLUSIVE,
+PARTITION p200912 START ('20091201'::bigint) INCLUSIVE END ('20100101'::bigint) EXCLUSIVE,
+
+PARTITION p201001 START ('20100101'::bigint) INCLUSIVE END ('20100201'::bigint) EXCLUSIVE,
+PARTITION p201002 START ('20100201'::bigint) INCLUSIVE END ('20100301'::bigint) EXCLUSIVE,
+PARTITION p201003 START ('20100301'::bigint) INCLUSIVE END ('20100401'::bigint) EXCLUSIVE,
+PARTITION p201004 START ('20100401'::bigint) INCLUSIVE END ('20100501'::bigint) EXCLUSIVE,
+PARTITION p201005 START ('20100501'::bigint) INCLUSIVE END ('20100601'::bigint) EXCLUSIVE,
+PARTITION p201006 START ('20100601'::bigint) INCLUSIVE END ('20100701'::bigint) EXCLUSIVE,
+PARTITION p201007 START ('20100701'::bigint) INCLUSIVE END ('20100801'::bigint) EXCLUSIVE,
+PARTITION p201008 START ('20100801'::bigint) INCLUSIVE END ('20100901'::bigint) EXCLUSIVE,
+PARTITION p201009 START ('20100901'::bigint) INCLUSIVE END ('20101001'::bigint) EXCLUSIVE,
+PARTITION p201010 START ('20101001'::bigint) INCLUSIVE END ('20101101'::bigint) EXCLUSIVE,
+PARTITION p201011 START ('20101101'::bigint) INCLUSIVE END ('20101201'::bigint) EXCLUSIVE,
+PARTITION p201012 START ('20101201'::bigint) INCLUSIVE END ('20110101'::bigint) EXCLUSIVE,
+
+PARTITION p201101 START ('20110101'::bigint) INCLUSIVE END ('20110201'::bigint) EXCLUSIVE,
+PARTITION p201102 START ('20110201'::bigint) INCLUSIVE END ('20110301'::bigint) EXCLUSIVE,
+PARTITION p201103 START ('20110301'::bigint) INCLUSIVE END ('20110401'::bigint) EXCLUSIVE,
+PARTITION p201104 START ('20110401'::bigint) INCLUSIVE END ('20110501'::bigint) EXCLUSIVE,
+PARTITION p201105 START ('20110501'::bigint) INCLUSIVE END ('20110601'::bigint) EXCLUSIVE,
+PARTITION p201106 START ('20110601'::bigint) INCLUSIVE END ('20110701'::bigint) EXCLUSIVE,
+PARTITION p201107 START ('20110701'::bigint) INCLUSIVE END ('20110801'::bigint) EXCLUSIVE,
+PARTITION p201108 START ('20110801'::bigint) INCLUSIVE END ('20110901'::bigint) EXCLUSIVE,
+PARTITION p201109 START ('20110901'::bigint) INCLUSIVE END ('20111001'::bigint) EXCLUSIVE,
+PARTITION p201110 START ('20111001'::bigint) INCLUSIVE END ('20111101'::bigint) EXCLUSIVE,
+PARTITION p201111 START ('20111101'::bigint) INCLUSIVE END ('20111201'::bigint) EXCLUSIVE,
+PARTITION p201112 START ('20111201'::bigint) INCLUSIVE END ('20120101'::bigint) EXCLUSIVE,
+
+PARTITION p201201 START ('20120101'::bigint) INCLUSIVE END ('20120201'::bigint) EXCLUSIVE,
+PARTITION p201202 START ('20120201'::bigint) INCLUSIVE END ('20120301'::bigint) EXCLUSIVE,
+PARTITION p201203 START ('20120301'::bigint) INCLUSIVE END ('20120401'::bigint) EXCLUSIVE,
+PARTITION p201204 START ('20120401'::bigint) INCLUSIVE END ('20120501'::bigint) EXCLUSIVE,
+PARTITION p201205 START ('20120501'::bigint) INCLUSIVE END ('20120601'::bigint) EXCLUSIVE,
+PARTITION p201206 START ('20120601'::bigint) INCLUSIVE END ('20120701'::bigint) EXCLUSIVE,
+PARTITION p201207 START ('20120701'::bigint) INCLUSIVE END ('20120801'::bigint) EXCLUSIVE,
+PARTITION p201208 START ('20120801'::bigint) INCLUSIVE END ('20120901'::bigint) EXCLUSIVE,
+PARTITION p201209 START ('20120901'::bigint) INCLUSIVE END ('20121001'::bigint) EXCLUSIVE,
+PARTITION p201210 START ('20121001'::bigint) INCLUSIVE END ('20121101'::bigint) EXCLUSIVE,
+PARTITION p201211 START ('20121101'::bigint) INCLUSIVE END ('20121201'::bigint) EXCLUSIVE,
+PARTITION p201212 START ('20121201'::bigint) INCLUSIVE END ('20130101'::bigint) EXCLUSIVE,
+
+PARTITION p201301 START ('20130101'::bigint) INCLUSIVE END ('20130201'::bigint) EXCLUSIVE,
+PARTITION p201302 START ('20130201'::bigint) INCLUSIVE END ('20130301'::bigint) EXCLUSIVE,
+PARTITION p201303 START ('20130301'::bigint) INCLUSIVE END ('20130401'::bigint) EXCLUSIVE,
+PARTITION p201304 START ('20130401'::bigint) INCLUSIVE END ('20130501'::bigint) EXCLUSIVE,
+DEFAULT PARTITION pdefault
+)
+;
+
+
+INSERT INTO dm_order_dtl_fact_4years
+SELECT -- order_id
+        (to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')||substr(order_id, 9,6))::character varying(14) AS order_id
+	,item_id
+	,unit_id
+--      ,payment_finish_date_i
+--	,payment_finish_date
+        ,(to_char(('20130418'::timestamp - (interval '1 day' * i)),'yyyymmdd'))::BIGINT AS payment_finish_date_i
+	,to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) AS payment_finish_date
+	,payment_time_range_code
+	,sale_shop_id
+	,o_id
+	,post_name
+	,dprice_amt
+	,disp_ctg_id
+	,shop_type_code
+	,order_chnl_code
+	,channel_gubun_code
+	,mall_id
+	,cust_zipcode
+	,std_dtl_ctg_id
+--	,order_date_i
+--	,order_date
+        ,(to_char(('20130418'::timestamp - (interval '1 day' * i)),'yyyymmdd'))::BIGINT AS order_date_i
+	,to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) AS order_date
+	,order_time_range_code
+	,b2e_memcomp_id
+	,channel_id
+	,cust_id
+	,member_gubun_code
+	,gender_code
+	,age_code
+	,member_grade_id
+	,fix_grade_code
+	,item_type_code
+	,brand_id
+	,vendor_id
+	,organize_code
+	,buyer_id
+	,coupon_id
+	,shop_area_id
+	,order_yn
+	,natural_order_yn
+	,buy_yn
+	,cancel_yn
+	,shortage_cancel_yn
+	,general_cancel_yn
+	,return_yn
+	,chng_yn
+	,unsatify_reason_code
+	,order_act_cnt
+	,cancel_act_cnt
+	,general_cancel_act_cnt
+	,shortage_cancel_act_cnt
+	,return_act_cnt
+	,chng_act_cnt
+	,order_amt
+	,order_qty
+	,order_sku_cnt
+	,natural_order_amt
+	,natural_order_qty
+	,natural_order_sku_cnt
+	,buy_amt
+	,buy_qty
+	,buy_sku_cnt
+	,cancel_amt
+	,cancel_qty
+	,cancel_sku_cnt
+	,shortage_cancel_amt
+	,shortage_cancel_qty
+	,shortage_cancel_sku_cnt
+	,general_cancel_amt
+	,general_cancel_qty
+	,general_cancel_sku_cnt
+	,return_amt
+	,return_qty
+	,return_sku_cnt
+	,chng_amt
+	,chng_qty
+	,chng_sku_cnt
+	,margin_amt
+	,supply_cost
+	,vat_exp_supply_cost
+	,item_price
+	,vat_exp_item_price
+	,sale_amt
+	,vat_exp_sale_amt
+	,natural_sale_amt
+	,vat_exp_natural_sale_amt
+	,dc_inc_sale_amt
+	,vat_exp_dc_inc_sale_amt
+	,buy_origin_cost
+	,vat_exp_buy_origin_cost
+	,ssg_dc_amt
+	,vat_exp_ssg_dc_amt
+	,md_dc_amt
+	,vat_exp_md_dc_amt
+	,mkt_dc_amt
+	,vat_exp_mkt_dc_amt
+	,vendor_dc_amt
+	,vat_exp_vendor_dc_amt
+	,dc_amt
+	,vat_exp_dc_amt
+	,item_sale_profit_amt
+	,promo_dc_amt
+	,promo_vendor_charge_dc_amt
+	,promo_mkt_charge_dc_amt
+	,promo_buyer_charge_dc_amt
+	,coupon_dc_amt
+	,coupon_vendor_charge_dc_amt
+	,coupon_mkt_charge_dc_amt
+	,coupon_buyer_charge_dc_amt
+	,manual_dc_amt
+	,vat_exp_manual_dc_amt
+	,real_dc_amt
+	,rsvramt
+	,vendor_charge_rsvramt
+	,rsvr_ssg_point
+	,rsvr_okcashbag_point
+--	,load_date
+	,to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) AS load_date
+
+FROM dm_order_dtl_fact_ori
+CROSS JOIN generate_series(1,1462) i;
+
+
+
+INSERT INTO dm_order_dtl_fact
+SELECT -- order_id
+        (to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')||substr(order_id, 9,6))::character varying(14) AS order_id
+	,item_id
+	,unit_id
+--      ,payment_finish_date_i
+--	,payment_finish_date
+        ,(to_char(('20130418'::timestamp - (interval '1 day' * i)),'yyyymmdd'))::BIGINT AS payment_finish_date_i
+	,to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) AS payment_finish_date
+	,payment_time_range_code
+	,sale_shop_id
+	,o_id
+	,post_name
+	,dprice_amt
+	,disp_ctg_id
+	,shop_type_code
+	,order_chnl_code
+	,channel_gubun_code
+	,mall_id
+	,cust_zipcode
+	,std_dtl_ctg_id
+--	,order_date_i
+--	,order_date
+        ,(to_char(('20130418'::timestamp - (interval '1 day' * i)),'yyyymmdd'))::BIGINT AS order_date_i
+	,to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) AS order_date
+	,order_time_range_code
+	,b2e_memcomp_id
+	,channel_id
+	,cust_id
+	,member_gubun_code
+	,gender_code
+	,age_code
+	,member_grade_id
+	,fix_grade_code
+	,item_type_code
+	,brand_id
+	,vendor_id
+	,organize_code
+	,buyer_id
+	,coupon_id
+	,shop_area_id
+	,order_yn
+	,natural_order_yn
+	,buy_yn
+	,cancel_yn
+	,shortage_cancel_yn
+	,general_cancel_yn
+	,return_yn
+	,chng_yn
+	,unsatify_reason_code
+	,order_act_cnt
+	,cancel_act_cnt
+	,general_cancel_act_cnt
+	,shortage_cancel_act_cnt
+	,return_act_cnt
+	,chng_act_cnt
+	,order_amt
+	,order_qty
+	,order_sku_cnt
+	,natural_order_amt
+	,natural_order_qty
+	,natural_order_sku_cnt
+	,buy_amt
+	,buy_qty
+	,buy_sku_cnt
+	,cancel_amt
+	,cancel_qty
+	,cancel_sku_cnt
+	,shortage_cancel_amt
+	,shortage_cancel_qty
+	,shortage_cancel_sku_cnt
+	,general_cancel_amt
+	,general_cancel_qty
+	,general_cancel_sku_cnt
+	,return_amt
+	,return_qty
+	,return_sku_cnt
+	,chng_amt
+	,chng_qty
+	,chng_sku_cnt
+	,margin_amt
+	,supply_cost
+	,vat_exp_supply_cost
+	,item_price
+	,vat_exp_item_price
+	,sale_amt
+	,vat_exp_sale_amt
+	,natural_sale_amt
+	,vat_exp_natural_sale_amt
+	,dc_inc_sale_amt
+	,vat_exp_dc_inc_sale_amt
+	,buy_origin_cost
+	,vat_exp_buy_origin_cost
+	,ssg_dc_amt
+	,vat_exp_ssg_dc_amt
+	,md_dc_amt
+	,vat_exp_md_dc_amt
+	,mkt_dc_amt
+	,vat_exp_mkt_dc_amt
+	,vendor_dc_amt
+	,vat_exp_vendor_dc_amt
+	,dc_amt
+	,vat_exp_dc_amt
+	,item_sale_profit_amt
+	,promo_dc_amt
+	,promo_vendor_charge_dc_amt
+	,promo_mkt_charge_dc_amt
+	,promo_buyer_charge_dc_amt
+	,coupon_dc_amt
+	,coupon_vendor_charge_dc_amt
+	,coupon_mkt_charge_dc_amt
+	,coupon_buyer_charge_dc_amt
+	,manual_dc_amt
+	,vat_exp_manual_dc_amt
+	,real_dc_amt
+	,rsvramt
+	,vendor_charge_rsvramt
+	,rsvr_ssg_point
+	,rsvr_okcashbag_point
+--	,load_date
+	,to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) AS load_date
+
+FROM dm_order_dtl_fact_ori
+CROSS JOIN generate_series(1,2923) i;
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+
+
+
+
+

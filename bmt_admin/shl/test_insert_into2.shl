@@ -1,0 +1,50 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+SET search_path=sdmin;
+CREATE TABLE dm_order_dtl_fact_b (LIKE dm_order_dtl_fact)
+-- DISTRIBUTED BY (order_id ,item_id ,unit_id ,payment_finish_date_i)
+-- DISTRIBUTED BY (order_id)
+DISTRIBUTED BY (order_id)
+
+PARTITION BY RANGE(order_date)
+(
+PARTITION p2000   START ('20000101'::character varying) INCLUSIVE END ('20100101'::character varying) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p2010   START ('20100101'::character varying) INCLUSIVE END ('20130101'::character varying) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201201 START ('20130101'::character varying) INCLUSIVE END ('20130201'::character varying) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201202 START ('20130201'::character varying) INCLUSIVE END ('20130301'::character varying) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201203 START ('20130301'::character varying) INCLUSIVE END ('20130401'::character varying) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201204 START ('20130401'::character varying) INCLUSIVE END ('20130501'::character varying) EXCLUSIVE,
+DEFAULT PARTITION pdefault
+)
+;
+
+INSERT INTO dm_order_dtl_fact_b
+SELECT * FROM dm_order_dtl_fact;
+
+
+ALTER TABLE dm_order_dtl_fact   RENAME TO dm_order_dtl_fact_bk;
+ALTER TABLE dm_order_dtl_fact_b RENAME TO dm_order_dtl_fact;
+
+VACUUM ANALYZE dm_order_dtl_fact;
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

@@ -1,0 +1,582 @@
+insert_into.shl:Start Time:2013-03-14 20:39:16
+insert_into.shl:End Time  :2013-03-14 20:50:21
+02-01-ONE_DAY.shl(query01,  1):Start Time:2013-04-18 21:16:09
+query01.shl:Start Time:2013-04-18 21:16:09
+query01.shl:End Time  :2013-04-18 21:16:10
+02-01-ONE_DAY.shl(query01,  1):End Time  :2013-04-18 21:16:10
+02-01-ONE_DAY.shl(query02,  1):Start Time:2013-04-18 21:16:10
+query02.shl:Start Time:2013-04-18 21:16:10
+query02.shl:End Time  :2013-04-18 21:16:12
+02-01-ONE_DAY.shl(query02,  1):End Time  :2013-04-18 21:16:12
+02-01-ONE_DAY.shl(query03,  1):Start Time:2013-04-18 21:16:12
+query03.shl:Start Time:2013-04-18 21:16:12
+query03.shl:End Time  :2013-04-18 21:16:20
+02-01-ONE_DAY.shl(query03,  1):End Time  :2013-04-18 21:16:20
+02-01-ONE_DAY.shl(query04,  1):Start Time:2013-04-18 21:16:20
+query04.shl:Start Time:2013-04-18 21:16:20
+query04.shl:End Time  :2013-04-18 21:16:52
+02-01-ONE_DAY.shl(query04,  1):End Time  :2013-04-18 21:16:52
+02-01-ONE_DAY.shl(query05,  1):Start Time:2013-04-18 21:16:52
+query05.shl:Start Time:2013-04-18 21:16:52
+query05.shl:End Time  :2013-04-18 21:16:54
+02-01-ONE_DAY.shl(query05,  1):End Time  :2013-04-18 21:16:54
+02-01-ONE_DAY.shl(query01,  2):Start Time:2013-04-18 21:16:54
+query01.shl:Start Time:2013-04-18 21:16:54
+query01.shl:End Time  :2013-04-18 21:16:55
+02-01-ONE_DAY.shl(query01,  2):End Time  :2013-04-18 21:16:55
+02-01-ONE_DAY.shl(query02,  2):Start Time:2013-04-18 21:16:55
+query02.shl:Start Time:2013-04-18 21:16:55
+query02.shl:End Time  :2013-04-18 21:16:57
+02-01-ONE_DAY.shl(query02,  2):End Time  :2013-04-18 21:16:57
+02-01-ONE_DAY.shl(query03,  2):Start Time:2013-04-18 21:16:57
+query03.shl:Start Time:2013-04-18 21:16:57
+query03.shl:End Time  :2013-04-18 21:17:05
+02-01-ONE_DAY.shl(query03,  2):End Time  :2013-04-18 21:17:05
+02-01-ONE_DAY.shl(query04,  2):Start Time:2013-04-18 21:17:05
+query04.shl:Start Time:2013-04-18 21:17:05
+query04.shl:End Time  :2013-04-18 21:17:36
+02-01-ONE_DAY.shl(query04,  2):End Time  :2013-04-18 21:17:36
+02-01-ONE_DAY.shl(query05,  2):Start Time:2013-04-18 21:17:36
+query05.shl:Start Time:2013-04-18 21:17:36
+query05.shl:End Time  :2013-04-18 21:17:38
+02-01-ONE_DAY.shl(query05,  2):End Time  :2013-04-18 21:17:38
+02-01-ONE_DAY.shl(query01,  3):Start Time:2013-04-18 21:17:38
+query01.shl:Start Time:2013-04-18 21:17:38
+query01.shl:End Time  :2013-04-18 21:17:39
+02-01-ONE_DAY.shl(query01,  3):End Time  :2013-04-18 21:17:39
+02-01-ONE_DAY.shl(query02,  3):Start Time:2013-04-18 21:17:39
+query02.shl:Start Time:2013-04-18 21:17:39
+query02.shl:End Time  :2013-04-18 21:17:41
+02-01-ONE_DAY.shl(query02,  3):End Time  :2013-04-18 21:17:41
+02-01-ONE_DAY.shl(query03,  3):Start Time:2013-04-18 21:17:41
+query03.shl:Start Time:2013-04-18 21:17:41
+query03.shl:End Time  :2013-04-18 21:17:49
+02-01-ONE_DAY.shl(query03,  3):End Time  :2013-04-18 21:17:49
+02-01-ONE_DAY.shl(query04,  3):Start Time:2013-04-18 21:17:49
+query04.shl:Start Time:2013-04-18 21:17:49
+query04.shl:End Time  :2013-04-18 21:18:21
+02-01-ONE_DAY.shl(query04,  3):End Time  :2013-04-18 21:18:21
+02-01-ONE_DAY.shl(query05,  3):Start Time:2013-04-18 21:18:21
+query05.shl:Start Time:2013-04-18 21:18:21
+query05.shl:End Time  :2013-04-18 21:18:23
+02-01-ONE_DAY.shl(query05,  3):End Time  :2013-04-18 21:18:23
+02-02-ONE_WEEK.shl(query01,  1):Start Time:2013-04-18 21:18:23
+query01.shl:Start Time:2013-04-18 21:18:23
+query01.shl:End Time  :2013-04-18 21:18:25
+02-02-ONE_WEEK.shl(query01,  1):End Time  :2013-04-18 21:18:25
+02-02-ONE_WEEK.shl(query02,  1):Start Time:2013-04-18 21:18:25
+query02.shl:Start Time:2013-04-18 21:18:25
+query02.shl:End Time  :2013-04-18 21:18:26
+02-02-ONE_WEEK.shl(query02,  1):End Time  :2013-04-18 21:18:26
+02-02-ONE_WEEK.shl(query03,  1):Start Time:2013-04-18 21:18:26
+query03.shl:Start Time:2013-04-18 21:18:26
+query03.shl:End Time  :2013-04-18 21:18:35
+02-02-ONE_WEEK.shl(query03,  1):End Time  :2013-04-18 21:18:35
+02-02-ONE_WEEK.shl(query04,  1):Start Time:2013-04-18 21:18:35
+query04.shl:Start Time:2013-04-18 21:18:35
+query04.shl:End Time  :2013-04-18 21:19:06
+02-02-ONE_WEEK.shl(query04,  1):End Time  :2013-04-18 21:19:06
+02-02-ONE_WEEK.shl(query05,  1):Start Time:2013-04-18 21:19:06
+query05.shl:Start Time:2013-04-18 21:19:06
+query05.shl:End Time  :2013-04-18 21:19:08
+02-02-ONE_WEEK.shl(query05,  1):End Time  :2013-04-18 21:19:08
+02-02-ONE_WEEK.shl(query01,  2):Start Time:2013-04-18 21:19:08
+query01.shl:Start Time:2013-04-18 21:19:08
+query01.shl:End Time  :2013-04-18 21:19:09
+02-02-ONE_WEEK.shl(query01,  2):End Time  :2013-04-18 21:19:09
+02-02-ONE_WEEK.shl(query02,  2):Start Time:2013-04-18 21:19:10
+query02.shl:Start Time:2013-04-18 21:19:10
+query02.shl:End Time  :2013-04-18 21:19:11
+02-02-ONE_WEEK.shl(query02,  2):End Time  :2013-04-18 21:19:11
+02-02-ONE_WEEK.shl(query03,  2):Start Time:2013-04-18 21:19:11
+query03.shl:Start Time:2013-04-18 21:19:11
+query03.shl:End Time  :2013-04-18 21:19:20
+02-02-ONE_WEEK.shl(query03,  2):End Time  :2013-04-18 21:19:20
+02-02-ONE_WEEK.shl(query04,  2):Start Time:2013-04-18 21:19:20
+query04.shl:Start Time:2013-04-18 21:19:20
+query04.shl:End Time  :2013-04-18 21:19:51
+02-02-ONE_WEEK.shl(query04,  2):End Time  :2013-04-18 21:19:51
+02-02-ONE_WEEK.shl(query05,  2):Start Time:2013-04-18 21:19:51
+query05.shl:Start Time:2013-04-18 21:19:51
+query05.shl:End Time  :2013-04-18 21:19:52
+02-02-ONE_WEEK.shl(query05,  2):End Time  :2013-04-18 21:19:52
+02-02-ONE_WEEK.shl(query01,  3):Start Time:2013-04-18 21:19:52
+query01.shl:Start Time:2013-04-18 21:19:52
+query01.shl:End Time  :2013-04-18 21:19:54
+02-02-ONE_WEEK.shl(query01,  3):End Time  :2013-04-18 21:19:54
+02-02-ONE_WEEK.shl(query02,  3):Start Time:2013-04-18 21:19:54
+query02.shl:Start Time:2013-04-18 21:19:54
+query02.shl:End Time  :2013-04-18 21:19:55
+02-02-ONE_WEEK.shl(query02,  3):End Time  :2013-04-18 21:19:55
+02-02-ONE_WEEK.shl(query03,  3):Start Time:2013-04-18 21:19:55
+query03.shl:Start Time:2013-04-18 21:19:55
+query03.shl:End Time  :2013-04-18 21:20:03
+02-02-ONE_WEEK.shl(query03,  3):End Time  :2013-04-18 21:20:04
+02-02-ONE_WEEK.shl(query04,  3):Start Time:2013-04-18 21:20:04
+query04.shl:Start Time:2013-04-18 21:20:04
+query04.shl:End Time  :2013-04-18 21:20:35
+02-02-ONE_WEEK.shl(query04,  3):End Time  :2013-04-18 21:20:35
+02-02-ONE_WEEK.shl(query05,  3):Start Time:2013-04-18 21:20:35
+query05.shl:Start Time:2013-04-18 21:20:35
+query05.shl:End Time  :2013-04-18 21:20:37
+02-02-ONE_WEEK.shl(query05,  3):End Time  :2013-04-18 21:20:37
+02-01-ONE_DAY.shl(query01,  1):Start Time:2013-04-18 21:24:07
+query01.shl:Start Time:2013-04-18 21:24:07
+query01.shl:End Time  :2013-04-18 21:24:08
+02-01-ONE_DAY.shl(query01,  1):End Time  :2013-04-18 21:24:08
+02-01-ONE_DAY.shl(query02,  1):Start Time:2013-04-18 21:24:08
+query02.shl:Start Time:2013-04-18 21:24:08
+query02.shl:End Time  :2013-04-18 21:24:10
+02-01-ONE_DAY.shl(query02,  1):End Time  :2013-04-18 21:24:10
+02-01-ONE_DAY.shl(query03,  1):Start Time:2013-04-18 21:24:10
+query03.shl:Start Time:2013-04-18 21:24:10
+query03.shl:End Time  :2013-04-18 21:24:19
+02-01-ONE_DAY.shl(query03,  1):End Time  :2013-04-18 21:24:19
+02-01-ONE_DAY.shl(query04,  1):Start Time:2013-04-18 21:24:19
+query04.shl:Start Time:2013-04-18 21:24:19
+query04.shl:End Time  :2013-04-18 21:24:51
+02-01-ONE_DAY.shl(query04,  1):End Time  :2013-04-18 21:24:51
+02-01-ONE_DAY.shl(query05,  1):Start Time:2013-04-18 21:24:51
+query05.shl:Start Time:2013-04-18 21:24:51
+query05.shl:End Time  :2013-04-18 21:24:52
+02-01-ONE_DAY.shl(query05,  1):End Time  :2013-04-18 21:24:52
+02-01-ONE_DAY.shl(query01,  2):Start Time:2013-04-18 21:24:52
+query01.shl:Start Time:2013-04-18 21:24:52
+query01.shl:End Time  :2013-04-18 21:24:54
+02-01-ONE_DAY.shl(query01,  2):End Time  :2013-04-18 21:24:54
+02-01-ONE_DAY.shl(query02,  2):Start Time:2013-04-18 21:24:54
+query02.shl:Start Time:2013-04-18 21:24:54
+query02.shl:End Time  :2013-04-18 21:24:55
+02-01-ONE_DAY.shl(query02,  2):End Time  :2013-04-18 21:24:56
+02-01-ONE_DAY.shl(query03,  2):Start Time:2013-04-18 21:24:56
+query03.shl:Start Time:2013-04-18 21:24:56
+query03.shl:End Time  :2013-04-18 21:25:04
+02-01-ONE_DAY.shl(query03,  2):End Time  :2013-04-18 21:25:04
+02-01-ONE_DAY.shl(query04,  2):Start Time:2013-04-18 21:25:04
+query04.shl:Start Time:2013-04-18 21:25:04
+query04.shl:End Time  :2013-04-18 21:25:36
+02-01-ONE_DAY.shl(query04,  2):End Time  :2013-04-18 21:25:36
+02-01-ONE_DAY.shl(query05,  2):Start Time:2013-04-18 21:25:36
+query05.shl:Start Time:2013-04-18 21:25:36
+query05.shl:End Time  :2013-04-18 21:25:37
+02-01-ONE_DAY.shl(query05,  2):End Time  :2013-04-18 21:25:37
+02-01-ONE_DAY.shl(query01,  3):Start Time:2013-04-18 21:25:37
+query01.shl:Start Time:2013-04-18 21:25:37
+query01.shl:End Time  :2013-04-18 21:25:39
+02-01-ONE_DAY.shl(query01,  3):End Time  :2013-04-18 21:25:39
+02-01-ONE_DAY.shl(query02,  3):Start Time:2013-04-18 21:25:39
+query02.shl:Start Time:2013-04-18 21:25:39
+query02.shl:End Time  :2013-04-18 21:25:40
+02-01-ONE_DAY.shl(query02,  3):End Time  :2013-04-18 21:25:40
+02-01-ONE_DAY.shl(query03,  3):Start Time:2013-04-18 21:25:40
+query03.shl:Start Time:2013-04-18 21:25:40
+query03.shl:End Time  :2013-04-18 21:25:49
+02-01-ONE_DAY.shl(query03,  3):End Time  :2013-04-18 21:25:49
+02-01-ONE_DAY.shl(query04,  3):Start Time:2013-04-18 21:25:49
+query04.shl:Start Time:2013-04-18 21:25:49
+query04.shl:End Time  :2013-04-18 21:26:21
+02-01-ONE_DAY.shl(query04,  3):End Time  :2013-04-18 21:26:21
+02-01-ONE_DAY.shl(query05,  3):Start Time:2013-04-18 21:26:21
+query05.shl:Start Time:2013-04-18 21:26:21
+query05.shl:End Time  :2013-04-18 21:26:23
+02-01-ONE_DAY.shl(query05,  3):End Time  :2013-04-18 21:26:23
+02-02-ONE_WEEK.shl(query01,  1):Start Time:2013-04-18 21:26:23
+query01.shl:Start Time:2013-04-18 21:26:23
+query01.shl:End Time  :2013-04-18 21:26:25
+02-02-ONE_WEEK.shl(query01,  1):End Time  :2013-04-18 21:26:25
+02-02-ONE_WEEK.shl(query02,  1):Start Time:2013-04-18 21:26:25
+query02.shl:Start Time:2013-04-18 21:26:25
+query02.shl:End Time  :2013-04-18 21:26:26
+02-02-ONE_WEEK.shl(query02,  1):End Time  :2013-04-18 21:26:26
+02-02-ONE_WEEK.shl(query03,  1):Start Time:2013-04-18 21:26:26
+query03.shl:Start Time:2013-04-18 21:26:26
+query03.shl:End Time  :2013-04-18 21:26:35
+02-02-ONE_WEEK.shl(query03,  1):End Time  :2013-04-18 21:26:35
+02-02-ONE_WEEK.shl(query04,  1):Start Time:2013-04-18 21:26:35
+query04.shl:Start Time:2013-04-18 21:26:35
+query04.shl:End Time  :2013-04-18 21:27:06
+02-02-ONE_WEEK.shl(query04,  1):End Time  :2013-04-18 21:27:06
+02-02-ONE_WEEK.shl(query05,  1):Start Time:2013-04-18 21:27:06
+query05.shl:Start Time:2013-04-18 21:27:06
+query05.shl:End Time  :2013-04-18 21:27:08
+02-02-ONE_WEEK.shl(query05,  1):End Time  :2013-04-18 21:27:08
+02-02-ONE_WEEK.shl(query01,  2):Start Time:2013-04-18 21:27:08
+query01.shl:Start Time:2013-04-18 21:27:08
+query01.shl:End Time  :2013-04-18 21:27:09
+02-02-ONE_WEEK.shl(query01,  2):End Time  :2013-04-18 21:27:09
+02-02-ONE_WEEK.shl(query02,  2):Start Time:2013-04-18 21:27:09
+query02.shl:Start Time:2013-04-18 21:27:09
+query02.shl:End Time  :2013-04-18 21:27:11
+02-02-ONE_WEEK.shl(query02,  2):End Time  :2013-04-18 21:27:11
+02-02-ONE_WEEK.shl(query03,  2):Start Time:2013-04-18 21:27:11
+query03.shl:Start Time:2013-04-18 21:27:11
+query03.shl:End Time  :2013-04-18 21:27:19
+02-02-ONE_WEEK.shl(query03,  2):End Time  :2013-04-18 21:27:19
+02-02-ONE_WEEK.shl(query04,  2):Start Time:2013-04-18 21:27:19
+query04.shl:Start Time:2013-04-18 21:27:19
+query04.shl:End Time  :2013-04-18 21:27:51
+02-02-ONE_WEEK.shl(query04,  2):End Time  :2013-04-18 21:27:51
+02-02-ONE_WEEK.shl(query05,  2):Start Time:2013-04-18 21:27:51
+query05.shl:Start Time:2013-04-18 21:27:51
+query05.shl:End Time  :2013-04-18 21:27:53
+02-02-ONE_WEEK.shl(query05,  2):End Time  :2013-04-18 21:27:53
+02-02-ONE_WEEK.shl(query01,  3):Start Time:2013-04-18 21:27:53
+query01.shl:Start Time:2013-04-18 21:27:53
+query01.shl:End Time  :2013-04-18 21:27:55
+02-02-ONE_WEEK.shl(query01,  3):End Time  :2013-04-18 21:27:55
+02-02-ONE_WEEK.shl(query02,  3):Start Time:2013-04-18 21:27:55
+query02.shl:Start Time:2013-04-18 21:27:55
+query02.shl:End Time  :2013-04-18 21:27:56
+02-02-ONE_WEEK.shl(query02,  3):End Time  :2013-04-18 21:27:56
+02-02-ONE_WEEK.shl(query03,  3):Start Time:2013-04-18 21:27:56
+query03.shl:Start Time:2013-04-18 21:27:56
+query03.shl:End Time  :2013-04-18 21:28:05
+02-02-ONE_WEEK.shl(query03,  3):End Time  :2013-04-18 21:28:05
+02-02-ONE_WEEK.shl(query04,  3):Start Time:2013-04-18 21:28:05
+query04.shl:Start Time:2013-04-18 21:28:05
+query04.shl:End Time  :2013-04-18 21:28:37
+02-02-ONE_WEEK.shl(query04,  3):End Time  :2013-04-18 21:28:37
+02-02-ONE_WEEK.shl(query05,  3):Start Time:2013-04-18 21:28:37
+query05.shl:Start Time:2013-04-18 21:28:37
+query05.shl:End Time  :2013-04-18 21:28:38
+02-02-ONE_WEEK.shl(query05,  3):End Time  :2013-04-18 21:28:38
+02-03-ONE_MONTH.shl(query01,  1):Start Time:2013-04-18 21:28:38
+query01.shl:Start Time:2013-04-18 21:28:38
+query01.shl:End Time  :2013-04-18 21:28:40
+02-03-ONE_MONTH.shl(query01,  1):End Time  :2013-04-18 21:28:40
+02-03-ONE_MONTH.shl(query02,  1):Start Time:2013-04-18 21:28:40
+query02.shl:Start Time:2013-04-18 21:28:40
+query02.shl:End Time  :2013-04-18 21:28:41
+02-03-ONE_MONTH.shl(query02,  1):End Time  :2013-04-18 21:28:41
+02-03-ONE_MONTH.shl(query03,  1):Start Time:2013-04-18 21:28:41
+query03.shl:Start Time:2013-04-18 21:28:41
+query03.shl:End Time  :2013-04-18 21:28:50
+02-03-ONE_MONTH.shl(query03,  1):End Time  :2013-04-18 21:28:50
+02-03-ONE_MONTH.shl(query04,  1):Start Time:2013-04-18 21:28:50
+query04.shl:Start Time:2013-04-18 21:28:50
+query04.shl:End Time  :2013-04-18 21:29:22
+02-03-ONE_MONTH.shl(query04,  1):End Time  :2013-04-18 21:29:22
+02-03-ONE_MONTH.shl(query05,  1):Start Time:2013-04-18 21:29:22
+query05.shl:Start Time:2013-04-18 21:29:22
+query05.shl:End Time  :2013-04-18 21:29:23
+02-03-ONE_MONTH.shl(query05,  1):End Time  :2013-04-18 21:29:23
+02-03-ONE_MONTH.shl(query01,  2):Start Time:2013-04-18 21:29:23
+query01.shl:Start Time:2013-04-18 21:29:23
+query01.shl:End Time  :2013-04-18 21:29:25
+02-03-ONE_MONTH.shl(query01,  2):End Time  :2013-04-18 21:29:25
+02-03-ONE_MONTH.shl(query02,  2):Start Time:2013-04-18 21:29:25
+query02.shl:Start Time:2013-04-18 21:29:25
+query02.shl:End Time  :2013-04-18 21:29:26
+02-03-ONE_MONTH.shl(query02,  2):End Time  :2013-04-18 21:29:26
+02-03-ONE_MONTH.shl(query03,  2):Start Time:2013-04-18 21:29:26
+query03.shl:Start Time:2013-04-18 21:29:26
+query03.shl:End Time  :2013-04-18 21:29:35
+02-03-ONE_MONTH.shl(query03,  2):End Time  :2013-04-18 21:29:35
+02-03-ONE_MONTH.shl(query04,  2):Start Time:2013-04-18 21:29:35
+query04.shl:Start Time:2013-04-18 21:29:35
+query04.shl:End Time  :2013-04-18 21:30:06
+02-03-ONE_MONTH.shl(query04,  2):End Time  :2013-04-18 21:30:06
+02-03-ONE_MONTH.shl(query05,  2):Start Time:2013-04-18 21:30:06
+query05.shl:Start Time:2013-04-18 21:30:06
+query05.shl:End Time  :2013-04-18 21:30:08
+02-03-ONE_MONTH.shl(query05,  2):End Time  :2013-04-18 21:30:08
+02-03-ONE_MONTH.shl(query01,  3):Start Time:2013-04-18 21:30:08
+query01.shl:Start Time:2013-04-18 21:30:08
+query01.shl:End Time  :2013-04-18 21:30:09
+02-03-ONE_MONTH.shl(query01,  3):End Time  :2013-04-18 21:30:09
+02-03-ONE_MONTH.shl(query02,  3):Start Time:2013-04-18 21:30:09
+query02.shl:Start Time:2013-04-18 21:30:09
+query02.shl:End Time  :2013-04-18 21:30:11
+02-03-ONE_MONTH.shl(query02,  3):End Time  :2013-04-18 21:30:11
+02-03-ONE_MONTH.shl(query03,  3):Start Time:2013-04-18 21:30:11
+query03.shl:Start Time:2013-04-18 21:30:11
+query03.shl:End Time  :2013-04-18 21:30:20
+02-03-ONE_MONTH.shl(query03,  3):End Time  :2013-04-18 21:30:20
+02-03-ONE_MONTH.shl(query04,  3):Start Time:2013-04-18 21:30:20
+query04.shl:Start Time:2013-04-18 21:30:20
+query04.shl:End Time  :2013-04-18 21:30:52
+02-03-ONE_MONTH.shl(query04,  3):End Time  :2013-04-18 21:30:52
+02-03-ONE_MONTH.shl(query05,  3):Start Time:2013-04-18 21:30:52
+query05.shl:Start Time:2013-04-18 21:30:52
+query05.shl:End Time  :2013-04-18 21:30:54
+02-03-ONE_MONTH.shl(query05,  3):End Time  :2013-04-18 21:30:54
+02-04-THREE_MONTH.shl(query01,  1):Start Time:2013-04-18 21:30:54
+query01.shl:Start Time:2013-04-18 21:30:54
+query01.shl:End Time  :2013-04-18 21:30:55
+02-04-THREE_MONTH.shl(query01,  1):End Time  :2013-04-18 21:30:55
+02-04-THREE_MONTH.shl(query02,  1):Start Time:2013-04-18 21:30:55
+query02.shl:Start Time:2013-04-18 21:30:55
+query02.shl:End Time  :2013-04-18 21:30:57
+02-04-THREE_MONTH.shl(query02,  1):End Time  :2013-04-18 21:30:57
+02-04-THREE_MONTH.shl(query03,  1):Start Time:2013-04-18 21:30:57
+query03.shl:Start Time:2013-04-18 21:30:57
+query03.shl:End Time  :2013-04-18 21:31:05
+02-04-THREE_MONTH.shl(query03,  1):End Time  :2013-04-18 21:31:05
+02-04-THREE_MONTH.shl(query04,  1):Start Time:2013-04-18 21:31:05
+query04.shl:Start Time:2013-04-18 21:31:05
+query04.shl:End Time  :2013-04-18 21:31:37
+02-04-THREE_MONTH.shl(query04,  1):End Time  :2013-04-18 21:31:37
+02-04-THREE_MONTH.shl(query05,  1):Start Time:2013-04-18 21:31:37
+query05.shl:Start Time:2013-04-18 21:31:37
+query05.shl:End Time  :2013-04-18 21:31:38
+02-04-THREE_MONTH.shl(query05,  1):End Time  :2013-04-18 21:31:38
+02-04-THREE_MONTH.shl(query01,  2):Start Time:2013-04-18 21:31:38
+query01.shl:Start Time:2013-04-18 21:31:38
+query01.shl:End Time  :2013-04-18 21:31:40
+02-04-THREE_MONTH.shl(query01,  2):End Time  :2013-04-18 21:31:40
+02-04-THREE_MONTH.shl(query02,  2):Start Time:2013-04-18 21:31:40
+query02.shl:Start Time:2013-04-18 21:31:40
+query02.shl:End Time  :2013-04-18 21:31:41
+02-04-THREE_MONTH.shl(query02,  2):End Time  :2013-04-18 21:31:41
+02-04-THREE_MONTH.shl(query03,  2):Start Time:2013-04-18 21:31:41
+query03.shl:Start Time:2013-04-18 21:31:41
+query03.shl:End Time  :2013-04-18 21:31:50
+02-04-THREE_MONTH.shl(query03,  2):End Time  :2013-04-18 21:31:50
+02-04-THREE_MONTH.shl(query04,  2):Start Time:2013-04-18 21:31:50
+query04.shl:Start Time:2013-04-18 21:31:50
+query04.shl:End Time  :2013-04-18 21:32:22
+02-04-THREE_MONTH.shl(query04,  2):End Time  :2013-04-18 21:32:22
+02-04-THREE_MONTH.shl(query05,  2):Start Time:2013-04-18 21:32:22
+query05.shl:Start Time:2013-04-18 21:32:22
+query05.shl:End Time  :2013-04-18 21:32:23
+02-04-THREE_MONTH.shl(query05,  2):End Time  :2013-04-18 21:32:23
+02-04-THREE_MONTH.shl(query01,  3):Start Time:2013-04-18 21:32:23
+query01.shl:Start Time:2013-04-18 21:32:23
+query01.shl:End Time  :2013-04-18 21:32:25
+02-04-THREE_MONTH.shl(query01,  3):End Time  :2013-04-18 21:32:25
+02-04-THREE_MONTH.shl(query02,  3):Start Time:2013-04-18 21:32:25
+query02.shl:Start Time:2013-04-18 21:32:25
+query02.shl:End Time  :2013-04-18 21:32:26
+02-04-THREE_MONTH.shl(query02,  3):End Time  :2013-04-18 21:32:26
+02-04-THREE_MONTH.shl(query03,  3):Start Time:2013-04-18 21:32:26
+query03.shl:Start Time:2013-04-18 21:32:26
+query03.shl:End Time  :2013-04-18 21:32:35
+02-04-THREE_MONTH.shl(query03,  3):End Time  :2013-04-18 21:32:35
+02-04-THREE_MONTH.shl(query04,  3):Start Time:2013-04-18 21:32:35
+query04.shl:Start Time:2013-04-18 21:32:35
+query04.shl:End Time  :2013-04-18 21:33:07
+02-04-THREE_MONTH.shl(query04,  3):End Time  :2013-04-18 21:33:07
+02-04-THREE_MONTH.shl(query05,  3):Start Time:2013-04-18 21:33:07
+query05.shl:Start Time:2013-04-18 21:33:07
+query05.shl:End Time  :2013-04-18 21:33:09
+02-04-THREE_MONTH.shl(query05,  3):End Time  :2013-04-18 21:33:09
+02-05-ONE_YEAR.shl(query01,  1):Start Time:2013-04-18 21:33:09
+query01.shl:Start Time:2013-04-18 21:33:09
+query01.shl:End Time  :2013-04-18 21:33:10
+02-05-ONE_YEAR.shl(query01,  1):End Time  :2013-04-18 21:33:10
+02-05-ONE_YEAR.shl(query02,  1):Start Time:2013-04-18 21:33:10
+query02.shl:Start Time:2013-04-18 21:33:10
+query02.shl:End Time  :2013-04-18 21:33:12
+02-05-ONE_YEAR.shl(query02,  1):End Time  :2013-04-18 21:33:12
+02-05-ONE_YEAR.shl(query03,  1):Start Time:2013-04-18 21:33:12
+query03.shl:Start Time:2013-04-18 21:33:12
+query03.shl:End Time  :2013-04-18 21:33:20
+02-05-ONE_YEAR.shl(query03,  1):End Time  :2013-04-18 21:33:20
+02-05-ONE_YEAR.shl(query04,  1):Start Time:2013-04-18 21:33:20
+query04.shl:Start Time:2013-04-18 21:33:20
+query04.shl:End Time  :2013-04-18 21:33:52
+02-05-ONE_YEAR.shl(query04,  1):End Time  :2013-04-18 21:33:52
+02-05-ONE_YEAR.shl(query05,  1):Start Time:2013-04-18 21:33:52
+query05.shl:Start Time:2013-04-18 21:33:52
+query05.shl:End Time  :2013-04-18 21:33:54
+02-05-ONE_YEAR.shl(query05,  1):End Time  :2013-04-18 21:33:54
+02-05-ONE_YEAR.shl(query01,  2):Start Time:2013-04-18 21:33:54
+query01.shl:Start Time:2013-04-18 21:33:54
+query01.shl:End Time  :2013-04-18 21:33:55
+02-05-ONE_YEAR.shl(query01,  2):End Time  :2013-04-18 21:33:55
+02-05-ONE_YEAR.shl(query02,  2):Start Time:2013-04-18 21:33:55
+query02.shl:Start Time:2013-04-18 21:33:55
+query02.shl:End Time  :2013-04-18 21:33:57
+02-05-ONE_YEAR.shl(query02,  2):End Time  :2013-04-18 21:33:57
+02-05-ONE_YEAR.shl(query03,  2):Start Time:2013-04-18 21:33:57
+query03.shl:Start Time:2013-04-18 21:33:57
+query03.shl:End Time  :2013-04-18 21:34:05
+02-05-ONE_YEAR.shl(query03,  2):End Time  :2013-04-18 21:34:05
+02-05-ONE_YEAR.shl(query04,  2):Start Time:2013-04-18 21:34:05
+query04.shl:Start Time:2013-04-18 21:34:05
+query04.shl:End Time  :2013-04-18 21:34:36
+02-05-ONE_YEAR.shl(query04,  2):End Time  :2013-04-18 21:34:36
+02-05-ONE_YEAR.shl(query05,  2):Start Time:2013-04-18 21:34:36
+query05.shl:Start Time:2013-04-18 21:34:36
+query05.shl:End Time  :2013-04-18 21:34:38
+02-05-ONE_YEAR.shl(query05,  2):End Time  :2013-04-18 21:34:38
+02-05-ONE_YEAR.shl(query01,  3):Start Time:2013-04-18 21:34:38
+query01.shl:Start Time:2013-04-18 21:34:38
+query01.shl:End Time  :2013-04-18 21:34:39
+02-05-ONE_YEAR.shl(query01,  3):End Time  :2013-04-18 21:34:39
+02-05-ONE_YEAR.shl(query02,  3):Start Time:2013-04-18 21:34:39
+query02.shl:Start Time:2013-04-18 21:34:39
+query02.shl:End Time  :2013-04-18 21:34:41
+02-05-ONE_YEAR.shl(query02,  3):End Time  :2013-04-18 21:34:41
+02-05-ONE_YEAR.shl(query03,  3):Start Time:2013-04-18 21:34:41
+query03.shl:Start Time:2013-04-18 21:34:41
+query03.shl:End Time  :2013-04-18 21:34:49
+02-05-ONE_YEAR.shl(query03,  3):End Time  :2013-04-18 21:34:49
+02-05-ONE_YEAR.shl(query04,  3):Start Time:2013-04-18 21:34:49
+query04.shl:Start Time:2013-04-18 21:34:49
+query04.shl:End Time  :2013-04-18 21:35:22
+02-05-ONE_YEAR.shl(query04,  3):End Time  :2013-04-18 21:35:22
+02-05-ONE_YEAR.shl(query05,  3):Start Time:2013-04-18 21:35:22
+query05.shl:Start Time:2013-04-18 21:35:22
+query05.shl:End Time  :2013-04-18 21:35:23
+02-05-ONE_YEAR.shl(query05,  3):End Time  :2013-04-18 21:35:23
+02-06-THREE_YEAR.shl(query01,  1):Start Time:2013-04-18 21:35:23
+query01.shl:Start Time:2013-04-18 21:35:23
+query01.shl:End Time  :2013-04-18 21:35:25
+02-06-THREE_YEAR.shl(query01,  1):End Time  :2013-04-18 21:35:25
+02-06-THREE_YEAR.shl(query02,  1):Start Time:2013-04-18 21:35:25
+query02.shl:Start Time:2013-04-18 21:35:25
+query02.shl:End Time  :2013-04-18 21:35:26
+02-06-THREE_YEAR.shl(query02,  1):End Time  :2013-04-18 21:35:26
+02-06-THREE_YEAR.shl(query03,  1):Start Time:2013-04-18 21:35:26
+query03.shl:Start Time:2013-04-18 21:35:26
+query03.shl:End Time  :2013-04-18 21:35:35
+02-06-THREE_YEAR.shl(query03,  1):End Time  :2013-04-18 21:35:35
+02-06-THREE_YEAR.shl(query04,  1):Start Time:2013-04-18 21:35:35
+query04.shl:Start Time:2013-04-18 21:35:35
+query04.shl:End Time  :2013-04-18 21:36:06
+02-06-THREE_YEAR.shl(query04,  1):End Time  :2013-04-18 21:36:06
+02-06-THREE_YEAR.shl(query05,  1):Start Time:2013-04-18 21:36:06
+query05.shl:Start Time:2013-04-18 21:36:06
+query05.shl:End Time  :2013-04-18 21:36:08
+02-06-THREE_YEAR.shl(query05,  1):End Time  :2013-04-18 21:36:08
+02-06-THREE_YEAR.shl(query01,  2):Start Time:2013-04-18 21:36:08
+query01.shl:Start Time:2013-04-18 21:36:08
+query01.shl:End Time  :2013-04-18 21:36:10
+02-06-THREE_YEAR.shl(query01,  2):End Time  :2013-04-18 21:36:10
+02-06-THREE_YEAR.shl(query02,  2):Start Time:2013-04-18 21:36:10
+query02.shl:Start Time:2013-04-18 21:36:10
+query02.shl:End Time  :2013-04-18 21:36:11
+02-06-THREE_YEAR.shl(query02,  2):End Time  :2013-04-18 21:36:11
+02-06-THREE_YEAR.shl(query03,  2):Start Time:2013-04-18 21:36:11
+query03.shl:Start Time:2013-04-18 21:36:11
+query03.shl:End Time  :2013-04-18 21:36:20
+02-06-THREE_YEAR.shl(query03,  2):End Time  :2013-04-18 21:36:20
+02-06-THREE_YEAR.shl(query04,  2):Start Time:2013-04-18 21:36:20
+query04.shl:Start Time:2013-04-18 21:36:20
+query04.shl:End Time  :2013-04-18 21:36:51
+02-06-THREE_YEAR.shl(query04,  2):End Time  :2013-04-18 21:36:51
+02-06-THREE_YEAR.shl(query05,  2):Start Time:2013-04-18 21:36:51
+query05.shl:Start Time:2013-04-18 21:36:51
+query05.shl:End Time  :2013-04-18 21:36:53
+02-06-THREE_YEAR.shl(query05,  2):End Time  :2013-04-18 21:36:53
+02-06-THREE_YEAR.shl(query01,  3):Start Time:2013-04-18 21:36:53
+query01.shl:Start Time:2013-04-18 21:36:53
+query01.shl:End Time  :2013-04-18 21:36:54
+02-06-THREE_YEAR.shl(query01,  3):End Time  :2013-04-18 21:36:54
+02-06-THREE_YEAR.shl(query02,  3):Start Time:2013-04-18 21:36:54
+query02.shl:Start Time:2013-04-18 21:36:54
+query02.shl:End Time  :2013-04-18 21:36:56
+02-06-THREE_YEAR.shl(query02,  3):End Time  :2013-04-18 21:36:56
+02-06-THREE_YEAR.shl(query03,  3):Start Time:2013-04-18 21:36:56
+query03.shl:Start Time:2013-04-18 21:36:56
+query03.shl:End Time  :2013-04-18 21:37:04
+02-06-THREE_YEAR.shl(query03,  3):End Time  :2013-04-18 21:37:04
+02-06-THREE_YEAR.shl(query04,  3):Start Time:2013-04-18 21:37:04
+query04.shl:Start Time:2013-04-18 21:37:04
+query04.shl:End Time  :2013-04-18 21:37:36
+02-06-THREE_YEAR.shl(query04,  3):End Time  :2013-04-18 21:37:36
+02-06-THREE_YEAR.shl(query05,  3):Start Time:2013-04-18 21:37:36
+query05.shl:Start Time:2013-04-18 21:37:36
+query05.shl:End Time  :2013-04-18 21:37:37
+02-06-THREE_YEAR.shl(query05,  3):End Time  :2013-04-18 21:37:37
+02-07-EIGHT_YEAR.shl(query01,  1):Start Time:2013-04-18 21:37:37
+query01.shl:Start Time:2013-04-18 21:37:37
+query01.shl:End Time  :2013-04-18 21:37:39
+02-07-EIGHT_YEAR.shl(query01,  1):End Time  :2013-04-18 21:37:39
+02-07-EIGHT_YEAR.shl(query02,  1):Start Time:2013-04-18 21:37:39
+query01.shl:Start Time:2013-04-18 21:37:39
+query01.shl:End Time  :2013-04-18 21:37:41
+02-07-EIGHT_YEAR.shl(query02,  1):End Time  :2013-04-18 21:37:41
+02-07-EIGHT_YEAR.shl(query03,  1):Start Time:2013-04-18 21:37:41
+query01.shl:Start Time:2013-04-18 21:37:41
+query01.shl:End Time  :2013-04-18 21:37:42
+02-07-EIGHT_YEAR.shl(query03,  1):End Time  :2013-04-18 21:37:42
+02-07-EIGHT_YEAR.shl(query04,  1):Start Time:2013-04-18 21:37:42
+query01.shl:Start Time:2013-04-18 21:37:42
+query01.shl:End Time  :2013-04-18 21:37:44
+02-07-EIGHT_YEAR.shl(query04,  1):End Time  :2013-04-18 21:37:44
+02-07-EIGHT_YEAR.shl(query05,  1):Start Time:2013-04-18 21:37:44
+query01.shl:Start Time:2013-04-18 21:37:44
+query01.shl:End Time  :2013-04-18 21:37:45
+02-07-EIGHT_YEAR.shl(query05,  1):End Time  :2013-04-18 21:37:45
+02-07-EIGHT_YEAR.shl(query01,  2):Start Time:2013-04-18 21:37:45
+query02.shl:Start Time:2013-04-18 21:37:45
+query02.shl:End Time  :2013-04-18 21:37:47
+02-07-EIGHT_YEAR.shl(query01,  2):End Time  :2013-04-18 21:37:47
+02-07-EIGHT_YEAR.shl(query02,  2):Start Time:2013-04-18 21:37:47
+query02.shl:Start Time:2013-04-18 21:37:47
+query02.shl:End Time  :2013-04-18 21:37:48
+02-07-EIGHT_YEAR.shl(query02,  2):End Time  :2013-04-18 21:37:48
+02-07-EIGHT_YEAR.shl(query03,  2):Start Time:2013-04-18 21:37:48
+query02.shl:Start Time:2013-04-18 21:37:48
+query02.shl:End Time  :2013-04-18 21:37:50
+02-07-EIGHT_YEAR.shl(query03,  2):End Time  :2013-04-18 21:37:50
+02-07-EIGHT_YEAR.shl(query04,  2):Start Time:2013-04-18 21:37:50
+query02.shl:Start Time:2013-04-18 21:37:50
+query02.shl:End Time  :2013-04-18 21:37:51
+02-07-EIGHT_YEAR.shl(query04,  2):End Time  :2013-04-18 21:37:51
+02-07-EIGHT_YEAR.shl(query05,  2):Start Time:2013-04-18 21:37:51
+query02.shl:Start Time:2013-04-18 21:37:51
+query02.shl:End Time  :2013-04-18 21:37:53
+02-07-EIGHT_YEAR.shl(query05,  2):End Time  :2013-04-18 21:37:53
+02-07-EIGHT_YEAR.shl(query01,  3):Start Time:2013-04-18 21:37:53
+query03.shl:Start Time:2013-04-18 21:37:53
+query03.shl:End Time  :2013-04-18 21:38:03
+02-07-EIGHT_YEAR.shl(query01,  3):End Time  :2013-04-18 21:38:03
+02-07-EIGHT_YEAR.shl(query02,  3):Start Time:2013-04-18 21:38:03
+query03.shl:Start Time:2013-04-18 21:38:03
+query03.shl:End Time  :2013-04-18 21:38:12
+02-07-EIGHT_YEAR.shl(query02,  3):End Time  :2013-04-18 21:38:12
+02-07-EIGHT_YEAR.shl(query03,  3):Start Time:2013-04-18 21:38:12
+query03.shl:Start Time:2013-04-18 21:38:12
+query03.shl:End Time  :2013-04-18 21:38:21
+02-07-EIGHT_YEAR.shl(query03,  3):End Time  :2013-04-18 21:38:21
+02-07-EIGHT_YEAR.shl(query04,  3):Start Time:2013-04-18 21:38:21
+query03.shl:Start Time:2013-04-18 21:38:21
+query03.shl:End Time  :2013-04-18 21:38:30
+02-07-EIGHT_YEAR.shl(query04,  3):End Time  :2013-04-18 21:38:30
+02-07-EIGHT_YEAR.shl(query05,  3):Start Time:2013-04-18 21:38:30
+query03.shl:Start Time:2013-04-18 21:38:30
+query03.shl:End Time  :2013-04-18 21:38:39
+02-07-EIGHT_YEAR.shl(query05,  3):End Time  :2013-04-18 21:38:40
+03-01-SESSION#1.shl:Start Time:2013-04-18 21:38:40
+running process count = 1 
+03-01-SESSION#1.shl:End Time  :2013-04-18 21:38:45
+03-02-SESSION#5.shl:Start Time:2013-04-18 21:38:45
+running process count = 5 
+03-02-SESSION#5.shl:End Time  :2013-04-18 21:38:50
+03-03-SESSION#10.shl:Start Time:2013-04-18 21:38:50
+running process count = 10 
+03-03-SESSION#10.shl:End Time  :2013-04-18 21:38:55
+03-04-SESSION#25.shl:Start Time:2013-04-18 21:38:55
+running process count = 25 
+03-04-SESSION#25.shl:End Time  :2013-04-18 21:39:00
+03-05-SESSION#50.shl:Start Time:2013-04-18 21:39:00
+running process count = 50 
+03-05-SESSION#50.shl:End Time  :2013-04-18 21:39:05
+03-06-SESSION#100.shl:Start Time:2013-04-18 21:39:05
+running process count = 100 
+running process count = 25 
+03-06-SESSION#100.shl:End Time  :2013-04-18 21:39:16
+04-01-QUERY06_INFINITE_EXECUTE.shl:Start Time:2013-04-18 21:39:16
+query06.shl:Start Time:2013-04-18 21:39:16
+query06.shl:End Time  :2013-04-18 21:39:16
+query06.shl:Start Time:2013-04-19 09:21:44
+query06.shl:End Time  :2013-04-19 09:21:45
+04-01-QUERY06_INFINITE_EXECUTE.shl:End Time  :2013-04-19 09:21:45
+04-02-QUERY06_STOP.shl:Start Time:2013-04-19 09:21:45
+04-02-QUERY06_STOP.shl:End Time  :2013-04-19 09:21:45
+05-01-EXECUTE_WORKS.shl:Start Time:2013-04-19 09:21:45
+query07.shl:Start Time:2013-04-19 09:21:45
+03-02-SESSION#5.shl:Start Time:2013-04-19 09:21:45
+running process count = 5 
+query07.shl:End Time  :2013-04-19 09:21:45
+03-02-SESSION#5.shl:End Time  :2013-04-19 09:21:50
+05-01-EXECUTE_WORKS.shl:End Time  :2013-04-19 09:21:50
+05-02-INFINITE_UPDATE.shl:Start Time:2013-04-19 09:21:50
+query08.shl:Start Time:2013-04-19 09:21:50
+query08.shl:End Time  :2013-04-19 09:21:50
+query09.shl:Start Time:2013-04-19 09:21:50
+query09.shl:End Time  :2013-04-19 09:21:50
+05-02-INFINITE_UPDATE.shl:End Time  :2013-04-19 09:21:50

@@ -1,0 +1,48 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+
+START_DATE='2013-01-18'
+END_DATE='2013-04-17'
+
+
+EXEC_COUNT=3
+SHELL_COUNT=5
+
+rm -f $LOGFILE
+
+i=0
+
+while [ $i -lt $SHELL_COUNT ];
+do
+
+    i=`expr $i + 1`
+
+    j=0
+
+    while [ $j -lt $EXEC_COUNT ];
+    do
+
+        j=`expr $j + 1`
+        header=`echo "query0$i, " $j`
+        START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+        echo $SHELLFILE"($header):Start Time:"$START_TM1
+
+
+        sh query0$i.shl $START_DATE $END_DATE
+
+        END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+        echo $SHELLFILE"($header):Start Time:"$START_TM1 >> $LOGFILE
+        echo $SHELLFILE"($header):End Time  :"$END_TM1   >> $LOGFILE
+
+        echo $SHELLFILE"($header):End Time  :"$END_TM1
+
+    done
+
+done
+

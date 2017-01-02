@@ -1,0 +1,28 @@
+select schema_nm, tb_nm
+from   dba.tb_size
+where  schema_nm like 'mas%'
+and    tb_size_mb < 1024 * 200
+intersect
+select schema_nm, tb_nm 
+from   dba.tb_pt_size
+where  schema_nm like 'mas%'
+and    tb_nm <> tbpt_nm 
+
+masdapdw.tb_fda_pdw_apd_pre_prcs
+masdapdw.tb_fda_pdw_ememo_file
+masdapdw.tb_fda_pdw_ememo_h
+masdapdw.tb_fda_pdw_ememo_lot
+masdapdw.tb_fda_pdw_equip_h
+masdapdw.tb_fda_pdw_equip_work_order_h
+masdapdw.tb_fda_pdw_gls_insp_def_img
+masdapdw.tb_fda_pdw_gls_insp_detail
+masdapdw.tb_fda_pdw_gls_insp_flag
+masdapdw.tb_fda_pdw_gls_insp_h_b2
+masdapdw.tb_fda_pdw_lot_h
+masdapdw.tb_fda_pdw_pnl_insp_def_h
+masdapdw.tb_fda_pdw_pnl_insp_detail
+masdapdw.tb_fda_pdw_pnl_insp_h
+masdapdw.tb_fda_pdw_recipe_change_h
+masdapdw.tb_fda_pdw_run_note
+masdapdw.tb_fda_pdw_spc_point_h
+

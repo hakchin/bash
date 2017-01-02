@@ -1,0 +1,38 @@
+----------- BGN of First Original ----------
+[gpadmin@mdw shl]$ sh backup.shl 
+backup.shl:Start Time:2013-03-03 12:45:41
+20130303:12:45:41:127863 gpcrondump:mdw:gpadmin-[INFO]:-Starting gpcrondump with args: -x masda_init -u /backup/DCA-01 -g -G -b -a --rsyncable
+20130303:12:45:45:127863 gpcrondump:mdw:gpadmin-[INFO]:-Directory /backup/DCA-01/db_dumps/20130303 not found, will try to create
+20130303:12:45:45:127863 gpcrondump:mdw:gpadmin-[INFO]:-Created /backup/DCA-01/db_dumps/20130303
+20130303:12:45:45:127863 gpcrondump:mdw:gpadmin-[INFO]:-Checked /backup/DCA-01 on master
+20130303:12:45:45:127863 gpcrondump:mdw:gpadmin-[INFO]:-Directory /data/master/gpseg-1/db_dumps/20130303 not found, will try to create
+20130303:12:45:45:127863 gpcrondump:mdw:gpadmin-[INFO]:-Created /data/master/gpseg-1/db_dumps/20130303
+20130303:12:45:45:127863 gpcrondump:mdw:gpadmin-[INFO]:-Checked /data/master/gpseg-1 on master
+20130303:12:45:47:127863 gpcrondump:mdw:gpadmin-[INFO]:-Configuring for single database dump
+20130303:12:45:47:127863 gpcrondump:mdw:gpadmin-[INFO]:-Adding compression parameter
+20130303:12:45:47:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dump command line gp_dump -p 5432 -U gpadmin --gp-d=/backup/DCA-01/db_dumps/20130303 --gp-r=/data/master/gpseg-1/db_dumps/20130303 --gp-s=p --gp-c masda_init --rsyncable
+20130303:12:45:47:127863 gpcrondump:mdw:gpadmin-[INFO]:-Starting dump process
+20130303:12:59:31:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dump process returned exit code 0
+20130303:12:59:31:127863 gpcrondump:mdw:gpadmin-[INFO]:-Timestamp key = 20130303124547
+20130303:12:59:31:127863 gpcrondump:mdw:gpadmin-[INFO]:-Checked master status file and master dump file.
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Commencing pg_catalog dump
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dump status report
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:----------------------------------------------------
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Target database                          = masda_init
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dump subdirectory                        = 20130303
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Clear old dump directories               = Off
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dump start time                          = 12:45:47
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dump end time                            = 12:59:31
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Status                                   = COMPLETED
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dump key                                 = 20130303124547
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dump file compression                    = On
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Vacuum mode type                         = Off
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Exit code zero, no warnings generated
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:----------------------------------------------------
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[WARNING]:-Found neither /usr/local/greenplum-db/./bin/mail_contacts nor /home/gpadmin/mail_contacts
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[WARNING]:-Unable to send dump email notification
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-To enable email notification, create /usr/local/greenplum-db/./bin/mail_contacts or /home/gpadmin/mail_contacts containing required email addresses
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dumping master config files
+20130303:12:59:33:127863 gpcrondump:mdw:gpadmin-[INFO]:-Dumping segment config files
+backup.shl:End Time  :2013-03-03 12:59:45
+----------- END of First Original ----------

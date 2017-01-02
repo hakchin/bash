@@ -1,0 +1,26 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+DROP TABLE IF EXISTS masdapdw.factory_code_p1_1;
+CREATE TABLE masdapdw.factory_code_p1_1       (LIKE masdapdw.tb_fda_pdw_apd_detail) ;
+INSERT INTO masdapdw.factory_code_p1_1        SELECT * FROM masdapdw.tb_fda_pdw_apd_detail_1_prt_p20121118_2_prt_p1;
+
+!
+###### query end
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

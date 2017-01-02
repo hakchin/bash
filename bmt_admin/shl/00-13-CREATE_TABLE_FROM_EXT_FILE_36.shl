@@ -1,0 +1,58 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+SQLDIR=../sql/ddl_36
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d uec -ef $SQLDIR"/"cls_cr_rnd_prm_mmcls.sql       >  $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"cls_ltrm_cvr_rnd_prm.sql       >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"cls_ltrm_mnrt.sql              >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"cus_ctm.sql                    >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"igd_gd.sql                     >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"igd_gd_csf.sql                 >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"igd_gd_cvr_acm_rk.sql          >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"ins_cmins_ins_re_cls.sql       >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"ins_cr_cvr.sql                 >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"ins_cr_dh_stf_crr.sql          >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"ins_cr_relpc.sql               >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"ins_incm_prm.sql               >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"ins_ins_cr.sql                 >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"ins_prm_pym_pr.sql             >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_ccr_cr_ins_cr.sql            >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_cod_bzus_ins_itm_csfcd.sql   >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_cod_cvrcd.sql                >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_cod_gdcd.sql                 >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_lcr_ltins_cr.sql             >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_lcr_ltrm_incm_prm.sql        >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_lwt_dm_rd_rptg_list.sql      >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_org_bz_orgn.sql              >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_org_mthy_bz_orgn.sql         >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_org_org_ordr.sql             >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_sam_bz_fml_styrt.sql         >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_sam_dyb_bzfml_prsn_crst.sql  >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_sam_stf_srtr_orgn.sql        >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_sam_vl_wkdgr_adm.sql         >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"met_subo_rel_cd_defn.sql       >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"sam_aw_cc_achv.sql             >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"sam_aw_cc_achv_stf.sql         >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"sam_aw_py_spc.sql              >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"sam_incm_prm_bz_av.sql         >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"sam_org.sql                    >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"sam_stf.sql                    >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"v_calendar.sql                 >> $LOGFILE 2>&1
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

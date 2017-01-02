@@ -1,0 +1,33 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=${0}
+#LOGDIR=../log
+LOGDIR=./
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d kyeongnam -e > $LOGFILE 2>&1 <<-!
+\timing on
+SELECT count(*) FROM card_flc_mihando ;
+SELECT count(*) FROM comm_br_brch     ;
+SELECT count(*) FROM card_flc_mst     ;
+SELECT count(*) FROM audt_ja_confirm  ;
+SELECT count(*) FROM acnt_ac_code     ;
+SELECT count(*) FROM cust_ba_base     ;
+SELECT count(*) FROM cust_ba_juso     ;
+SELECT count(*) FROM depo_ac_comm     ;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

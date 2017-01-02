@@ -1,0 +1,25 @@
+Timing is on.
+SET search_path=sdmin, sdmin_err, public, pg_catalog, oracompat;
+SET
+Time: 635.796 ms
+ANALYZE sdmin.cls_cr_rnd_prm_mmcls           ;
+ANALYZE
+Time: 26843.040 ms
+ANALYZE sdmin.cls_cr_rnd_prm_mmcls_p01       ;
+ANALYZE
+Time: 28814.855 ms
+ANALYZE sdmin.cls_ltrm_cvr_rnd_prm           ;
+ANALYZE
+Time: 41622.013 ms
+ANALYZE sdmin.cls_ltrm_cvr_rnd_prm_p01       ;
+ANALYZE
+Time: 54955.297 ms
+ANALYZE sdmin.cls_ltrm_mnrt                  ;
+ANALYZE
+Time: 98882.196 ms
+ANALYZE sdmin.cls_ltrm_mnrt_p01              ;
+Cancel request sent
+ERROR:  canceling statement due to user request
+CONTEXT:  SQL statement "select v from (select Ta.mn_cv_av_prm as v, row_number() over (order by Ta.mn_cv_av_prm) as r from only pg_temp_40665.pg_analyze_107890_8 as Ta where mn_cv_av_prm is not null union select max(Tb.mn_cv_av_prm) as v, 1 as r from only pg_temp_40665.pg_analyze_107890_8 as Tb where mn_cv_av_prm is not null) as foo where r % 1631 = 1 group by v order by v"
+shinsegae_analyze_wo_dkey.shl:Start Time:2013-05-09 13:54:05
+shinsegae_analyze_wo_dkey.shl:End Time  :2013-05-09 13:58:38

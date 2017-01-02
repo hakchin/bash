@@ -1,0 +1,34 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+----ALTER TABLE tb_fda_pdw_apd_detail             RENAME TO tb_fda_pdw_apd_detail_back         ;
+--ALTER TABLE tb_fda_pdw_gls_insp_pnl_detail    RENAME TO tb_fda_pdw_gls_insp_pnl_detail_back;
+----ALTER TABLE tb_fda_pdw_gls_insp_def_detail    RENAME TO tb_fda_pdw_gls_insp_def_detail_back;
+--ALTER TABLE tb_fda_pdw_gls_insp_detail        RENAME TO tb_fda_pdw_gls_insp_detail_back    ;
+--ALTER TABLE tb_fda_pdw_gls_insp_def_h         RENAME TO tb_fda_pdw_gls_insp_def_h_back     ;
+--
+--ALTER TABLE tb_fda_pdw_apd_detail_bk          RENAME TO tb_fda_pdw_apd_detail              ;
+ALTER TABLE tb_fda_pdw_gls_insp_pnl_detail_bk RENAME TO tb_fda_pdw_gls_insp_pnl_detail     ;
+--ALTER TABLE tb_fda_pdw_gls_insp_def_detail_bk RENAME TO tb_fda_pdw_gls_insp_def_detail     ;
+ALTER TABLE tb_fda_pdw_gls_insp_detail_bk     RENAME TO tb_fda_pdw_gls_insp_detail         ;
+ALTER TABLE tb_fda_pdw_gls_insp_def_h_bk      RENAME TO tb_fda_pdw_gls_insp_def_h          ;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

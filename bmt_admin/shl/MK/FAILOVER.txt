@@ -1,0 +1,31 @@
+# Task 1 - Master Node Failover
+
+1. Shutdown Master Node
+	a. Automatic Failover
+
+2. Failback
+	a. GPDB Failback
+	b. VCS Failback
+		i. hares -clear app_PrivNIC -sys mdw
+		ii. hagrp -switch svc_Greenplum -to mdw
+
+
+# Task 2 - Node Process Kill
+
+1. Kill Process 
+
+2. Recovery
+	a. Segment recovery
+	b. Segment rebalancing to preferred role
+
+
+# Task 3 - 1 Disk Fail
+
+1. omreport storage vdisk / pdisk controller=0
+
+2. status
+	a. omreport storage pdisk controoler=0 |grep \%
+
+
+#hares -clear app_PrivNIC -sys mdw
+#hagrp -switch svc_Greenplum -to mdw

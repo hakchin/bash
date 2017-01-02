@@ -1,0 +1,360 @@
+analyze dba.sql_history;
+ANALYZE
+analyze dba.table_ddl;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_amc_specification_info;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_apd_3d_chart_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_apd_gr_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_apd_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_apd_path_cd;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_cell_af_prcs_map_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_condition_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_contact_map_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_def_cd;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_dms_specification_info;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_ea_equipment_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_ea_parts_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_ea_process_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_ea_user_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_eas_cd;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_equip_gr_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_equipment_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_etl_status;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_general_cd;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_judge_attr_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_judge_cd_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_mg_equipment_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_mg_model_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_mg_parts_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_mg_process_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_mg_user_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_model_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_panel_map_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_parts_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_process_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_qlty_cd_field_item_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_qlty_cd_field_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_qlty_cd_field_seq_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_qlty_cd_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_rel_prcs_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_representative_def;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_representative_def_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_sdc2_def_cond_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_sdc2_insp_data_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_sdc2_judge_cond_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_sdc2_spec_cont_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_sdc2_spec_gr_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_sdc2_spec_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_apd_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_chart_info_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_chart_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_chart_raw_data_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_measr_equip_gr_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_prod_equip_gr_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_spec_cont_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_spec_gr_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_spc_spec_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_tfo_policy_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_tpfo_policy_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_tpfom_policy_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_user_def_gr_detail_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_user_def_gr_m;
+ANALYZE
+analyze masdacmn.tb_dda_cmn_user_m;
+ANALYZE
+analyze masdainf.tb_dda_inf_ea_def_cd;
+ANALYZE
+analyze masdainf.tb_dda_inf_ea_user_profile_m;
+ANALYZE
+analyze masdainf.tb_dda_inf_mg_model_m;
+ANALYZE
+analyze masdainf.tb_dda_inf_mg_part_no_m;
+ANALYZE
+analyze masdainf.tb_dda_inf_mg_worker_m;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_apd_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_apd_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_apd_pre_prcs;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cell_af_def_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cell_af_def_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cell_af_pnl_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cell_af_pnl_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cell_bf_pnl_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cf_def_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cf_def_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cf_gls_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cf_pnl_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_cot_judge_reason;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_tft_def_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_tft_def_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_tft_gls_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_tft_gls_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_def_tft_pnl_detail;
+ANALYZE
+analyze masdainf.tb_fda_inf_ea_spc_point_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_mg_mod_insp_defect_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_mg_mod_prod_process_h;
+ANALYZE
+analyze masdainf.tb_fda_inf_op_cmd_list_h_i;
+ANALYZE
+analyze masdainf.tb_fda_inf_op_lot_history_p_i;
+ANALYZE
+analyze masdainf.tb_fda_inf_op_product_history_p_i;
+ANALYZE
+analyze masdainf.tb_fda_inf_op_run_note;
+ANALYZE
+analyze masdainf.tb_fda_inf_op_transport_event_h_i;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_equip_h;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_equip_h_b2_1_prt_2;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_equip_h_b2_1_prt_3;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_equip_h_b2_1_prt_4;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_equip_h_b2_1_prt_5;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_equip_h_b2_1_prt_6;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_equip_h_b2_1_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_h_s;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_m;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_m_t2;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_2;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_2_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_3;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_3_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_4;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_4_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_5;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_5_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_6;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_6_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_pdefault_2_prt_p1t;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_pdefault_2_prt_p2t;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_pdefault_2_prt_p8c;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_pdefault_2_prt_p8f;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_pdefault_2_prt_p8t;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_1_prt_pdefault_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_2;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_2_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_3;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_3_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_4;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_4_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_5;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_5_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_6;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_6_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_pdefault_2_prt_p1t;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_pdefault_2_prt_p2t;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_pdefault_2_prt_p8c;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_pdefault_2_prt_p8f;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_pdefault_2_prt_p8t;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_b_1_prt_pdefault_2_prt_pdefault;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_bk;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_t1;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_t2;
+ANALYZE
+analyze masdapdm.tb_fda_pdm_product_prog_insp_h_t3;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_apd_detail_1_prt_p1;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_apd_detail_1_prt_p2;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_apd_detail_1_prt_p8;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_apd_detail_1_prt_pdefault;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_apd_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_apd_pre_prcs;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_ememo_file;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_ememo_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_ememo_lot;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_equip_h_1_prt_p1;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_equip_h_1_prt_p2;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_equip_h_1_prt_p8;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_equip_h_1_prt_pdefault;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_equip_work_order_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_def_detail;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_def_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_def_img;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_detail;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_detail_t;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_flag;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_pnl_detail;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_pnl_detail_t;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_gls_insp_pnl_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_lot_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_lot_h_t;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_mod_product_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_pnl_insp_def_detail;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_pnl_insp_def_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_pnl_insp_detail;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_pnl_insp_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_pnl_insp_h_t;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_product_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_recipe_change_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_run_note;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_spc_point_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_transport_command_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_transport_command_h_t;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_transport_event_h;
+ANALYZE
+analyze masdapdw.tb_fda_pdw_transport_event_h_t;
+ANALYZE
+analyze public.tb_fda_pdw_gls_insp_pnl_detail_tst;
+ANALYZE

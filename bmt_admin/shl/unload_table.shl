@@ -1,0 +1,30 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+#sh unload_tb_fda_pdw_apd_detail.shl          &
+#sleep 1
+#sh unload_tb_fda_pdw_gls_insp_def_detail.shl &
+#sleep 1
+#sh unload_tb_fda_pdw_gls_insp_def_h.shl      &
+#sleep 1
+sh unload_tb_fda_pdw_gls_insp_detail.shl     &
+#sleep 1
+#sh unload_tb_fda_pdw_gls_insp_pnl_detail.shl &
+wait
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

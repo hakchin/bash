@@ -1,0 +1,56 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+CNT=25
+
+readarray -n 0 read_file   < $1
+
+
+
+i=0
+j=0
+
+while [ $i -lt $CNT ];
+do
+    i=`expr $i + 1`
+    
+    START_DATE=`echo ${read_file[$j]} | awk -F" " '{print $1}'`
+    END_DATE=`echo ${read_file[$j]} | awk -F" " '{print $NF}'`
+
+    j=`expr $j + 1`
+    
+    echo "Init value(#$i) : " $START_DATE $END_DATE
+
+    ( sh query01.shl $START_DATE $END_DATE |xargs echo "session#($i) : " >> $LOGFILE &) & 
+done
+
+while [ true ] ;
+do
+    procs=`ps -ef|grep query01.shl |grep -v grep |wc -l`
+
+    if [ $procs -eq 0 ];
+    then
+        break
+    fi
+
+    echo "running process count = $procs "
+
+    sleep 1
+
+done
+
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

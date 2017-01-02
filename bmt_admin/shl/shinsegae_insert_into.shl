@@ -1,0 +1,560 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+CREATE TABLE acnt_ac_code_b
+(
+  aacpaccd text NOT NULL,
+  aacuaccd text NOT NULL,
+  aacattr1 smallint NOT NULL,
+  aacattra smallint DEFAULT 0,
+  aacattrb smallint DEFAULT 0,
+  aacattrc smallint DEFAULT 0,
+  aacattrd smallint DEFAULT 0,
+  aacattre smallint DEFAULT 0,
+  aacrplcd character varying(6),
+  aacrelcd character varying(6),
+  aacalmcd character varying(6),
+  aacstrdt character varying(8),
+  aacclodt character varying(8),
+  aacsname character varying(50) NOT NULL,
+  aacfname character varying(50) NOT NULL,
+  aacuac1 character varying(6),
+  aacuac2 character varying(6),
+  aacuac3 character varying(6),
+  aackind character varying(1),
+  aacsort character varying(5),
+  aacfxsort character varying(5),
+  aacboth character varying(6),
+  aacminus character varying(1)
+)
+WITH (
+  OIDS=FALSE
+)
+DISTRIBUTED BY (aacuaccd);
+ALTER TABLE acnt_ac_code_b OWNER TO letl;
+GRANT ALL ON TABLE acnt_ac_code_b TO letl;
+GRANT ALL ON TABLE acnt_ac_code_b TO ladhoc;
+GRANT ALL ON TABLE acnt_ac_code_b TO lolap;
+GRANT ALL ON TABLE acnt_ac_code_b TO loltp;
+
+
+CREATE TABLE audt_ja_confirm_b
+(
+  trn_dt character varying(8) NOT NULL,
+  trn_brno character varying(3) NOT NULL,
+  audit_cd character varying(10) NOT NULL,
+  logno character varying(30) NOT NULL,
+  uk_inf character varying(100) NOT NULL,
+  act_no character varying(30),
+  cus_no character varying(13),
+  conf_dt character varying(14),
+  empno character varying(10),
+  nor_yn character varying(1),
+  acc_gubun character varying(1),
+  rmk_txt character varying(4000),
+  arn_yn character varying(1),
+  arn_dtime character varying(14),
+  arn_empno character varying(10),
+  pnt_txt character varying(1000)
+)
+WITH (
+  OIDS=FALSE
+)
+DISTRIBUTED BY (trn_brno, audit_cd);
+ALTER TABLE audt_ja_confirm_b OWNER TO letl;
+GRANT ALL ON TABLE audt_ja_confirm_b TO letl;
+GRANT ALL ON TABLE audt_ja_confirm_b TO ladhoc;
+GRANT ALL ON TABLE audt_ja_confirm_b TO lolap;
+GRANT ALL ON TABLE audt_ja_confirm_b TO loltp;
+
+
+CREATE TABLE card_flc_mihando_b
+(
+  rljadate character varying(8) NOT NULL,
+  rljabrno character varying(3) NOT NULL,
+  rljasmno character varying(30) NOT NULL,
+  rljaaccd character varying(6) NOT NULL,
+  rljacifno character varying(13),
+  rljafundcd character varying(1),
+  crd_xc_rt numeric(7,4),
+  lmt_am numeric(15,0) DEFAULT 0,
+  bal_bl numeric(15,0) DEFAULT 0,
+  nuse_lmt_am numeric(15,0) DEFAULT 0,
+  csv_lmt_am numeric(15,0) DEFAULT 0,
+  csv_bl numeric(15,0) DEFAULT 0,
+  nuse_csv_bl numeric(15,0) DEFAULT 0,
+  rljajsdsamt numeric(17,2) DEFAULT 0,
+  rljayodsamt numeric(17,2) DEFAULT 0,
+  rljagodsamt numeric(17,2) DEFAULT 0,
+  rljahsdsamt numeric(17,2) DEFAULT 0,
+  rljachdsamt numeric(17,2) DEFAULT 0,
+  rljajstdamt numeric(15,0) DEFAULT 0,
+  rljayotdamt numeric(15,0) DEFAULT 0,
+  rljagotdamt numeric(15,0) DEFAULT 0,
+  rljahstdamt numeric(15,0) DEFAULT 0,
+  rljachtdamt numeric(15,0) DEFAULT 0,
+  rljagyumo character varying(1),
+  rljaapv_am numeric(18,0) DEFAULT 0,
+  rljaamt numeric(15,0) DEFAULT 0,
+  rljagrade character varying(2),
+  rljapscd character(1),
+  rljapsno character(13),
+  rstl_reg_dscd character(1),
+  ccd_dfpay_hld_yn character(1),
+  dfpay_tspcd_hld_yn character(1),
+  dfpay_tspcd_bl numeric(18,0)
+)
+WITH (
+  OIDS=FALSE
+)
+DISTRIBUTED BY (rljadate, rljacifno, rljaaccd);
+ALTER TABLE card_flc_mihando_b OWNER TO letl;
+GRANT ALL ON TABLE card_flc_mihando_b TO letl;
+GRANT ALL ON TABLE card_flc_mihando_b TO ladhoc;
+GRANT ALL ON TABLE card_flc_mihando_b TO lolap;
+GRANT ALL ON TABLE card_flc_mihando_b TO loltp;
+
+
+CREATE TABLE card_flc_mst_b
+(
+  rljadate character varying(8) NOT NULL,
+  rljabrno character varying(3) NOT NULL,
+  rljasmno character varying(30) NOT NULL,
+  rljaaccd character varying(6) NOT NULL,
+  rljaseq character varying(2) NOT NULL,
+  rljaonseq character varying(2),
+  rljagubun character varying(2),
+  rljacifno character varying(13),
+  rljaaccd1 character varying(4),
+  rljafundcd character varying(1),
+  rljasjgu character varying(1),
+  rljasnkind character varying(2),
+  rljajencd character varying(2),
+  rljahabcd character varying(2),
+  rljasancd character varying(5),
+  rljasancd1 character varying(4),
+  rljamany character varying(2),
+  rljaxrrate numeric(7,2) DEFAULT 0,
+  rljamusuik character varying(1),
+  rljajscd character varying(2),
+  rljayocd character varying(2),
+  rljagocd character varying(2),
+  rljahscd character varying(2),
+  rljachcd character varying(2),
+  rljasmamt numeric(15,0) DEFAULT 0,
+  rljaamt numeric(15,0) DEFAULT 0,
+  rljajsamt numeric(15,0) DEFAULT 0,
+  rljayoamt numeric(15,0) DEFAULT 0,
+  rljagoamt numeric(15,0) DEFAULT 0,
+  rljahsamt numeric(15,0) DEFAULT 0,
+  rljachamt numeric(15,0) DEFAULT 0,
+  rljajsdsamt numeric(17,2) DEFAULT 0,
+  rljayodsamt numeric(17,2) DEFAULT 0,
+  rljagodsamt numeric(17,2) DEFAULT 0,
+  rljahsdsamt numeric(17,2) DEFAULT 0,
+  rljachdsamt numeric(17,2) DEFAULT 0,
+  rljajstdamt numeric(15,0) DEFAULT 0,
+  rljayotdamt numeric(15,0) DEFAULT 0,
+  rljagotdamt numeric(15,0) DEFAULT 0,
+  rljahstdamt numeric(15,0) DEFAULT 0,
+  rljachtdamt numeric(15,0) DEFAULT 0,
+  rljajsvlamt numeric(15,0) DEFAULT 0,
+  rljayovlamt numeric(15,0) DEFAULT 0,
+  rljagovlamt numeric(15,0) DEFAULT 0,
+  rljahsvlamt numeric(15,0) DEFAULT 0,
+  rljachvlamt numeric(15,0) DEFAULT 0,
+  rljagunjsamt numeric(15,0) DEFAULT 0,
+  rljagunyoamt numeric(15,0) DEFAULT 0,
+  rljagungoamt numeric(15,0) DEFAULT 0,
+  rljagunhsamt numeric(15,0) DEFAULT 0,
+  rljagunchamt numeric(15,0) DEFAULT 0,
+  rljayeamt numeric(15,0) DEFAULT 0,
+  rljagunyeamt numeric(15,0) DEFAULT 0,
+  rljaempno character varying(6),
+  rljachsayu character varying(200),
+  rljaempno1 character varying(6),
+  rljachsayu1 character varying(200),
+  rljabigo character varying(50),
+  rljasdate character varying(8),
+  rljaexdat character varying(8),
+  rljayndt character varying(8),
+  rljayongdo character varying(2),
+  rljafsdat character varying(8),
+  rljaamt1 numeric(15,0),
+  rljachrt numeric(7,2),
+  rljachrt_p numeric(7,2),
+  rljachange character varying(1),
+  rljagyumo character varying(1),
+  rljapsno character(13),
+  rljapscd character(1),
+  rstl_reg_dscd character(1)
+)
+WITH (
+  OIDS=FALSE
+)
+DISTRIBUTED BY (rljadate, rljacifno, rljaaccd);
+ALTER TABLE card_flc_mst_b OWNER TO letl;
+GRANT ALL ON TABLE card_flc_mst_b TO letl;
+GRANT ALL ON TABLE card_flc_mst_b TO ladhoc;
+GRANT ALL ON TABLE card_flc_mst_b TO lolap;
+GRANT ALL ON TABLE card_flc_mst_b TO loltp;
+
+
+
+CREATE TABLE comm_br_brch_b
+(
+  zbrbrcd character(3) NOT NULL,
+  zbrgirocd character varying(6),
+  zbrexbrcd character varying(3),
+  zbrbubuncd character(1),
+  zbrareacd character varying(3),
+  zbrheadcd character varying(3),
+  zbrmbrcd character(3),
+  zbrexchar character(2),
+  zbrmgrnm character varying(20),
+  zbrkornm character varying(40) NOT NULL,
+  zbrkornm1 character varying(20) NOT NULL,
+  zbrengnm character varying(50),
+  zbrengcmnm character varying(20),
+  zbrsano character varying(10),
+  zbrdomgu character(1),
+  zbrgukgo character(1),
+  zbrtelno character varying(20),
+  zbrfaxno character varying(20),
+  zbrteljik character varying(20),
+  zbrailno character(6),
+  zbradrcd character varying(8),
+  zbradres character varying(50),
+  zbrengadr character varying(80),
+  zbrsemucd character varying(3),
+  zbrcijhmcd character varying(3),
+  zbrbokcd character varying(4),
+  zbrinhrat numeric(5,2) DEFAULT 0,
+  zbropndt character(8) NOT NULL,
+  zbrexopdt character varying(8),
+  zbrclose character varying(8),
+  zbrapsq numeric(2,0) NOT NULL,
+  zbrilbr character(3),
+  zbr365cd character(1),
+  zbryagum character(1),
+  zbrdaegum character(1),
+  zbrhyubrcd character(1),
+  zbryeclo character(1),
+  zbrexchek character(1),
+  zbrdivck character(1),
+  zbrdivgb character(1),
+  zbrdivbr character(3),
+  zbrbrkind character(1)
+)
+WITH (
+  OIDS=FALSE
+)
+DISTRIBUTED BY (zbrbrcd);
+ALTER TABLE comm_br_brch_b OWNER TO letl;
+GRANT ALL ON TABLE comm_br_brch_b TO letl;
+GRANT ALL ON TABLE comm_br_brch_b TO ladhoc;
+GRANT ALL ON TABLE comm_br_brch_b TO lolap;
+GRANT ALL ON TABLE comm_br_brch_b TO loltp;
+
+
+-- Table: cust_ba_base
+
+-- DROP TABLE cust_ba_base;
+
+CREATE TABLE cust_ba_base_b
+(
+  cbacidno character(13) NOT NULL,
+  cbaname character varying(30),
+  cbaeobname character varying(50),
+  cbacidcd character varying(2),
+  cbacntcd character varying(3),
+  cbataxcd character varying(1),
+  cbagyumocd character(1),
+  cbaindcd character varying(4),
+  cbaopndt character varying(8),
+  cbaopnbr character varying(3),
+  cbalstdt character varying(8) DEFAULT '00000000'::character varying,
+  cbajikno character varying(7),
+  cbamailgb character(1),
+  cbanoticgb character(1),
+  cbasugamgb character(1),
+  cbapanprgb character(1),
+  cbarecmkgb character(1),
+  cbaailno character varying(6),
+  cbaadrcd character varying(8),
+  cbaadres character varying(50),
+  cbatelno character varying(20),
+  cbafaxno character varying(20),
+  cbabigo character varying(30),
+  cbabibino character varying(20),
+  cbahandno character varying(20),
+  cbabcailno character varying(6),
+  cbabcadrcd character varying(8),
+  cbabcadres character varying(50),
+  cbabctelno character varying(20),
+  cbalsttm character varying(6) DEFAULT '000000'::character varying,
+  cbageoju character(1),
+  cbacomp05 character(1),
+  cbajang character(1),
+  cbaemail character varying(30),
+  cbainfor character(1),
+  cbacprcd character varying(5),
+  cbacustcd character varying(2),
+  cbaopstdr character(1),
+  cbamegak character(1),
+  cbakeyman character(1),
+  cbakeybr character varying(3),
+  cbaempck character(1),
+  cbactrdl character(1),
+  cbasiljp character(1),
+  cbaupjong character varying(5),
+  cbanation character varying(2),
+  cbaltdobj character varying(2),
+  cbabctel character(1),
+  cbabktel character(1),
+  cbacprcd1 character varying(5)
+)
+WITH (
+  OIDS=FALSE
+)
+DISTRIBUTED BY (cbacidno);
+ALTER TABLE cust_ba_base_b OWNER TO letl;
+GRANT ALL ON TABLE cust_ba_base_b TO letl;
+GRANT ALL ON TABLE cust_ba_base_b TO ladhoc;
+GRANT ALL ON TABLE cust_ba_base_b TO lolap;
+GRANT ALL ON TABLE cust_ba_base_b TO loltp;
+
+
+
+
+
+
+-- Table: cust_ba_juso
+
+-- DROP TABLE cust_ba_juso;
+
+CREATE TABLE cust_ba_juso_b
+(
+  cbcidno character(13) NOT NULL,
+  cbkind character(1) NOT NULL,
+  cbgubun1 character(1),
+  cbpost1 character varying(6),
+  cbjuso1 character varying(100),
+  cbbjuso1 character varying(100),
+  cbpnu1 character(25),
+  cbtrdt1 character varying(8),
+  cbgubun2 character(1),
+  cbpost2 character varying(6),
+  cbjuso2 character varying(100),
+  cbbjuso2 character varying(100),
+  cbpnu2 character(25),
+  cbtrdt2 character varying(8),
+  cbgubun3 character(1),
+  cbpost3 character(6),
+  cbjuso3 character varying(100),
+  cbbjuso3 character varying(100),
+  cbpnu3 character(25),
+  cbtrdt3 character varying(8)
+)
+WITH (
+  OIDS=FALSE
+)
+DISTRIBUTED BY (cbcidno, cbkind);
+ALTER TABLE cust_ba_juso_b OWNER TO letl;
+GRANT ALL ON TABLE cust_ba_juso_b TO letl;
+GRANT ALL ON TABLE cust_ba_juso_b TO ladhoc;
+GRANT ALL ON TABLE cust_ba_juso_b TO lolap;
+GRANT ALL ON TABLE cust_ba_juso_b TO loltp;
+
+
+
+
+
+-- Table: depo_ac_comm
+
+-- DROP TABLE depo_ac_comm;
+
+CREATE TABLE depo_ac_comm_b
+(
+  dacacno character(12) NOT NULL,
+  daccifno character(13) NOT NULL,
+  dacopndt character(8) NOT NULL,
+  dacopncd character(2) NOT NULL,
+  dacclodt character(8),
+  dacclocd character(2),
+  dacupddt character(8) NOT NULL,
+  dacseqno numeric(5,0) NOT NULL,
+  dacaccd character(2) NOT NULL,
+  daccifcd character(2) NOT NULL,
+  dacgdcd character(3),
+  dactaxcd character(1),
+  dacxjbal numeric(15,0) NOT NULL,
+  dacxhbal numeric(15,0) NOT NULL,
+  dacclbal numeric(15,0) DEFAULT 0,
+  dacusrid character(6),
+  dacusrbr character(3),
+  dacstpdt character(8),
+  dacgyldt character(8),
+  dacjksdt character(8),
+  dacsilcd character(1),
+  dacsildt character(8),
+  dacsilba numeric(15,0) DEFAULT 0,
+  dacxhseq numeric(5,0),
+  dacstkcd character(3),
+  dacmybi character varying(3),
+  dacgold character(1),
+  dacstus character(1) DEFAULT '0'::bpchar,
+  dacacbr character varying(3),
+  dackngub character(1),
+  dacisudt character varying(8),
+  dacknlove character(1),
+  dacyogdcd character(2)
+)
+WITH (
+  OIDS=FALSE
+)
+DISTRIBUTED BY (dacacno, dacaccd);
+ALTER TABLE depo_ac_comm_b OWNER TO letl;
+GRANT ALL ON TABLE depo_ac_comm_b TO letl;
+GRANT ALL ON TABLE depo_ac_comm_b TO ladhoc;
+GRANT ALL ON TABLE depo_ac_comm_b TO lolap;
+GRANT ALL ON TABLE depo_ac_comm_b TO loltp;
+
+
+
+
+
+---------------------------------------------------------------------
+--INSERT INTO
+---------------------------------------------------------------------
+
+
+TRUNCATE acnt_ac_code_b    ;
+TRUNCATE audt_ja_confirm_b ;
+TRUNCATE card_flc_mihando_b;
+TRUNCATE card_flc_mst_b    ;
+TRUNCATE comm_br_brch_b    ;
+TRUNCATE cust_ba_base_b    ;
+TRUNCATE sdmim.cust_ba_juso_b    ;
+TRUNCATE depo_ac_comm_b    ;
+
+INSERT INTO acnt_ac_code_b       SELECT * FROM sdmin.acnt_ac_code     ;
+INSERT INTO audt_ja_confirm_b    SELECT * FROM sdmin.audt_ja_confirm  ;
+INSERT INTO card_flc_mihando_b   SELECT * FROM sdmin.card_flc_mihando ;
+INSERT INTO card_flc_mst_b       SELECT * FROM sdmin.card_flc_mst     ;
+INSERT INTO comm_br_brch_b       SELECT * FROM sdmin.comm_br_brch     ;
+INSERT INTO cust_ba_base_b       SELECT * FROM sdmin.cust_ba_base     ;
+INSERT INTO cust_ba_juso_b       SELECT * FROM sdmin.cust_ba_juso     ;
+INSERT INTO depo_ac_comm_b       SELECT * FROM sdmin.depo_ac_comm     ;
+
+---------------------------------------------------------------------
+--INDEX
+---------------------------------------------------------------------
+CREATE UNIQUE INDEX ACNT_AC_CODE_P
+ON ACNT_AC_CODE_B (AACPACCD,AACUACCD,AACATTR1) 
+;
+
+CREATE UNIQUE INDEX AUDT_JA_CONFIRM_UK
+ON AUDT_JA_CONFIRM_B
+(
+    TRN_DT,
+    TRN_BRNO,
+    AUDIT_CD,
+    LOGNO,
+    UK_INF
+) 
+;
+
+CREATE UNIQUE INDEX CARD_FLC_MI_UK
+ON CARD_FLC_MIHANDO_B
+(
+    RLJADATE,RLJABRNO,RLJASMNO,RLJAACCD
+) 
+;
+
+CREATE UNIQUE INDEX CARD_FLC_UK
+ON CARD_FLC_MST_B
+(
+    RLJADATE,RLJABRNO,RLJASMNO,RLJAACCD,RLJASEQ
+) 
+;
+
+CREATE UNIQUE INDEX COMM_BR_PK
+ON COMM_BR_BRCH_B (ZBRBRCD);
+
+
+CREATE UNIQUE INDEX CUST_BA_PK
+ON CUST_BA_BASE_B (CBACIDNO) 
+;
+
+CREATE UNIQUE INDEX CUST_BA_JUSO_P
+ON CUST_BA_JUSO_B (CBCIDNO,CBKIND) 
+;
+
+CREATE UNIQUE INDEX DEPO_AC_COMM_P
+ON DEPO_AC_COMM_B (DACACNO,DACACCD) 
+;
+
+------------------------------------------------------------
+
+------------------------------------------------------------
+ANALYZE acnt_ac_code_b    ;
+ANALYZE audt_ja_confirm_b ;
+ANALYZE card_flc_mihando_b;
+ANALYZE card_flc_mst_b    ;
+ANALYZE comm_br_brch_b    ;
+ANALYZE cust_ba_base_b    ;
+ANALYZE cust_ba_juso_b    ;
+ANALYZE depo_ac_comm_b    ;
+
+
+ALTER TABLE acnt_ac_code     RENAME TO acnt_ac_code_b9    ;
+ALTER TABLE audt_ja_confirm  RENAME TO audt_ja_confirm_b9 ;
+ALTER TABLE card_flc_mihando RENAME TO card_flc_mihando_b9;
+ALTER TABLE card_flc_mst     RENAME TO card_flc_mst_b9    ;
+ALTER TABLE comm_br_brch     RENAME TO comm_br_brch_b9    ;
+ALTER TABLE cust_ba_base     RENAME TO cust_ba_base_b9    ;
+ALTER TABLE cust_ba_juso     RENAME TO cust_ba_juso_b9    ;
+ALTER TABLE depo_ac_comm     RENAME TO depo_ac_comm_b9    ;
+
+ALTER TABLE acnt_ac_code_b     RENAME TO acnt_ac_code    ;
+ALTER TABLE audt_ja_confirm_b  RENAME TO audt_ja_confirm ;
+ALTER TABLE card_flc_mihando_b RENAME TO card_flc_mihando;
+ALTER TABLE card_flc_mst_b     RENAME TO card_flc_mst    ;
+ALTER TABLE comm_br_brch_b     RENAME TO comm_br_brch    ;
+ALTER TABLE cust_ba_base_b     RENAME TO cust_ba_base    ;
+ALTER TABLE cust_ba_juso_b     RENAME TO cust_ba_juso    ;
+ALTER TABLE depo_ac_comm_b     RENAME TO depo_ac_comm    ;
+
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

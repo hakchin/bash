@@ -1,0 +1,60 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=${0}
+LOGDIR=../../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d hanwha -e > $LOGFILE 2>&1 <<-!
+\timing on
+SELECT min(cls_yymm ), max(cls_yymm ) FROM CLS_CR_RND_PRM_MMCLS     ;
+SELECT min(cls_yymm ), max(cls_yymm ) FROM CLS_LTRM_CVR_RND_PRM     ;
+SELECT min(cls_yymm ), max(cls_yymm ) FROM CLS_LTRM_MNRT            ;
+--SELECT min(         ), max(         ) FROM CUS_CTM                  ;
+--SELECT min(         ), max(         ) FROM IGD_GD                   ;
+--SELECT min(         ), max(         ) FROM INS_CMINS_INS_RE_CLS     ;
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_CR_CVR               ;
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_CR_DH_STF_CRR        ;
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_CR_RELPC             ;
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_INCM_PRM             ;
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_INS_CR               ;
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_PRM_PYM_PR           ;
+--SELECT min(         ), max(         ) FROM MET_SUBO_REL_CD_DEFN     ;
+SELECT min(av_yymm  ), max(av_yymm  ) FROM SAM_AW_CC_ACHV           ;
+--SELECT min(         ), max(         ) FROM SAM_AW_CC_ACHV_STF       ;
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM SAM_INCM_PRM_BZ_AV       ;
+--SELECT min(         ), max(         ) FROM SAM_ORG                  ;
+--SELECT min(         ), max(         ) FROM SAM_STF                  ;
+--SELECT min(         ), max(         ) FROM IGD_GD_CSF               ;
+--SELECT min(         ), max(         ) FROM IGD_GD_CVR_ACM_RK        ;
+--SELECT min(         ), max(         ) FROM M_COD_CVRCD              ;
+--SELECT min(         ), max(         ) FROM M_CCR_CR_INS_CR          ;
+--SELECT min(         ), max(         ) FROM M_COD_BZUS_INS_ITM_CSFCD ;
+--SELECT min(         ), max(         ) FROM M_SAM_VL_WKDGR_ADM       ;
+--SELECT min(         ), max(         ) FROM V_CALENDAR               ;
+--SELECT min(         ), max(         ) FROM M_COD_GDCD               ;
+--SELECT min(         ), max(         ) FROM M_LCR_LTINS_CR           ;
+SELECT min(pvl_yymm ), max(pvl_yymm ) FROM M_LCR_LTRM_INCM_PRM      ;
+SELECT min(vl_yymm  ), max(vl_yymm  ) FROM M_LWT_DM_RD_RPTG_LIST    ;
+--SELECT min(         ), max(         ) FROM M_ORG_BZ_ORGN            ;
+SELECT min(cls_yymm ), max(cls_yymm ) FROM M_ORG_MTHY_BZ_ORGN       ;
+--SELECT min(         ), max(         ) FROM M_ORG_ORG_ORDR           ;
+SELECT min(st_yymm  ), max(st_yymm  ) FROM M_SAM_STF_SRTR_ORGN      ;
+SELECT min(av_yymm  ), max(av_yymm  ) FROM M_SAM_DYB_BZFML_PRSN_CRST;
+SELECT min(st_yymm  ), max(st_yymm  ) FROM M_SAM_BZ_FML_STYRT       ;
+--SELECT min(         ), max(         ) FROM SAM_AW_PY_SPC            ;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

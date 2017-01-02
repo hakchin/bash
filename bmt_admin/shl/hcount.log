@@ -1,0 +1,438 @@
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_detail;
+    count    
+-------------
+ 41030997735
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_detail_b9;
+    count    
+-------------
+ 41030997735
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_detail_bk;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_detail_t;
+  count   
+----------
+ 12655906
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_h;
+   count   
+-----------
+ 969341535
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_h_b9;
+   count   
+-----------
+ 969341535
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_pre_prcs;
+   count   
+-----------
+ 354125715
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_pre_prcs_b9;
+   count   
+-----------
+ 354125715
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_ememo_file;
+ count 
+-------
+  6225
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_ememo_file_b9;
+ count 
+-------
+  6225
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_ememo_h;
+ count 
+-------
+  4530
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_ememo_h_b9;
+ count 
+-------
+  4530
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_ememo_lot;
+ count 
+-------
+  3555
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_ememo_lot_b9;
+ count 
+-------
+  3555
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_equip_h;
+   count    
+------------
+ 1123264005
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_equip_h_b9;
+   count    
+------------
+ 1123264005
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_equip_work_order_h;
+ count 
+-------
+ 10080
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_equip_work_order_h_b9;
+ count 
+-------
+ 10080
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_detail;
+   count    
+------------
+ 9637911780
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_detail_b9;
+   count    
+------------
+ 9637911780
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_detail_bk;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_detail_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_h;
+   count    
+------------
+ 2235093000
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_h_b9;
+   count    
+------------
+ 2235093000
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_h_bk;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_h_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_img;
+   count   
+-----------
+ 642189915
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_img_b9;
+   count   
+-----------
+ 642189915
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_detail;
+   count   
+-----------
+ 650189550
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_detail_b9;
+   count   
+-----------
+ 650189550
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_detail_bk;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_detail_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_flag;
+  count   
+----------
+ 13766505
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_flag_b9;
+  count   
+----------
+ 13766505
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_h;
+  count   
+----------
+ 81904890
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_h_b9;
+  count   
+----------
+ 81904890
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_pnl_detail;
+   count    
+------------
+ 1854046815
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_pnl_detail_b9;
+   count    
+------------
+ 1854046815
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_pnl_detail_bk;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_pnl_detail_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_pnl_h;
+   count    
+------------
+ 1231963395
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_pnl_h_b9;
+   count    
+------------
+ 1231963395
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_lot_h;
+   count   
+-----------
+ 109842525
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_lot_h_b9;
+   count   
+-----------
+ 109842525
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_lot_h_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_mod_product_h;
+   count   
+-----------
+ 604148175
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_mod_product_h_b9;
+   count   
+-----------
+ 604148175
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_def_detail;
+  count   
+----------
+ 29083924
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_def_detail_b9;
+  count   
+----------
+ 29083924
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_def_h;
+   count   
+-----------
+ 144667500
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_def_h_b9;
+   count   
+-----------
+ 144667500
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_detail;
+   count   
+-----------
+ 578924820
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_detail_b9;
+   count   
+-----------
+ 578924820
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_h;
+  count   
+----------
+ 48397065
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_h_b9;
+  count   
+----------
+ 48397065
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_pnl_insp_h_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_product_h;
+   count    
+------------
+ 1525371960
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_product_h_b9;
+   count    
+------------
+ 1525371960
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_product_h_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_recipe_change_h;
+ count 
+-------
+ 94125
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_recipe_change_h_b9;
+ count 
+-------
+ 94125
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_run_note;
+  count   
+----------
+ 16845945
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_run_note_b9;
+  count   
+----------
+ 16845945
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_spc_point_h;
+   count   
+-----------
+ 321759315
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_spc_point_h_b9;
+   count   
+-----------
+ 321759315
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_transport_command_h;
+  count   
+----------
+ 22350855
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_transport_command_h_b9;
+  count   
+----------
+ 22350855
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_transport_command_h_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_transport_command_h_t_b9;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_transport_event_h;
+   count   
+-----------
+ 155368200
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_transport_event_h_b9;
+   count   
+-----------
+ 155368200
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_transport_event_h_t;
+ count 
+-------
+     0
+(1 row)
+
+SELECT count(*) FROM masdapdw.tb_fda_pdw_transport_event_h_t_b9;
+ count 
+-------
+     0
+(1 row)
+

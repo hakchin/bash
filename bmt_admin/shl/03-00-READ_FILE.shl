@@ -1,0 +1,4 @@
+
+
+readarray -n $CNT arr   < $fname
+

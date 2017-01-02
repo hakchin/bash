@@ -1,0 +1,301 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d cae -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+
+VACUUM ANALYZE iptcm.iptcm_ac_conv_gbu (product_level3_code);
+VACUUM ANALYZE iptcm.iptcm_ac_conv_model (corporation_code, production_division_code, model_code);
+VACUUM ANALYZE iptcm.iptcm_ac_conv_prod_lev4 (product_level4_code);
+VACUUM ANALYZE iptcm.iptcm_acc_group_gbu_dtl_200812 (data_access_group_id, org_authority_type_code, gbu_code);
+VACUUM ANALYZE iptcm.iptcm_access_group_details (data_access_group_id, corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_access_group_dtl_200812 (data_access_group_id, corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_access_group_gbu_details (data_access_group_id, org_authority_type_code, gbu_code);
+VACUUM ANALYZE iptcm.iptcm_access_groups (data_access_group_id);
+VACUUM ANALYZE iptcm.iptcm_access_logs (program_code, function_name, module_code);
+VACUUM ANALYZE iptcm.iptcm_accounts (account_code);
+VACUUM ANALYZE iptcm.iptcm_accounts_0814 (account_code);
+VACUUM ANALYZE iptcm.iptcm_accounts_200812 (account_code);
+VACUUM ANALYZE iptcm.iptcm_accounts_gcms_0625 (attribute1, attribute2, attribute3);
+VACUUM ANALYZE iptcm.iptcm_act_costs (corporation_code, division_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_act_exchange_rates (start_currency_code, end_currency_code, act_xrate_yyyymm);
+VACUUM ANALYZE iptcm.iptcm_aff_buyers_20100119 (corporation_code, buyer_code);
+VACUUM ANALYZE iptcm.iptcm_affiliate_buyer_0105_2 (corporation_code, buyer_code);
+VACUUM ANALYZE iptcm.iptcm_affiliate_buyers (corporation_code, buyer_code);
+VACUUM ANALYZE iptcm.iptcm_affiliate_buyers_0131 (corporation_code, buyer_code);
+VACUUM ANALYZE iptcm.iptcm_affiliate_buyers_1108 (corporation_code, buyer_code);
+VACUUM ANALYZE iptcm.iptcm_affiliate_buyers_200812 (corporation_code, buyer_code);
+VACUUM ANALYZE iptcm.iptcm_bulletin_article_no (bulletin_board_code, article_no);
+VACUUM ANALYZE iptcm.iptcm_bulletin_articles (bulletin_board_code, article_no);
+VACUUM ANALYZE iptcm.iptcm_bulletin_attach_files (bulletin_board_code, article_no);
+VACUUM ANALYZE iptcm.iptcm_bulletin_contents (bulletin_board_code, article_no);
+VACUUM ANALYZE iptcm.iptcm_bulletins (bulletin_board_code);
+VACUUM ANALYZE iptcm.iptcm_buyers (buyer_code);
+VACUUM ANALYZE iptcm.iptcm_buyers_090120 (buyer_code);
+VACUUM ANALYZE iptcm.iptcm_buyers_20100426 (buyer_code);
+VACUUM ANALYZE iptcm.iptcm_buyers_tst (buyer_code);
+VACUUM ANALYZE iptcm.iptcm_channels (channel_code);
+VACUUM ANALYZE iptcm.iptcm_class_code_master (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_closing_delay_reasons (yyyymm, module_code, job_code);
+VACUUM ANALYZE iptcm.iptcm_closing_schedule (yyyymm, module_code, region_code);
+VACUUM ANALYZE iptcm.iptcm_code_attributes (attribute_group_name, code_class_name);
+VACUUM ANALYZE iptcm.iptcm_codes (lookup_class_code, lookup_code, lookup_desc);
+VACUUM ANALYZE iptcm.iptcm_codes_200812 (lookup_class_code, lookup_code, lookup_desc);
+VACUUM ANALYZE iptcm.iptcm_codes_audit (change_timestamp, machine_name, os_user_name);
+VACUUM ANALYZE iptcm.iptcm_codes_test (lookup_class_code, lookup_code, lookup_desc);
+VACUUM ANALYZE iptcm.iptcm_commodities (commodity_code);
+VACUUM ANALYZE iptcm.iptcm_corp_channels_0119 (corporation_code, channel_code);
+VACUUM ANALYZE iptcm.iptcm_corp_channels_090120 (corporation_code, channel_code);
+VACUUM ANALYZE iptcm.iptcm_corporation_channels (corporation_code, channel_code);
+VACUUM ANALYZE iptcm.iptcm_corporations (corporation_code);
+VACUUM ANALYZE iptcm.iptcm_corporations_0613 (corporation_code);
+VACUUM ANALYZE iptcm.iptcm_corporations_090120 (corporation_code);
+VACUUM ANALYZE iptcm.iptcm_corporations_0911 (corporation_code);
+VACUUM ANALYZE iptcm.iptcm_corporations_200812 (corporation_code);
+VACUUM ANALYZE iptcm.iptcm_corporations_backup_0130 (corporation_code);
+VACUUM ANALYZE iptcm.iptcm_countries (country_code);
+VACUUM ANALYZE iptcm.iptcm_countries_090120 (country_code);
+VACUUM ANALYZE iptcm.iptcm_countries_200812 (country_code);
+VACUUM ANALYZE iptcm.iptcm_currencies (currency_code);
+VACUUM ANALYZE iptcm.iptcm_currencies_090120 (currency_code);
+VACUUM ANALYZE iptcm.iptcm_daily_xrates (from_currency_code, to_currency_code, conversion_date);
+VACUUM ANALYZE iptcm.iptcm_ddl_histories (ddl_type_name, object_owner_name, object_name);
+VACUUM ANALYZE iptcm.iptcm_department_0324 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_department_0407 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_department_map (corporation_code, from_code, from_code_name);
+VACUUM ANALYZE iptcm.iptcm_department_mappings (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_departments (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_departments_0119 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_departments_090120 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_departments_200812 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_dev_functions_temp (function_id, function_name, parameter_content);
+VACUUM ANALYZE iptcm.iptcm_dev_imsi (attribute1, attribute2, attribute3);
+VACUUM ANALYZE iptcm.iptcm_dev_menu_entries_temp (menu_entry_id, menu_id, menu_prompt_text);
+VACUUM ANALYZE iptcm.iptcm_dev_menus_temp (menu_id, menu_name, creation_date);
+VACUUM ANALYZE iptcm.iptcm_dev_programs_temp (program_code, program_name, program_type_code);
+VACUUM ANALYZE iptcm.iptcm_display_resources (variable_name);
+VACUUM ANALYZE iptcm.iptcm_display_scales (corporation_code, module_code);
+VACUUM ANALYZE iptcm.iptcm_divisions (division_code);
+VACUUM ANALYZE iptcm.iptcm_dynamic_setup (program_code, header_id);
+VACUUM ANALYZE iptcm.iptcm_eagle_buyer_map (accounting_unit_code, bill_buyer_code, ship_buyer_code);
+VACUUM ANALYZE iptcm.iptcm_eagle_buyer_map_0205 (accounting_unit_code, bill_buyer_code, ship_buyer_code);
+VACUUM ANALYZE iptcm.iptcm_email_conversion (sabun, old_id, new_id);
+VACUUM ANALYZE iptcm.iptcm_ess_access_logs (access_date, access_apps, access_db);
+VACUUM ANALYZE iptcm.iptcm_ess_email_conv (user_employee_code, old_id, new_id);
+VACUUM ANALYZE iptcm.iptcm_essbase_cubes (essbase_application_name, essbase_cube_name, use_flag);
+VACUUM ANALYZE iptcm.iptcm_essbase_menu_app_map (essbase_menu_grp_id, essbase_app_id, use_flag);
+VACUUM ANALYZE iptcm.iptcm_essbase_resp_menu_map (responsibility_id, essbase_menu_grp_id, use_flag);
+VACUUM ANALYZE iptcm.iptcm_events (event_id);
+VACUUM ANALYZE iptcm.iptcm_exclusive_functions (responsibility_id, function_id);
+VACUUM ANALYZE iptcm.iptcm_feature_bases (gbu_code, feature_base_code);
+VACUUM ANALYZE iptcm.iptcm_feature_details (feature_code, category_code, attribute_code);
+VACUUM ANALYZE iptcm.iptcm_feature_group_details (feature_group_code, feature_code);
+VACUUM ANALYZE iptcm.iptcm_feature_groups (gbu_code, feature_group_code);
+VACUUM ANALYZE iptcm.iptcm_feature_history (change_timestamp, machine_name, os_user_name);
+VACUUM ANALYZE iptcm.iptcm_features (gbu_code, feature_code);
+VACUUM ANALYZE iptcm.iptcm_function_value_temp (attribute1, attribute2, attribute3);
+VACUUM ANALYZE iptcm.iptcm_functions (function_id);
+VACUUM ANALYZE iptcm.iptcm_gbu (gbu_code);
+VACUUM ANALYZE iptcm.iptcm_gbu_090120 (gbu_code, gbu_name, gbu_short_name);
+VACUUM ANALYZE iptcm.iptcm_gerp_gcoa_map (legal_entity, ledger_name, delimiter_code);
+VACUUM ANALYZE iptcm.iptcm_gerp_gcoa_map_0123 (legal_entity, ledger_name, delimiter_code);
+VACUUM ANALYZE iptcm.iptcm_gerp_gcoa_map_0130 (legal_entity, ledger_name, delimiter_code);
+VACUUM ANALYZE iptcm.iptcm_gerp_gcoa_map_0807 (legal_entity, ledger_name, delimiter_code);
+VACUUM ANALYZE iptcm.iptcm_gerp_gcoa_map_back (legal_entity, ledger_name, delimiter_code);
+VACUUM ANALYZE iptcm.iptcm_hq_au_master (account_unit_code, affiliate_code);
+VACUUM ANALYZE iptcm.iptcm_hr_sales_departments (corporation_code, division_code, department_type_code);
+VACUUM ANALYZE iptcm.iptcm_iam_organ (organ);
+VACUUM ANALYZE iptcm.iptcm_job_logs (job_id);
+VACUUM ANALYZE iptcm.iptcm_lookup_classes (lookup_class_code);
+VACUUM ANALYZE iptcm.iptcm_mdms_model_master (transfer_flag, transfer_date, global_unique_id);
+VACUUM ANALYZE iptcm.iptcm_mdms_product_code (product_code, product_level4_code);
+VACUUM ANALYZE iptcm.iptcm_menu_entries (menu_entry_id);
+VACUUM ANALYZE iptcm.iptcm_menu_temp (user_id, menu_level_seq, menu_id);
+VACUUM ANALYZE iptcm.iptcm_menus (menu_id);
+VACUUM ANALYZE iptcm.iptcm_messages (message_code);
+VACUUM ANALYZE iptcm.iptcm_mnt_closing_status (yyyymm, module_code, corporation_code);
+VACUUM ANALYZE iptcm.iptcm_mnt_master (monitoring_id);
+VACUUM ANALYZE iptcm.iptcm_mnt_master_imsi (monitoring_id);
+VACUUM ANALYZE iptcm.iptcm_mnt_output (output_id);
+VACUUM ANALYZE iptcm.iptcm_mnt_queries (query_id, monitoring_id);
+VACUUM ANALYZE iptcm.iptcm_mnt_queries_imsi (query_id, monitoring_id);
+VACUUM ANALYZE iptcm.iptcm_mnt_register (schedule_id);
+VACUUM ANALYZE iptcm.iptcm_mnt_register_imsi (schedule_id, monitoring_id, schedule_type);
+VACUUM ANALYZE iptcm.iptcm_mnt_result_action (job_id);
+VACUUM ANALYZE iptcm.iptcm_model_attributes (model_attribute_id);
+VACUUM ANALYZE iptcm.iptcm_model_battery (hq_accounting_unit_code, affiliate_code, model_code);
+VACUUM ANALYZE iptcm.iptcm_model_consol_04 (corporation_code, model_suffix, attribute1);
+VACUUM ANALYZE iptcm.iptcm_model_gcms_0422 (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_model_gcms_0422_ehap (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_model_space_0702 (corporation_code, hq_au, model);
+VACUUM ANALYZE iptcm.iptcm_models (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_models_0203 (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_models_20100119 (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_models_b_car_all_1129 (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_models_b_car_mdms_1129 (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_models_backup_0319 (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_models_nopart (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_models_sync (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_models_temp (affiliate_code, as_is_hq_au, to_be_hq_au);
+VACUUM ANALYZE iptcm.iptcm_module_mains (module_code, function_id, organization_code);
+VACUUM ANALYZE iptcm.iptcm_monthly_xrates (affiliate_code, period_name, from_currency_code);
+VACUUM ANALYZE iptcm.iptcm_org_codes_200812 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_org_gbu_mappings (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_org_gbu_mappings_200812 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_org_gbu_mappings_audit (change_timestamp, machine_name, os_user_name);
+VACUUM ANALYZE iptcm.iptcm_org_vendors_090120 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_org_vendors_200812 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organization_attributes (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organization_codes (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organization_codes_audit (change_timestamp, machine_name, os_user_name);
+VACUUM ANALYZE iptcm.iptcm_organization_vendors (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations_0125 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations_0716 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations_0808 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations_090120 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations_090129 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations_0911 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations_200812 (corporation_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_organizations_audit (change_timestamp, machine_name, os_user_name);
+VACUUM ANALYZE iptcm.iptcm_premium_models (premium_model_yyyy, production_division_code, product_code);
+VACUUM ANALYZE iptcm.iptcm_premium_models_200812 (premium_model_yyyy, production_division_code, product_code);
+VACUUM ANALYZE iptcm.iptcm_prod_au_conv (product_code);
+VACUUM ANALYZE iptcm.iptcm_product_conversion (old_product, new_product, attribute1);
+VACUUM ANALYZE iptcm.iptcm_product_division_ref (product_code, division_code);
+VACUUM ANALYZE iptcm.iptcm_product_goods_types (corporation_code, production_division_code, product_line_code);
+VACUUM ANALYZE iptcm.iptcm_product_group3_0526 (corporation_code, production_division_code, model_suffix_code);
+VACUUM ANALYZE iptcm.iptcm_product_lines (product_line_code);
+VACUUM ANALYZE iptcm.iptcm_product_map (old_product, new_product);
+VACUUM ANALYZE iptcm.iptcm_product_master (product_code);
+VACUUM ANALYZE iptcm.iptcm_product_master_0808 (product_code, product_level_code, current_level_product_code);
+VACUUM ANALYZE iptcm.iptcm_product_master_090120 (product_code, product_level_code, current_level_product_code);
+VACUUM ANALYZE iptcm.iptcm_product_master_200812 (product_code, product_level_code, current_level_product_code);
+VACUUM ANALYZE iptcm.iptcm_product_master_dev (product_code);
+VACUUM ANALYZE iptcm.iptcm_product_master_map (product_level1_code, product_level2_code, product_code);
+VACUUM ANALYZE iptcm.iptcm_product_master_sync (product_code);
+VACUUM ANALYZE iptcm.iptcm_production_division_gbu (production_division_code, gbu_code);
+VACUUM ANALYZE iptcm.iptcm_products (product_code);
+VACUUM ANALYZE iptcm.iptcm_program_parameters (program_code);
+VACUUM ANALYZE iptcm.iptcm_programs (program_code);
+VACUUM ANALYZE iptcm.iptcm_project_master (corporation_code, project_code);
+VACUUM ANALYZE iptcm.iptcm_responsibilities (responsibility_id);
+VACUUM ANALYZE iptcm.iptcm_responsibility_groups (group_id);
+VACUUM ANALYZE iptcm.iptcm_send_mail_lists (sequence_id);
+VACUUM ANALYZE iptcm.iptcm_supp_bank_acct (assignment_affiliate_code, assgn_accounting_unit_code, supplier_code);
+VACUUM ANALYZE iptcm.iptcm_system_links (link_id);
+VACUUM ANALYZE iptcm.iptcm_temp (attribute_id, attribute1, attribute2);
+VACUUM ANALYZE iptcm.iptcm_vendors (vendor_code);
+VACUUM ANALYZE iptcm.iptcm_vendors_090120 (vendor_code, biz_register_no, vendor_local_name);
+VACUUM ANALYZE iptcm.iptcm_vendors_20100426 (vendor_code, biz_register_no, vendor_local_name);
+VACUUM ANALYZE iptcm.mdms_test_cust_usg_lgcy (event_name, trg_name, seq_id);
+VACUUM ANALYZE iptcm.product_map_1113 (old_product, new_product, attribute1);
+VACUUM ANALYZE iptcm.product_map_1113_backup (old_product, new_product, attribute1);
+VACUUM ANALYZE iptcm.stats_20131001 (statid, type, version);
+VACUUM ANALYZE iptcm.stats_20131001_t (statid, type, version);
+VACUUM ANALYZE iptcm.sys_import_full_01 (process_order, duplicate, dump_fileid);
+VACUUM ANALYZE iptcm.tpas_query_result (attribute1, attribute2, attribute3);
+VACUUM ANALYZE iptcm.xxarf_if_mapping_all (org_id, resource_class_code, corporation_code);
+VACUUM ANALYZE iptcm.xxarf_if_mapping_all_0123 (org_id, resource_class_code, corporation_code);
+VACUUM ANALYZE iptcm.xxgifh_organization_master_if (subsidiary_id, organization_code, effective_start_date);
+VACUUM ANALYZE iptcp.iptcp_accounts (scenario_type_code, accounting_yyyy, division_code);
+VACUUM ANALYZE iptcp.iptcp_aff_buyers_temp_tab (corporation_code, buyer_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_acct_cntry_factor (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_acct_factor_info (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_factor_master (allocation_factor_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_factor_values (allocation_factor_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_group_acct_mgt (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_group_details (scenario_type_code, division_code, corporation_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_groups (scenario_type_code, division_code, corporation_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_prod_mkt_summary_a (corporation_code, accounting_unit_code, account_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_trial_balance_bf (corporation_code, accounting_department_code, account_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_trial_balance_bf_bk (corporation_code, accounting_department_code, account_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_trial_balance_s (corporation_code, accounting_department_code, account_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_trial_balance_s_bk (corporation_code, accounting_department_code, account_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_user_dir_area_err (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_user_dir_cost_a (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_user_dir_cost_area (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_user_dir_master (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_alloc_user_dir_model (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_closing_monitoring (scenario_type_code, accounting_yyyymm, closing_type_code);
+VACUUM ANALYZE iptcp.iptcp_comn_monthly_xrates (scenario_type_code, exchange_rate_apply_yyyymm, from_currency_code);
+VACUUM ANALYZE iptcp.iptcp_comn_org_configurations (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_comn_org_work_group (corporation_code, account_code);
+VACUUM ANALYZE iptcp.iptcp_comn_var_fix_rate (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_consld_cost_profit_1 (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcp.iptcp_consld_cost_profit_1_ramu (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcp.iptcp_consld_s_admin_expense_a (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcp.iptcp_consld_sales_attribute (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_consld_sales_sum_ac (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_cost_prf_mdl_cust_origin (accounting_yyyymm, accounting_yyyy, division_code);
+VACUUM ANALYZE iptcp.iptcp_cost_prf_mdl_cust_sum_ac (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_cost_prf_mdl_sum_ac (accounting_yyyymm, accounting_yyyy, division_code);
+VACUUM ANALYZE iptcp.iptcp_cost_prf_mdl_sum_origin (accounting_yyyymm, accounting_yyyy, division_code);
+VACUUM ANALYZE iptcp.iptcp_job_logs (job_id, job_type_code);
+VACUUM ANALYZE iptcp.iptcp_models_temp_tab (corporation_code, production_division_code, model_suffix_code);
+VACUUM ANALYZE iptcp.iptcp_sales_corporation (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_sales_pre_close (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_sales_pre_close_temp_tab (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.iptcp_user_alloc_area_temp_tab (allocation_factor_code, division_code, direct_cost_name);
+VACUUM ANALYZE iptcp.iptcp_user_area_pre_temp_tab (scenario_type_code, accounting_yyyymm, division_code, seq);
+VACUUM ANALYZE iptcp.iptcp_user_area_temp_tab (corporation_code, accounting_department_code, account_code);
+VACUUM ANALYZE iptcp.iptcp_user_factor_temp_tab (allocation_factor_code, division_code, corporation_code);
+VACUUM ANALYZE iptcp.iptcp_user_impos_temp_tab (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcp.iptcp_user_impos_temp_tab_bk (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptcp.iptcp_user_impos_temp_tab_ctr (scenario_type_code, accounting_yyyymm, division_code);
+VACUUM ANALYZE iptcp.sys_import_full_02 (process_order, duplicate, dump_fileid);
+VACUUM ANALYZE iptcp.sys_import_full_11 (process_order, duplicate, dump_fileid);
+VACUUM ANALYZE iptdw.iptdw_dim_affiliate_buyers (corporation_code, buyer_code);
+VACUUM ANALYZE iptdw.iptdw_dim_au_types (au_type_code);
+VACUUM ANALYZE iptdw.iptdw_dim_brand_type (brand_type_code);
+VACUUM ANALYZE iptdw.iptdw_dim_codes (lookup_class_code, lookup_code, lookup_desc);
+VACUUM ANALYZE iptdw.iptdw_dim_corporations (corporation_code);
+VACUUM ANALYZE iptdw.iptdw_dim_country (country_code);
+VACUUM ANALYZE iptdw.iptdw_dim_divisions (corporation_code, division_code);
+VACUUM ANALYZE iptdw.iptdw_dim_gbu (gbu_code);
+VACUUM ANALYZE iptdw.iptdw_dim_grade_master (basis_yyyy, division_code, product_level4_code);
+VACUUM ANALYZE iptdw.iptdw_dim_model_grade_master (model_name);
+VACUUM ANALYZE iptdw.iptdw_dim_models (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptdw.iptdw_dim_models_dv_grade (division_code, model_suffix_code);
+VACUUM ANALYZE iptdw.iptdw_dim_product_master (product_code);
+VACUUM ANALYZE iptdw.iptdw_dim_product_types (product_type_code);
+VACUUM ANALYZE iptdw.iptdw_dim_region (region_code);
+VACUUM ANALYZE iptdw.iptdw_dim_region_center (ric_code);
+VACUUM ANALYZE iptdw.iptdw_dim_result_affiliate (result_affiliate_key_code);
+VACUUM ANALYZE iptdw.iptdw_dim_scenario_types (scenario_type_code);
+VACUUM ANALYZE iptdw.iptdw_dim_zone (zone_code);
+VACUUM ANALYZE iptdw.iptdw_iff_cons_bep_mdl_byr_grd (basis_yyyymm, scenario_type_code, corporation_code);
+VACUUM ANALYZE iptdw.iptdw_iff_cons_bep_model_attr (basis_yyyymm, scenario_type_code, corporation_code);
+VACUUM ANALYZE iptdw.iptdw_iff_cons_bep_model_buyer (corporation_code, gbu_code);
+VACUUM ANALYZE iptdw.iptdw_iff_cons_marginal_range (basis_yyyymm, scenario_type_code, division_code);
+VACUUM ANALYZE iptdw.iptdw_ift_cons_marginal_range (basis_yyyymm, scenario_type_code, division_code);
+VACUUM ANALYZE iptdw.iptif_iff_cons_bep_model_buyer (basis_yyyymm, scenario_type_code, corporation_code);
+VACUUM ANALYZE iptif.iptif_iff_cons_bep_model_buyer (corporation_code, model_suffix_code);
+VACUUM ANALYZE iptmc.iptmc_bom_cost_cost_profits (gbu_code, corporation_code, partition_key_code);
+VACUUM ANALYZE iptmc.iptmc_exchange_rates (corporation_code, division_code, exchange_rate_apply_yyyy);
+VACUUM ANALYZE iptmc.iptmc_tg_model_cost_profits (gbu_code, corporation_code, division_code);
+VACUUM ANALYZE iptpb.iptpb_model_dv_grade_period (yyyy, company_code, gbu_code);
+
+
+
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

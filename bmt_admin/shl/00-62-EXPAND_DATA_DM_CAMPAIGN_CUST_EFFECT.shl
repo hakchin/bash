@@ -1,0 +1,98 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+VACUUM ANALYZE dm_campaign_cust_effect;
+
+DROP TABLE IF EXISTS dm_campaign_cust_effect_ori;
+CREATE TABLE dm_campaign_cust_effect_ori          (LIKE dm_campaign_cust_effect)      ;
+INSERT INTO dm_campaign_cust_effect_ori
+SELECT * FROM dm_campaign_cust_effect;
+
+VACUUM ANALYZE dm_campaign_cust_effect_ori;
+
+TRUNCATE TABLE dm_campaign_cust_effect;
+
+INSERT INTO dm_campaign_cust_effect
+SELECT to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) AS std_date
+	,daily_sum_yn
+	,campaign_code
+	,proc_step_code
+	,cell_id
+	,gender_code
+	,age_code
+	,job_gubun_code
+	,married_yn
+	,zipcode
+	,child_yn
+	,child_cnt
+	,member_grade_id
+	,value_base_seg_code
+	,potential_value_seg_code
+	,cgrp_cust_cnt
+	,rgrp_cust_cnt
+	,rgrp_buy_cust_cnt
+	,cgrp_buy_cust_cnt
+	,upsale_rgrp_cust_cnt
+	,upsale_cgrp_cust_cnt
+	,upsale_rgrp_natural_sale_amt
+	,upsale_cgrp_natural_sale_amt
+	,upsale_cgrp_natural_sale_amt_up_cust_cnt
+	,upsale_rsvramt_use_cust_cnt
+	,upsale_rsvramt_use_amt
+	,upsale_direct_chnnl_order_cust_cnt
+	,upsale_direct_channel_order_amt
+	,odrswitch_rgrp_cust_cnt
+	,odrswitch_cgrp_cust_cnt
+	,odrswitch_target_exp_odr_switch_cust_cnt
+	,odrswitch_rgrp_odr_switch_cust_cnt
+	,odrswitch_cgrp_odr_switch_cust_cnt
+	,odrswitch_target_exp_odr_switch_amt
+	,odrswitch_rgrp_order_amt
+	,odrswitch_cgrp_order_amt
+	,custtran_rgrp_cust_cnt
+	,custtran_cgrp_cust_cnt
+	,custtran_rgrp_order_cnt
+	,custtran_cgrp_order_cnt
+	,custtran_rgrp_order_unit_amt_inc_cust_cnt
+	,custtran_rgrp_order_unit_amt_inc_buy_amt
+	,custtran_rgrp_order_unit_amt_inc_buy_cnt
+	,custtran_rgrp_order_amt
+	,custtran_cgrp_order_amt
+	,custinfo_rgrp_cust_cnt
+	,custinfo_rgrp_info_gain_cust_cnt
+	,royalty_rgrp_cust_cnt
+	,royalty_cgrp_cust_cnt
+	,royalty_rgrp_natural_sale_amt
+	,royalty_cgrp_natural_sale_amt
+	,royalty_member_grade_keep_cust_cnt
+	,royalty_member_grade_up_cust_cnt
+	,royalty_item_eval_cnt
+	,royalty_item_eval_cust_cnt
+	,to_char(('20130418'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) AS load_date
+FROM dm_campaign_cust_effect_ori
+CROSS JOIN GENERATE_SERIES(1,731) i;
+
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+
+

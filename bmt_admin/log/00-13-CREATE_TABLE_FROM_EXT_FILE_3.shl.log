@@ -1,0 +1,136 @@
+Timing is on.
+CREATE TABLE m_lcr_ltrm_incm_prm_bmt
+(
+  plyno character varying(16) NOT NULL, 
+  incm_prm_cr_seqno numeric(5) NOT NULL, 
+  ndsno character(4), 
+  ppdt date, 
+  pvl_yymm character(6), 
+  dh_bz_part_flgcd character(10), 
+  dh_hdqt_orgcd character(7), 
+  dh_br_orgcd character(7), 
+  dh_bzp_orgcd character(7), 
+  dh_tm_orgcd character(7), 
+  dh_stfno character(7), 
+  org_dh_stfno character(7), 
+  admr_stfno character(7), 
+  dh_stf_bz_stcd character(10), 
+  dh_usr_no character(7), 
+  ctmno character(9), 
+  ctm_nm character varying(100), 
+  ctm_tpcd character(10), 
+  gdcd character(10), 
+  nwfsq_flgcd character(10), 
+  rp_pth_flgcd character(10), 
+  pym_dudt date, 
+  pym_seq numeric(5), 
+  pym_cyccd character(10), 
+  pym_tpcd character(10), 
+  ppy_tpcd character(10), 
+  ppy_flgcd character(10), 
+  flppy_yn character(1), 
+  nsc_yn character(1), 
+  nsccd character(10), 
+  cr_stcd character(10), 
+  bkcd character(10), 
+  bk_brcd character(10), 
+  bk_brnm character varying(100), 
+  bk_extn_qfp character(10), 
+  bnc_admr character(7), 
+  dp_cascd character(10), 
+  dp_dt_cascd character(10), 
+  onds_dp_tpcd character(10), 
+  sb_flgcd character(10), 
+  mnt_flgcd character(10), 
+  incm_prm numeric(15), 
+  ap_prm numeric(17,2), 
+  cu_prm numeric(15), 
+  gn_prm numeric(15), 
+  mpy_cv_prm numeric(17,2), 
+  gnte_mpy_cvprm numeric(17,2), 
+  cumt_mpy_cvprm numeric(17,2), 
+  gnte_cv_prm numeric(15), 
+  cumt_cv_prm numeric(15), 
+  flpy_cvr_trt_prm numeric(15), 
+  dcbf_prm numeric(15), 
+  load_dthms timestamp(0) without time zone 
+)
+WITH (APPENDONLY=true, COMPRESSLEVEL=5,   OIDS=FALSE)
+DISTRIBUTED BY (plyno)
+CREATE TABLE
+Time: 544.087 ms
+Timing is on.
+CREATE TABLE m_sam_ltrm_mn_cr_crst_bmt
+(
+  st_yymm character(6) NOT NULL, 
+  plyno character varying(16) NOT NULL, 
+  rnd_mc numeric(5) NOT NULL, 
+  du_ar_flgcd character(10) NOT NULL, 
+  ce_yymm character(6) NOT NULL, 
+  cr_stcd character(10), 
+  cr_dt_stcd character(10), 
+  crt_dscno character varying(40), 
+  crt_nm character varying(100), 
+  cm_mtdcd character(10), 
+  pym_cyccd character(10), 
+  ins_imcd character(10), 
+  gdcd character(10), 
+  fnl_pym_yymm character(6), 
+  fnl_pym_ct numeric(10), 
+  ce_mpy_cvprm numeric(17,2), 
+  mn_mpy_cvprm numeric(17,2), 
+  bm_stfno character(7), 
+  bk_brcd character(10), 
+  ce_stfno character(7), 
+  ce_usrno character(7), 
+  ce_stf_bz_mmthr numeric(5), 
+  ce_stf_bz_atrcd character(10), 
+  ce_hdqt_orgcd character(7), 
+  ce_spgp_orgcd character(7), 
+  ce_br_orgcd character(7), 
+  ce_tm_orgcd character(7), 
+  ce_prs_agyno character(7), 
+  cepc_orgcd character(7), 
+  dh_stfno character(7), 
+  dh_stf_bz_mmthr numeric(5), 
+  dh_stf_bz_atrcd character(10), 
+  dh_hdqt_orgcd character(7), 
+  dh_spgp_orgcd character(7), 
+  dh_br_orgcd character(7), 
+  dhtrb_orgcd character(7), 
+  dh_tm_orgcd character(7), 
+  bz_tpcd character(10), 
+  load_dthms timestamp(0) without time zone 
+)
+WITH (APPENDONLY=true, COMPRESSLEVEL=5,   OIDS=FALSE)
+DISTRIBUTED BY (st_yymm, plyno, rnd_mc, du_ar_flgcd, ce_yymm)
+CREATE TABLE
+Time: 436.805 ms
+Timing is on.
+CREATE TABLE m_sam_w2_aw_chln_crst_bmt
+(
+  st_yymm character(6), 
+  wkdgr_seq numeric(3), 
+  self_cr_flgcd character(10), 
+  dh_stfno character(7), 
+  mthy_wkdgr_seq numeric(3), 
+  wkdgr_strdt date, 
+  wkdgr_nddt date, 
+  gnte_nwcr_ct numeric(9), 
+  gnte_mpy_cvprm numeric(15), 
+  an_sv_nwcct numeric(10), 
+  an_sv_mpy_cvprm numeric(15), 
+  achv_w2_yn character(1), 
+  achv_3w_yn character(1), 
+  cntn_w2_achv_seq numeric(3), 
+  cntn_3w_achv_seq numeric(3), 
+  fnl_w2_achv_seq numeric(3), 
+  fnl_3w_achv_seq numeric(3), 
+  load_dthms timestamp(0) without time zone 
+)
+WITH (APPENDONLY=true, COMPRESSLEVEL=5,   OIDS=FALSE)
+DISTRIBUTED BY (st_yymm, wkdgr_seq, self_cr_flgcd, dh_stfno)
+CREATE TABLE
+Time: 436.175 ms
+00-13-CREATE_TABLE_FROM_EXT_FILE_3.shl:Start Time:2013-04-30 17:35:06
+00-13-CREATE_TABLE_FROM_EXT_FILE_3.shl:End Time  :2013-04-30 17:35:07

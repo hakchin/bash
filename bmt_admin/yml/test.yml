@@ -1,0 +1,22 @@
+VERSION: 1.0.0.1
+DATABASE: infa
+USER: lr_infa
+HOST: mdw
+PORT: 5432
+GPLOAD:
+  INPUT:
+   - SOURCE:
+      LOCAL_HOSTNAME:
+       - etl1
+      PORT_RANGE: [8081,9081]
+      FILE:
+       - /home/infa/test.txt
+   - COLUMNS:
+      - a: text
+   - FORMAT: text
+   - DELIMITER: '|'
+   - ERROR_LIMIT: 25
+   - ERROR_TABLE: public.err_test
+  OUTPUT:
+   - TABLE: public.test
+   - MODE: INSERT

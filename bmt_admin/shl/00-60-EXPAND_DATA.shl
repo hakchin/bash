@@ -1,0 +1,5 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+sh 00-61-EXPAND_DATA_DM_ORDER_DTL_FACT.shl
+sh 00-62-EXPAND_DATA_DM_CAMPAIGN_CUST_EFFECT.shl

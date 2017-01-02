@@ -1,0 +1,30 @@
+[gpadmin@mdw pg_log]$ top
+
+top - 13:20:54 up 24 days, 14:25, 42 users,  load average: 3.24, 3.24, 3.16
+Tasks: 957 total,   2 running, 955 sleeping,   0 stopped,   0 zombie
+Cpu(s):  4.3%us,  5.2%sy,  0.0%ni, 90.4%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Mem:  65922692k total, 65606352k used,   316340k free,   351288k buffers
+Swap: 33553400k total,        0k used, 33553400k free, 26343512k cached
+
+   PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND                       
+ 20453 gpadmin   20   0 2456m 1.5g  13m S  0.0  2.3   0:46.43 postgres                      
+ 36178 gpadmin   20   0 2229m 1.4g  17m S  0.0  2.3   0:28.29 postgres                      
+ 30643 gpadmin   20   0 3093m 1.4g  13m S  0.0  2.2   0:28.85 postgres                      
+ 51699 gpadmin   20   0 3243m 1.4g  13m S  0.0  2.2   0:31.18 postgres                      
+  3647 gpadmin   20   0 2727m 905m  13m S  0.0  1.4   0:04.99 postgres
+  
+[gpadmin@mdw pg_log]$ ps -ef | grep 20453
+gpadmin   15227  88035  0 13:21 pts/79   00:00:00 grep 20453
+gpadmin   20453 122152  0 10:57 ?        00:00:46 postgres: port  5432, gpadmin uec 172.19.240.39(2016) con2400 172.19.240.39(2016) cmd54 idle                                         
+[gpadmin@mdw pg_log]$ ls | tail
+gpdb-2013-03-19_100035.csv
+gpdb-2013-03-19_140846.csv
+gpdb-2013-03-19_140907.csv
+gpdb-2013-03-20_000000.csv
+gpdb-2013-03-20_094032.csv
+gpdb-2013-03-20_094053.csv
+gpdb-2013-03-20_102401.csv
+gpdb-2013-03-20_102423.csv
+gp_era
+startup.log
+[gpadmin@mdw pg_log]$ gplogfilter -f  con2400 gpdb-2013-03-20_102423.csv > a      

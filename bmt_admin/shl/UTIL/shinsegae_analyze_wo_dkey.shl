@@ -1,0 +1,98 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=${0}
+LOGDIR=../../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d hanwha -e > $LOGFILE 2>&1 <<-!
+\timing on
+SET search_path=sdmin, sdmin_err, public, pg_catalog, oracompat;
+
+ANALYZE sdmin.cls_cr_rnd_prm_mmcls           ;
+ANALYZE sdmin.cls_cr_rnd_prm_mmcls_p01       ;
+ANALYZE sdmin.cls_ltrm_cvr_rnd_prm           ;
+ANALYZE sdmin.cls_ltrm_cvr_rnd_prm_p01       ;
+ANALYZE sdmin.cls_ltrm_mnrt                  ;
+ANALYZE sdmin.cls_ltrm_mnrt_p01              ;
+ANALYZE sdmin.cus_ctm                        ;
+ANALYZE sdmin.cus_ctm_p01                    ;
+ANALYZE sdmin.igd_gd                         ;
+ANALYZE sdmin.igd_gd_csf                     ;
+ANALYZE sdmin.igd_gd_csf_p01                 ;
+ANALYZE sdmin.igd_gd_cvr_acm_rk              ;
+ANALYZE sdmin.igd_gd_cvr_acm_rk_p01          ;
+ANALYZE sdmin.igd_gd_p01                     ;
+ANALYZE sdmin.ins_cmins_ins_re_cls           ;
+ANALYZE sdmin.ins_cmins_ins_re_cls_p01       ;
+ANALYZE sdmin.ins_cr_cvr                     ;
+ANALYZE sdmin.ins_cr_cvr_p01                 ;
+ANALYZE sdmin.ins_cr_dh_stf_crr              ;
+ANALYZE sdmin.ins_cr_dh_stf_crr_p01          ;
+ANALYZE sdmin.ins_cr_relpc                   ;
+ANALYZE sdmin.ins_cr_relpc_p01               ;
+ANALYZE sdmin.ins_incm_prm                   ;
+ANALYZE sdmin.ins_incm_prm_p01               ;
+ANALYZE sdmin.ins_ins_cr                     ;
+ANALYZE sdmin.ins_ins_cr_p01                 ;
+ANALYZE sdmin.ins_prm_pym_pr                 ;
+ANALYZE sdmin.ins_prm_pym_pr_p01             ;
+ANALYZE sdmin.m_ccr_cr_ins_cr                ;
+ANALYZE sdmin.m_ccr_cr_ins_cr_p01            ;
+ANALYZE sdmin.m_cod_bzus_ins_itm_csfcd       ;
+ANALYZE sdmin.m_cod_bzus_ins_itm_csfcd_p01   ;
+ANALYZE sdmin.m_cod_cvrcd                    ;
+ANALYZE sdmin.m_cod_cvrcd_p01                ;
+ANALYZE sdmin.m_cod_gdcd                     ;
+ANALYZE sdmin.m_cod_gdcd_p01                 ;
+ANALYZE sdmin.m_lcr_ltins_cr                 ;
+ANALYZE sdmin.m_lcr_ltins_cr_p01             ;
+ANALYZE sdmin.m_lcr_ltrm_incm_prm            ;
+ANALYZE sdmin.m_lcr_ltrm_incm_prm_p01        ;
+ANALYZE sdmin.m_lwt_dm_rd_rptg_list          ;
+ANALYZE sdmin.m_lwt_dm_rd_rptg_list_p01      ;
+ANALYZE sdmin.m_org_bz_orgn                  ;
+ANALYZE sdmin.m_org_bz_orgn_p01              ;
+ANALYZE sdmin.m_org_mthy_bz_orgn             ;
+ANALYZE sdmin.m_org_mthy_bz_orgn_p01         ;
+ANALYZE sdmin.m_org_org_ordr                 ;
+ANALYZE sdmin.m_org_org_ordr_p01             ;
+ANALYZE sdmin.m_sam_bz_fml_styrt             ;
+ANALYZE sdmin.m_sam_bz_fml_styrt_p01         ;
+ANALYZE sdmin.m_sam_dyb_bzfml_prsn_crst      ;
+ANALYZE sdmin.m_sam_dyb_bzfml_prsn_crst_p01  ;
+ANALYZE sdmin.m_sam_stf_srtr_orgn            ;
+ANALYZE sdmin.m_sam_stf_srtr_orgn_p01        ;
+ANALYZE sdmin.m_sam_vl_wkdgr_adm             ;
+ANALYZE sdmin.m_sam_vl_wkdgr_adm_p01         ;
+ANALYZE sdmin.met_subo_rel_cd_defn           ;
+ANALYZE sdmin.met_subo_rel_cd_defn_p01       ;
+ANALYZE sdmin.sam_aw_cc_achv                 ;
+ANALYZE sdmin.sam_aw_cc_achv_p01             ;
+ANALYZE sdmin.sam_aw_cc_achv_stf             ;
+ANALYZE sdmin.sam_aw_cc_achv_stf_p01         ;
+ANALYZE sdmin.sam_aw_py_spc                  ;
+ANALYZE sdmin.sam_aw_py_spc_p01              ;
+ANALYZE sdmin.sam_incm_prm_bz_av             ;
+ANALYZE sdmin.sam_incm_prm_bz_av_p01         ;
+ANALYZE sdmin.sam_org                        ;
+ANALYZE sdmin.sam_org_p01                    ;
+ANALYZE sdmin.sam_stf                        ;
+ANALYZE sdmin.sam_stf_p01                    ;
+ANALYZE sdmin.v_calendar                     ;
+ANALYZE sdmin.v_calendar_p01                 ;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

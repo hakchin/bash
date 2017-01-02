@@ -1,0 +1,177 @@
+Timing is on.
+Timing is on.
+VACUUM ANALYZE sdmin.aa;
+VACUUM
+Time: 1688.468 ms
+VACUUM ANALYZE sdmin.aa_gg_test;
+VACUUM
+Time: 204.991 ms
+VACUUM ANALYZE sdmin.aaa;
+VACUUM
+Time: 118.921 ms
+VACUUM ANALYZE sdmin.acnt_ac_code;
+VACUUM
+Time: 2880.638 ms
+VACUUM ANALYZE sdmin.acnt_ac_code_b9;
+VACUUM
+Time: 2958.393 ms
+VACUUM ANALYZE sdmin.acnt_ho_liday;
+VACUUM
+Time: 450.973 ms
+VACUUM ANALYZE sdmin.audt_ja_app_result;
+VACUUM
+Time: 1815.471 ms
+VACUUM ANALYZE sdmin.audt_ja_confirm;
+VACUUM
+Time: 3416.996 ms
+VACUUM ANALYZE sdmin.audt_ja_confirm_b9;
+VACUUM
+Time: 1971.336 ms
+VACUUM ANALYZE sdmin.audt_ja_depo_mrtg;
+VACUUM
+Time: 1965.488 ms
+VACUUM ANALYZE sdmin.audt_ja_opn_apv;
+VACUUM
+Time: 2739.357 ms
+VACUUM ANALYZE sdmin.audt_ja_ss_mst;
+VACUUM
+Time: 8760.247 ms
+VACUUM ANALYZE sdmin.audt_vaca_tbl;
+VACUUM
+Time: 2362.442 ms
+VACUUM ANALYZE sdmin.bbb;
+VACUUM
+Time: 54.928 ms
+VACUUM ANALYZE sdmin.bind_depo_opn_trn;
+VACUUM
+Time: 2491.365 ms
+VACUUM ANALYZE sdmin.card_flc_mihando;
+VACUUM
+Time: 49511.629 ms
+VACUUM ANALYZE sdmin.card_flc_mihando_b9;
+VACUUM
+Time: 9937.407 ms
+VACUUM ANALYZE sdmin.card_flc_mst;
+VACUUM
+Time: 17900.647 ms
+VACUUM ANALYZE sdmin.card_flc_mst_b9;
+VACUUM
+Time: 14097.526 ms
+VACUUM ANALYZE sdmin.cm034tf;
+VACUUM
+Time: 25079.754 ms
+VACUUM ANALYZE sdmin.code_detail;
+VACUUM
+Time: 1100.769 ms
+VACUUM ANALYZE sdmin.comm_bk_mast;
+VACUUM
+Time: 6055.674 ms
+VACUUM ANALYZE sdmin.comm_br_brch;
+VACUUM
+Time: 5335.455 ms
+VACUUM ANALYZE sdmin.comm_br_brch_b9;
+VACUUM
+Time: 4551.257 ms
+VACUUM ANALYZE sdmin.comm_cd_every;
+VACUUM
+Time: 1515.762 ms
+VACUUM ANALYZE sdmin.comm_ep_emp;
+VACUUM
+Time: 2988.027 ms
+VACUUM ANALYZE sdmin.comm_im_paper;
+VACUUM
+Time: 2388.636 ms
+VACUUM ANALYZE sdmin.comm_menu_step;
+VACUUM
+Time: 860.360 ms
+VACUUM ANALYZE sdmin.comm_mr_cif;
+VACUUM
+Time: 1227.717 ms
+VACUUM ANALYZE sdmin.comm_mr_mgr;
+VACUUM
+Time: 892.472 ms
+VACUUM ANALYZE sdmin.comm_pb_ct_result;
+VACUUM
+Time: 48262.782 ms
+VACUUM ANALYZE sdmin.comm_pb_mg_cif;
+VACUUM
+Time: 2558.364 ms
+VACUUM ANALYZE sdmin.comm_vaca_tbl;
+VACUUM
+Time: 1538.734 ms
+VACUUM ANALYZE sdmin.connectby_tree;
+VACUUM
+Time: 96.550 ms
+VACUUM ANALYZE sdmin.crms_trace;
+VACUUM
+Time: 4269.096 ms
+VACUUM ANALYZE sdmin.cu040tf;
+VACUUM
+Time: 4493.206 ms
+VACUUM ANALYZE sdmin.cust_ba_base;
+VACUUM
+Time: 6289.696 ms
+VACUUM ANALYZE sdmin.cust_ba_base_b9;
+VACUUM
+Time: 6406.596 ms
+VACUUM ANALYZE sdmin.cust_ba_juso;
+VACUUM
+Time: 3318.834 ms
+VACUUM ANALYZE sdmin.cust_ba_juso_b9;
+VACUUM
+Time: 3217.055 ms
+VACUUM ANALYZE sdmin.cust_rl_dp_woltb;
+VACUUM
+Time: 83.123 ms
+VACUUM ANALYZE sdmin.cust_rl_dt_tbl;
+VACUUM
+Time: 330.974 ms
+VACUUM ANALYZE sdmin.cust_rl_vp_tbl;
+VACUUM
+Time: 1792.004 ms
+VACUUM ANALYZE sdmin.dd;
+VACUUM
+Time: 213.798 ms
+VACUUM ANALYZE sdmin.dd_gg_test;
+VACUUM
+Time: 175.005 ms
+VACUUM ANALYZE sdmin.depo_ac_comm;
+VACUUM
+Time: 6717.317 ms
+VACUUM ANALYZE sdmin.depo_ac_comm_b9;
+VACUUM
+Time: 6626.675 ms
+VACUUM ANALYZE sdmin.depo_bd_dbal;
+VACUUM
+Time: 16057.520 ms
+VACUUM ANALYZE sdmin.depo_cv_davg;
+VACUUM
+Time: 1099.135 ms
+VACUUM ANALYZE sdmin.depo_cv_info;
+VACUUM
+Time: 1343.924 ms
+VACUUM ANALYZE sdmin.depo_ex_inf;
+VACUUM
+Time: 9172.881 ms
+VACUUM ANALYZE sdmin.depo_exp_tongbo;
+VACUUM
+Time: 5740.462 ms
+VACUUM ANALYZE sdmin.depo_mm_dbal;
+VACUUM
+Time: 2587.555 ms
+VACUUM ANALYZE sdmin.depo_mm_mbal;
+VACUUM
+Time: 29199.047 ms
+VACUUM ANALYZE sdmin.depo_mm_woltb;
+VACUUM
+Time: 6167.198 ms
+VACUUM ANALYZE sdmin.depo_rg_bond;
+VACUUM
+Time: 3395.428 ms
+VACUUM ANALYZE sdmin.depo_sj_mas;
+VACUUM
+Time: 7358.479 ms
+VACUUM ANALYZE sdmin.depo_tr_mas;
+VACUUM
+Time: 7520.379 ms
+VACUUM ANALYZE sdmin.dp905td;

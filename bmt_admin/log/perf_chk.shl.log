@@ -1,0 +1,30 @@
+WARNING:  database "template1" must be vacuumed within 2125066505 transactions
+HINT:  To avoid a database shutdown, execute a full-database VACUUM in "template1".
+Timing is on.
+Timing is on.
+SELECT
+       ROUND(AVG(MEM_TOTAL)/1024.0^3::NUMERIC,2)                    "MEM_TOTAL(GB)",
+       ROUND(AVG(MEM_ACTUAL_USED*100.0/MEM_TOTAL)::NUMERIC,2)       "MEM_USED(%)",
+       ROUND(AVG(CPU_USER)::NUMERIC,2)                              "CPU_USER(%)",
+       ROUND(AVG(CPU_SYS)::NUMERIC,2)                               "CPU_SYS(%)",
+       ROUND(AVG(CPU_IDLE)::NUMERIC,2)                              "CPU_IDLE(%)",
+       ROUND(AVG(DISK_RB_RATE/1024.0^2)::NUMERIC,2)                 "DISK_RB_RATE(MB)",
+       ROUND(AVG(DISK_WB_RATE/1024.0^2)::NUMERIC,2)                 "DISK_WB_RATE(MB)",
+       ROUND(AVG(NET_RB_RATE/1024.0^2)::NUMERIC,2)                  "NET_RB_RATE(MB)",
+       ROUND(AVG(NET_WB_RATE/1024.0^2)::NUMERIC,2)                  "NET_WB_RATE(MB)"
+       FROM gpperfmon.public.SYSTEM_HISTORY
+  WHERE CTIME >=
+              '2013-08-20 00:00:00'
+    AND CTIME <
+              '2013-08-24 00:00:00'
+    AND hostname LIKE 'sdw%';
+WARNING:  database "template1" must be vacuumed within 2125066492 transactions
+HINT:  To avoid a database shutdown, execute a full-database VACUUM in "template1".
+ MEM_TOTAL(GB) | MEM_USED(%) | CPU_USER(%) | CPU_SYS(%) | CPU_IDLE(%) | DISK_RB_RATE(MB) | DISK_WB_RATE(MB) | NET_RB_RATE(MB) | NET_WB_RATE(MB) 
+---------------+-------------+-------------+------------+-------------+------------------+------------------+-----------------+-----------------
+               |             |             |            |             |                  |                  |                 |                
+(1 row)
+
+Time: 235.013 ms
+perf_chk.shl|Start Time         |End Time
+perf_chk.shl|2013-09-01 21:05:23|2013-09-01 21:05:23

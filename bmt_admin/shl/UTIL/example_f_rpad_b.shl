@@ -1,0 +1,50 @@
+set client_encoding=uhc; 
+
+create temp table tmp_cls_ltrm_mnrt_p01
+with(appendonly=true, COMPRESSTYPE=QUICKLZ)
+as
+select 
+f_rpad_b(cls_yymm,6, ' ')||
+f_rpad_b(plyno,16, ' ')||
+f_rpad_b(cvrcd,8, ' ')||
+f_rpad_b(cvr_seqno,5, ' ')||
+f_rpad_b(gdcd,10, ' ')||
+f_rpad_b(nrdps_dscno,40, ' ')||
+f_rpad_b(crt_dscno,40, ' ')||
+f_rpad_b(cr_stcd,10, ' ')||
+f_rpad_b(cr_dt_stcd,10, ' ')||
+f_rpad_b(ins_st,10, ' ')||
+f_rpad_b(ins_clstr,10, ' ')||
+f_rpad_b(fnl_pym_yymm,6, ' ')||
+f_rpad_b(pym_cyccd,10, ' ')||
+f_rpad_b(pym_ct,3, ' ')||
+f_rpad_b(rnd_mc,5, ' ')||
+f_rpad_b(cu_prm,15, ' ')||
+f_rpad_b(gn_prm,15, ' ')||
+f_rpad_b(ce_mpy_cvprm,18, ' ')||
+f_rpad_b(mn_mpy_cvprm,18, ' ')||
+f_rpad_b(ce_cvav_prm,15, ' ')||
+f_rpad_b(mn_cv_av_prm,15, ' ')||
+f_rpad_b(ce_bzp_orgcd,7, ' ')||
+f_rpad_b(ce_stfno,7, ' ')||
+f_rpad_b(dh_bzp_orgcd,7, ' ')||
+f_rpad_b(dh_stfno,7, ' ')||
+f_rpad_b(cm_mtdcd,10, ' ')||
+f_rpad_b(ce_bzp_lead_stfno,7, ' ')||
+f_rpad_b(ce_brma_stfno,7, ' ')||
+f_rpad_b(is_thtm_nrdps_age,3, ' ')||
+f_rpad_b(cr_thtm_nrdps_age,3, ' ')||
+f_rpad_b(nrdps_pstno,6, ' ')||
+f_rpad_b(nrdps_jbcd,10, ' ')||
+f_rpad_b(is_thtm_crt_age,3, ' ')||
+f_rpad_b(cr_thtm_crt_age,3, ' ')||
+f_rpad_b(crt_pstno,6, ' ')||
+f_rpad_b(crt_jbcd,20, ' ')||
+f_rpad_b(du_ar_flgcd,10, ' ')||
+f_rpad_b(load_dthms,19, ' ')
+from sdmin.cls_ltrm_mnrt_p01
+distributed randomly ;
+
+
+\copy tmp_cls_ltrm_mnrt_p01 to 'jsklfjskaldfjklsad'
+

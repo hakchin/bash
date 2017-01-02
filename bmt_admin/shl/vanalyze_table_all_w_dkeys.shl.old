@@ -1,0 +1,165 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+VACUUM ANALYZE masdacmn.tb_dda_cmn_amc_specification_info (shop_code, measure_tag_id, measuring_instrument_name);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_apd_3d_chart_m (apd_3d_chart_id, equipment_group_id, apd_data_id, facility_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_apd_gr_m (equipment_group_id, apd_collection_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_apd_m (equipment_group_id, apd_collection_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_apd_path_cd (equipment_group_id, apd_collection_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_cell_af_prcs_map_m (facility_code, part_no_name);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_condition_m (factory_code, condition_name, process_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_contact_map_m (facility_code, equipment_group_id, equipment_unit_id, equipment_part_id, pad_seq_no);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_def_cd (factory_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_def_m (defect_code_surid);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_dms_specification_info (factory_code, shop_code, measuring_instrument_name, measure_tag_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_ea_equipment_m (equipment_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_ea_parts_m (facility_code, part_no_name);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_ea_process_m (facility_code, process_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_ea_user_m (user_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_eas_cd (facility_code, code_type_code, code_name);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_equip_gr_m (factory_code, equipment_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_equipment_m (equipment_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_etl_status (target_table_name, job_session_name);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_general_cd (factory_code, factory_shop_code, code_type_code, reason_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_judge_attr_m (facility_code, judgement_attribute_code, judgement_type_name, judgement_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_judge_cd_m (facility_code, judgement_type_name, judgement_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_mg_equipment_m (module_equipment_surid, language_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_mg_model_m (model_surid, language_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_mg_parts_m (part_no_surid, language_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_mg_process_m (process_code, language_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_mg_user_m (worker_surid, language_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_model_m (module_factory_code, model_group_code, model_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_multi_lang_dict_m (multi_language_code, multi_language_type_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_panel_map_m (facility_code, part_no_name, panel_seq_no, panel_corner_seq_no);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_parts_m (facility_code, part_no_name);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_process_m (facility_code, process_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_qlty_cd_field_item_m (field_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_qlty_cd_field_m (field_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_qlty_cd_field_seq_m (shop_type_code, parts_code, defect_large_class_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_qlty_cd_m (shop_type_code, parts_code, defect_large_class_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_rel_prcs_m (facility_code, process_code, related_process_code, related_equipment_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_representative_def (shop_type_code, field1_code, field2_code, defect_code_surid);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_representative_def_m (shop_type_code, field1_code, field2_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_sdc2_def_cond_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_sdc2_insp_data_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_sdc2_judge_cond_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_sdc2_spec_cont_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_sdc2_spec_gr_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_sdc2_spec_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_apd_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_chart_info_m (facility_code, control_chart_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_chart_m (facility_code, control_chart_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_chart_raw_data_m (facility_code, control_chart_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_measr_equip_gr_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_prod_equip_gr_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_spec_cont_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_spec_gr_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_spc_spec_m (facility_code, specification_group_id);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_tfo_policy_m (facility_code, process_flow_name, process_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_tpfo_policy_m (facility_code, part_no_name, process_flow_name, process_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_tpfom_policy_m (facility_code, process_flow_name, process_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_user_def_gr_detail_m (shop_type_code, user_id, defect_code_group_name, full_defect_code);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_user_def_gr_m (shop_type_code, user_id, defect_code_group_name);
+VACUUM ANALYZE masdacmn.tb_dda_cmn_user_m (user_id);
+VACUUM ANALYZE masdainf.a (timestamp);
+VACUUM ANALYZE masdainf.tb_dda_inf_ea_def_cd (shop_type_code, apply_yyyymm, defect_seq_no);
+VACUUM ANALYZE masdainf.tb_dda_inf_ea_multi_lang_dict_m (multi_language_code, multi_language_type_code);
+VACUUM ANALYZE masdainf.tb_dda_inf_ea_user_profile_m (userid);
+VACUUM ANALYZE masdainf.tb_dda_inf_mg_model_m (model_surid, language_code);
+VACUUM ANALYZE masdainf.tb_dda_inf_mg_part_no_m (part_no_surid, language_code);
+VACUUM ANALYZE masdainf.tb_dda_inf_mg_worker_m (worker_surid, language_code);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_apd_detail (equipment_group_id, receive_ymdhms, apd_seq_no, apd_data_id);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_apd_h (glass_id);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_apd_pre_prcs (equipment_group_id, receive_ymdhms, apd_seq_no, pre_process_code);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cell_af_def_detail (panel_seq_no, defect_seq_no, detect_shop_code, defect_inspection_data_id);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cell_af_def_h (panel_seq_no, defect_seq_no, detect_shop_code);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cell_af_pnl_detail (panel_id);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cell_af_pnl_h (panel_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cell_bf_pnl_detail (panel_id);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cf_def_detail (glass_inspection_end_ymdhms, glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cf_def_h (glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cf_gls_detail (glass_inspection_end_ymdhms, glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cf_pnl_detail (glass_inspection_end_ymdhms, glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_cot_judge_reason (glass_inspection_end_ymdhms, glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_tft_def_detail (glass_inspection_end_ymdhms, glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_tft_def_h (glass_inspection_end_ymdhms, glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_tft_gls_detail (glass_inspection_end_ymdhms, glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_tft_gls_h (glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_def_tft_pnl_detail (glass_inspection_end_ymdhms, glass_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_ea_spc_point_h (facility_code, specification_group_id, equipment_group_id, receive_ymdhms, apd_seq_no, calculation_item_code, check_rule_code);
+VACUUM ANALYZE masdainf.tb_fda_inf_mg_mod_insp_defect_h (inspection_aggregate_date, inspection_occur_date, inspection_time_id, module_factory_code, panel_id, defect_timekey);
+VACUUM ANALYZE masdainf.tb_fda_inf_mg_mod_prod_process_h (panel_id);
+VACUUM ANALYZE masdainf.tb_fda_inf_op_cmd_list_h_i (eai_seq_id, command_seq_no);
+VACUUM ANALYZE masdainf.tb_fda_inf_op_lot_history_p_i (eai_seq_id, lotname, timekey);
+VACUUM ANALYZE masdainf.tb_fda_inf_op_product_history_p_i (eai_seq_id, productname, timekey);
+VACUUM ANALYZE masdainf.tb_fda_inf_op_run_note (eai_seq_id);
+VACUUM ANALYZE masdainf.tb_fda_inf_op_transport_event_h_i (eai_seq_id, event_seq_no);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_equip_h (product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_h_s (product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_h_s_t (product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_m (product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_m_t1 (product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_m_t2 (product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_prog_insp_h (progress_product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_prog_insp_h_t1 (progress_product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_prog_insp_h_t2 (progress_product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_prog_insp_h_t3 (progress_product_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_apd_detail (product_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_apd_detail_t (product_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_apd_h (product_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_apd_pre_prcs (product_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_ememo_file (facility_code, ememo_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_ememo_h (facility_code, ememo_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_ememo_lot (lot_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_equip_h (equipment_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_equip_work_order_h (equipment_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_def_detail (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_def_detail_t (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_def_h (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_def_h_t (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_def_img (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_detail (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_detail_t (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_flag (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_h (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_pnl_detail (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_pnl_detail_t (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_gls_insp_pnl_h (glass_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_lot_h (lot_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_lot_h_t (lot_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_mod_product_h (panel_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_pnl_insp_def_detail (panel_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_pnl_insp_def_h (panel_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_pnl_insp_detail (panel_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_pnl_insp_h (panel_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_pnl_insp_h_t (panel_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_product_h (product_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_product_h_t (product_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_recipe_change_h (equipment_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_run_note (lot_id);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_spc_point_h (facility_code, specification_group_id, apd_seq_no);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_transport_command_h (command_seq_no);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_transport_command_h_t (command_seq_no);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_transport_event_h (event_seq_no);
+VACUUM ANALYZE masdapdw.tb_fda_pdw_transport_event_h_t (event_seq_no);
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

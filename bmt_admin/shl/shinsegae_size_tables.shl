@@ -1,0 +1,58 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+select sotaidschemaname    schema_nm
+     , split_part(sotaidtablename, '_1_prt', 1)     tb_nm
+     , sum((sotaidtablesize/1024/1024)::int) tb_size_mb
+     , sum((sotaididxsize/1024/1024)::int) ix_size_mb
+from  gp_toolkit.gp_size_of_table_and_indexes_disk
+where split_part(sotaidtablename, '_1_prt', 1) in
+(
+ 'co_code_dtl'
+,'co_olap_date'
+,'co_yn'
+,'cu_vendor'
+,'dm_campaign_cust_effect'
+,'dm_order_dtl_fact'
+,'mk_uc_campaign_dtl'
+,'mk_uc_campaign_effect_goal'
+,'olap_co_b2e_channel'
+,'olap_disp_ctg_connect'
+,'olap_or_buyer'
+,'pd_brand'
+,'pd_disp_ctg'
+,'pd_disp_ctg_6_level'
+,'pd_item'
+,'pd_std_dtl_ctg'
+,'pd_std_large_ctg'
+,'pd_std_middle_ctg'
+,'pd_std_small_ctg'
+)
+group by 1,2
+order by 1,2
+;
+
+
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

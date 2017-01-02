@@ -1,0 +1,37 @@
+. find files and delete them
+  $ find . -type f -name "*.bak" -exec rm -f {} \;
+
+. 리눅스 터미널창에서 간단한 명령어 몇개로 CPU와 RAM 사양을 확인해 볼 수 있다.
+
+먼저 CPU 사양을 알고 싶다면 /proc/cpuinfo의 내용을 보면 된다. 출력되는 내용이 많으므로 more와 조합하여 사용하면 된다. 아래와 같이 입력.
+
+# CPU 사양 확인
+cat /proc/cpuinfo | more
+
+만약 CPU 모델명만 알고 싶으면 grep 명령으로 걸러내면 된다. 아래와 같이 입력해 보자.
+
+# CPU 모델명 확인
+cat /proc/cpuinfo | grep name
+
+코어의 수만 확인할 때는 nproc 명령을 사용하면 된다. 하이퍼-스레딩(hyper-threading)이 사용되고 있을 경우 nproc 명령의 결과값은 물리적인 코어 수의 2배가 된다.
+
+# CPU 코어의 수 출력
+nproc
+
+RAM 용량을 확인하고 싶으면 free 명령을 사용하면 된다. 메모리와 스왑(swap) 파티션의 전체 용량, 사용량, 남은 용량 등이 표시된다.
+
+# 메모리 용량 확인
+free
+
+메가(M), 기가(G) 단위를 사용해서 가독성을 높이고 싶으면 -h 옵션을 추가해 주자.
+
+# 메모리 용량 확인, 가독성 향상
+free -h
+
+제조사를 비롯해서 CPU/RAM 관련 하드웨어 정보를 확인하고 싶다면 dmidecode 명령을 사용한다. -t 옵션으로 보고자 하는 정보를 지정해 준다. 터미널창에서 아래와 같이 입력하자. 관리자 권한을 필요로 함에 유의.
+
+# CPU 사양 확인
+sudo dmidecode -t processor | more
+
+# RAM 사양 확인
+sudo dmidecode -t memory | more

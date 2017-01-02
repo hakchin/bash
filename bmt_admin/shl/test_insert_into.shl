@@ -1,0 +1,37 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+SET search_path=sdmin;
+TRUNCATE dm_order_dtl_fact_b9;
+INSERT INTO dm_order_dtl_fact_b9
+SELECT * FROM dm_order_dtl_fact;
+
+ALTER TABLE dm_order_dtl_fact RENAME TO hest;
+ALTER TABLE dm_order_dtl_fact_b9 RENAME TO dm_order_dtl_fact;
+
+CREATE INDEX dm_order_dtl_fact_ix1
+  ON dm_order_dtl_fact
+  USING btree
+  (order_date);
+
+ANALYZE dm_order_dtl_fact;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

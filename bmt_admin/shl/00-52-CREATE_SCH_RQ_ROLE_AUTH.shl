@@ -1,0 +1,82 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+
+/* SCHEMA */
+DROP SCHEMA IF EXISTS sdmin CASCADE;
+
+CREATE SCHEMA sdmin;
+
+/* Resource Queue */
+DROP RESOURCE QUEUE rqbatch;
+DROP RESOURCE QUEUE rqolap;
+DROP RESOURCE QUEUE rqadhoc;
+DROP RESOURCE QUEUE rqoltp;
+
+CREATE RESOURCE QUEUE rqbatch WITH (ACTIVE_STATEMENTS=30,PRIORITY=MIN);
+CREATE RESOURCE QUEUE rqolap  WITH (ACTIVE_STATEMENTS=100,PRIORITY=MAX);
+CREATE RESOURCE QUEUE rqadhoc WITH (ACTIVE_STATEMENTS=10,PRIORITY=MEDIUM);
+CREATE RESOURCE QUEUE rqoltp  WITH (ACTIVE_STATEMENTS=100,PRIORITY=MAX);
+
+--CREATE RESOURCE QUEUE rqbatch  WITH (ACTIVE_STATEMENTS=30, MAX_COST=100000000000,COST_OVERCOMMIT=FALSE,MIN_COST=100000,PRIORITY=MIN,   MEMORY_LIMIT='4GB');
+--CREATE RESOURCE QUEUE rqolap   WITH (ACTIVE_STATEMENTS=100,MAX_COST=100000000000,COST_OVERCOMMIT=FALSE,MIN_COST=100000,PRIORITY=MAX,   MEMORY_LIMIT='3GB');
+--CREATE RESOURCE QUEUE rqadhoc  WITH (ACTIVE_STATEMENTS=10, MAX_COST=100000000000,COST_OVERCOMMIT=FALSE,MIN_COST=100000,PRIORITY=MEDIUM,MEMORY_LIMIT='3GB');
+--CREATE RESOURCE QUEUE rqoltp   WITH (ACTIVE_STATEMENTS=100,MAX_COST=100000000000,COST_OVERCOMMIT=FALSE,MIN_COST=100000,PRIORITY=MAX,   MEMORY_LIMIT='3GB');
+
+/* Role */
+--DROP ROLE IF EXISTS ldba, letl, lolap, ladhoc, loltp;
+DROP ROLE IF EXISTS ldba;
+DROP ROLE IF EXISTS letl;
+DROP ROLE IF EXISTS lolap;
+DROP ROLE IF EXISTS ladhoc;
+DROP ROLE IF EXISTS loltp;
+
+CREATE ROLE letl   LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rqbatch;
+CREATE ROLE lolap  LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rqolap;
+CREATE ROLE ladhoc LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rqadhoc;
+CREATE ROLE ldba   LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE pg_default;
+CREATE ROLE loltp  LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rqoltp;
+                                                  
+/* Role Configuration */
+--ALTER ROLE ldba    SET search_path=sdmin, public;
+ALTER ROLE letl    SET search_path=sdmin, public;
+ALTER ROLE lolap   SET search_path=sdmin, public;
+ALTER ROLE ladhoc  SET search_path=sdmin, public;
+ALTER ROLE loltp   SET search_path=sdmin, public;
+
+/* Grant */
+GRANT ALL ON SCHEMA sdmin TO letl;
+GRANT ALL ON SCHEMA sdmin TO lolap;
+GRANT ALL ON SCHEMA sdmin TO ladhoc;
+GRANT ALL ON SCHEMA sdmin TO ldba;
+GRANT ALL ON SCHEMA sdmin TO loltp;
+--GRANT USAGE ON SCHEMA sdmin, shinsegaecmn, shinsegaepdw, shinsegaepdm TO ladhoc;
+
+/* HAK */
+ALTER DATABASE uec SET search_path TO sdmin, public, pg_catalog;
+
+GRANT ALL ON SCHEMA sdmin  TO lolap,letl,ladhoc,loltp ;
+GRANT ALL ON SCHEMA public TO lolap,letl,ladhoc,loltp ;
+
+ALTER RESOURCE QUEUE rqolap   WITH (active_statements=6,  max_cost=1e+15, min_cost=2e+07, cost_overcommit = true,   priority=max,    memory_limit=-1) ;
+ALTER RESOURCE QUEUE rqbatch  WITH (active_statements=20, max_cost=1e+16, min_cost=2e+05, cost_overcommit = true,   priority=medium, memory_limit=-1) ;
+ALTER RESOURCE QUEUE rqadhoc  WITH (active_statements=5,  max_cost=1e+15, min_cost=2e+07, cost_overcommit = true,   priority=max,    memory_limit=-1) ;
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1
+

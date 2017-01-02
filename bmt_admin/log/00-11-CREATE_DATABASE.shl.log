@@ -1,0 +1,121 @@
+Timing is on.
+DROP DATABASE IF EXISTS pil;
+NOTICE:  database "pil" does not exist, skipping
+DROP DATABASE
+Time: 557.032 ms
+CREATE DATABASE pil ENCODING='UTF8';
+CREATE DATABASE
+Time: 32747.873 ms
+SELECT 'pil' dbname, pg_size_pretty(pg_Database_size('pil'));
+ dbname | pg_size_pretty 
+--------+----------------
+ pil    | 28 MB
+(1 row)
+
+Time: 652.037 ms
+                          List of relations
+       Schema       |             Name              | Type  |  Owner  
+--------------------+-------------------------------+-------+---------
+ gp_toolkit         | __gp_localid                  | table | gpadmin
+ gp_toolkit         | __gp_log_master_ext           | table | gpadmin
+ gp_toolkit         | __gp_log_segment_ext          | table | gpadmin
+ gp_toolkit         | __gp_masterid                 | table | gpadmin
+ gp_toolkit         | gp_disk_free                  | table | gpadmin
+ information_schema | sql_features                  | table | gpadmin
+ information_schema | sql_implementation_info       | table | gpadmin
+ information_schema | sql_languages                 | table | gpadmin
+ information_schema | sql_packages                  | table | gpadmin
+ information_schema | sql_parts                     | table | gpadmin
+ information_schema | sql_sizing                    | table | gpadmin
+ information_schema | sql_sizing_profiles           | table | gpadmin
+ pg_catalog         | gp_configuration              | table | gpadmin
+ pg_catalog         | gp_configuration_history      | table | gpadmin
+ pg_catalog         | gp_db_interfaces              | table | gpadmin
+ pg_catalog         | gp_distribution_policy        | table | gpadmin
+ pg_catalog         | gp_fastsequence               | table | gpadmin
+ pg_catalog         | gp_fault_strategy             | table | gpadmin
+ pg_catalog         | gp_global_sequence            | table | gpadmin
+ pg_catalog         | gp_id                         | table | gpadmin
+ pg_catalog         | gp_interfaces                 | table | gpadmin
+ pg_catalog         | gp_master_mirroring           | table | gpadmin
+ pg_catalog         | gp_persistent_database_node   | table | gpadmin
+ pg_catalog         | gp_persistent_filespace_node  | table | gpadmin
+ pg_catalog         | gp_persistent_relation_node   | table | gpadmin
+ pg_catalog         | gp_persistent_tablespace_node | table | gpadmin
+ pg_catalog         | gp_relation_node              | table | gpadmin
+ pg_catalog         | gp_san_configuration          | table | gpadmin
+ pg_catalog         | gp_segment_configuration      | table | gpadmin
+ pg_catalog         | gp_verification_history       | table | gpadmin
+ pg_catalog         | gp_version_at_initdb          | table | gpadmin
+ pg_catalog         | pg_aggregate                  | table | gpadmin
+ pg_catalog         | pg_am                         | table | gpadmin
+ pg_catalog         | pg_amop                       | table | gpadmin
+ pg_catalog         | pg_amproc                     | table | gpadmin
+ pg_catalog         | pg_appendonly                 | table | gpadmin
+ pg_catalog         | pg_appendonly_alter_column    | table | gpadmin
+ pg_catalog         | pg_attrdef                    | table | gpadmin
+ pg_catalog         | pg_attribute                  | table | gpadmin
+ pg_catalog         | pg_attribute_encoding         | table | gpadmin
+ pg_catalog         | pg_auth_members               | table | gpadmin
+ pg_catalog         | pg_auth_time_constraint       | table | gpadmin
+ pg_catalog         | pg_authid                     | table | gpadmin
+ pg_catalog         | pg_autovacuum                 | table | gpadmin
+ pg_catalog         | pg_cast                       | table | gpadmin
+ pg_catalog         | pg_class                      | table | gpadmin
+ pg_catalog         | pg_compression                | table | gpadmin
+ pg_catalog         | pg_constraint                 | table | gpadmin
+ pg_catalog         | pg_conversion                 | table | gpadmin
+ pg_catalog         | pg_database                   | table | gpadmin
+ pg_catalog         | pg_depend                     | table | gpadmin
+ pg_catalog         | pg_description                | table | gpadmin
+ pg_catalog         | pg_extprotocol                | table | gpadmin
+ pg_catalog         | pg_exttable                   | table | gpadmin
+ pg_catalog         | pg_filespace                  | table | gpadmin
+ pg_catalog         | pg_filespace_entry            | table | gpadmin
+ pg_catalog         | pg_foreign_data_wrapper       | table | gpadmin
+ pg_catalog         | pg_foreign_server             | table | gpadmin
+ pg_catalog         | pg_foreign_table              | table | gpadmin
+ pg_catalog         | pg_index                      | table | gpadmin
+ pg_catalog         | pg_inherits                   | table | gpadmin
+ pg_catalog         | pg_language                   | table | gpadmin
+ pg_catalog         | pg_largeobject                | table | gpadmin
+ pg_catalog         | pg_listener                   | table | gpadmin
+ pg_catalog         | pg_namespace                  | table | gpadmin
+ pg_catalog         | pg_opclass                    | table | gpadmin
+ pg_catalog         | pg_operator                   | table | gpadmin
+ pg_catalog         | pg_partition                  | table | gpadmin
+ pg_catalog         | pg_partition_encoding         | table | gpadmin
+ pg_catalog         | pg_partition_rule             | table | gpadmin
+ pg_catalog         | pg_pltemplate                 | table | gpadmin
+ pg_catalog         | pg_proc                       | table | gpadmin
+ pg_catalog         | pg_proc_callback              | table | gpadmin
+ pg_catalog         | pg_resourcetype               | table | gpadmin
+ pg_catalog         | pg_resqueue                   | table | gpadmin
+ pg_catalog         | pg_resqueuecapability         | table | gpadmin
+ pg_catalog         | pg_rewrite                    | table | gpadmin
+ pg_catalog         | pg_shdepend                   | table | gpadmin
+ pg_catalog         | pg_shdescription              | table | gpadmin
+ pg_catalog         | pg_stat_last_operation        | table | gpadmin
+ pg_catalog         | pg_stat_last_shoperation      | table | gpadmin
+ pg_catalog         | pg_statistic                  | table | gpadmin
+ pg_catalog         | pg_tablespace                 | table | gpadmin
+ pg_catalog         | pg_trigger                    | table | gpadmin
+ pg_catalog         | pg_type                       | table | gpadmin
+ pg_catalog         | pg_type_encoding              | table | gpadmin
+ pg_catalog         | pg_user_mapping               | table | gpadmin
+ pg_catalog         | pg_window                     | table | gpadmin
+(88 rows)
+
+SELECT * FROM gp_segment_configuration ORDER BY 1;
+ dbid | content | role | preferred_role | mode | status | port  | hostname |   address    | replication_port | san_mounts 
+------+---------+------+----------------+------+--------+-------+----------+--------------+------------------+------------
+    1 |      -1 | p    | p              | s    | u      |  5432 | mdw      | mdw          |                  | 
+    2 |       0 | p    | p              | s    | u      | 40000 | mdw      | 172.16.57.63 |            41000 | 
+    3 |       1 | p    | p              | s    | u      | 40001 | mdw      | mdw          |            41001 | 
+    4 |       0 | m    | m              | s    | u      | 50000 | mdw      | mdw          |            51000 | 
+    5 |       1 | m    | m              | s    | u      | 50001 | mdw      | 172.16.57.63 |            51001 | 
+(5 rows)
+
+Time: 167.009 ms
+00-11-CREATE_DATABASE.shl|Start Time         |End Time
+00-11-CREATE_DATABASE.shl|2013-09-15 16:30:11|2013-09-15 16:30:46

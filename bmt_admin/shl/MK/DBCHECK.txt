@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Definition
+
+vip='10.35.106.182'
+db='template1'
+user='gpadmin'
+
+## Body
+
+psql -h ${vip} -d ${db}

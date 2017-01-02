@@ -1,0 +1,83 @@
+/* SCHEMA */
+
+
+
+
+/* Resource Queue */
+DROP RESOURCE QUEUE rq_batch;
+ERROR:  resource queue "rq_batch" is used by at least one role
+DROP RESOURCE QUEUE rq_olap;
+ERROR:  resource queue "rq_olap" is used by at least one role
+DROP RESOURCE QUEUE rq_adhoc;
+ERROR:  resource queue "rq_adhoc" is used by at least one role
+DROP RESOURCE QUEUE rq_oltp;
+ERROR:  resource queue "rq_oltp" is used by at least one role
+CREATE RESOURCE QUEUE rq_batch WITH (ACTIVE_STATEMENTS=30,PRIORITY=MIN);
+ERROR:  resource queue "rq_batch" already exists
+CREATE RESOURCE QUEUE rq_olap  WITH (ACTIVE_STATEMENTS=100,PRIORITY=MAX);
+ERROR:  resource queue "rq_olap" already exists
+CREATE RESOURCE QUEUE rq_adhoc WITH (ACTIVE_STATEMENTS=10,PRIORITY=MEDIUM);
+ERROR:  resource queue "rq_adhoc" already exists
+CREATE RESOURCE QUEUE rq_oltp  WITH (ACTIVE_STATEMENTS=100,PRIORITY=MAX);
+ERROR:  resource queue "rq_oltp" already exists
+/* Role */
+
+DROP ROLE IF EXISTS lr_dba;
+DROP ROLE
+DROP ROLE IF EXISTS lr_adhoc;
+ERROR:  role "lr_adhoc" cannot be dropped because some objects depend on it
+DETAIL:  access to schema public
+DROP ROLE IF EXISTS lr_batch;
+ERROR:  role "lr_batch" cannot be dropped because some objects depend on it
+DETAIL:  access to schema public
+DROP ROLE IF EXISTS lr_olap;
+ERROR:  role "lr_olap" cannot be dropped because some objects depend on it
+DETAIL:  access to schema public
+DROP ROLE IF EXISTS lr_oltp;
+ERROR:  role "lr_oltp" cannot be dropped because some objects depend on it
+DETAIL:  access to schema public
+CREATE ROLE lr_dba   LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE pg_default;
+CREATE ROLE
+CREATE ROLE lr_adhoc LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rq_adhoc;
+ERROR:  role "lr_adhoc" already exists
+CREATE ROLE lr_batch LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rq_batch;
+ERROR:  role "lr_batch" already exists
+CREATE ROLE lr_olap  LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rq_olap;
+ERROR:  role "lr_olap" already exists
+CREATE ROLE lr_oltp  LOGIN ENCRYPTED PASSWORD 'pwd1234' RESOURCE QUEUE rq_oltp;
+ERROR:  role "lr_oltp" already exists
+/* Role Configuration */
+
+
+
+
+
+
+/* Grant */
+
+
+
+
+
+
+
+
+
+
+
+/* HAK */
+
+ALTER DATABASE lge SET search_path = iptcm, iptcp, iptdw, public, pg_catalog, oracompat;
+ALTER DATABASE
+GRANT ALL ON SCHEMA sn2ro_err TO lr_olap,lr_batch,lr_adhoc,lr_oltp ;
+ERROR:  schema "sn2ro_err" does not exist
+GRANT ALL ON SCHEMA public    TO lr_olap,lr_batch,lr_adhoc,lr_oltp ;
+GRANT
+ALTER RESOURCE QUEUE rq_batch  WITH (active_statements=20, max_cost=1e+16, min_cost=2e+05, cost_overcommit = true,   priority=medium, memory_limit=-1) ;
+ALTER QUEUE
+ALTER RESOURCE QUEUE rq_olap   WITH (active_statements=6,  max_cost=1e+15, min_cost=2e+07, cost_overcommit = true,   priority=max,    memory_limit=-1) ;
+ALTER QUEUE
+ALTER RESOURCE QUEUE rq_adhoc  WITH (active_statements=5,  max_cost=1e+15, min_cost=2e+07, cost_overcommit = true,   priority=max,    memory_limit=-1) ;
+ALTER QUEUE
+00-12-CREATE_SCH_RQ_ROLE_AUTH.sh|Start Time         |End Time
+00-12-CREATE_SCH_RQ_ROLE_AUTH.sh|2014-02-24 01:12:49|2014-02-24 01:12:49

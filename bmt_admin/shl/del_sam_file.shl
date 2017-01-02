@@ -1,0 +1,26 @@
+#!/bin/bash
+TBNAME=${1}
+
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment nodemaster
+###### query start
+
+gpssh -h sdw1 -h sdw2 -h sdw3 -h sdw4 -h sdw5 -h sdw6 -h sdw7 -h sdw8 -h sdw9 -h sdw10 -h sdw11 -h sdw12 "rm /data3/dat/$TBNAME*"
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+##BGN : Use Case########################################################
+## sh del_sam_file.shl tb_fda_pdw_apd_detail;
+##END : Use Case########################################################

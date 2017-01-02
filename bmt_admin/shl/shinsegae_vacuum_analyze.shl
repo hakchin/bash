@@ -1,0 +1,43 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+VACUUM ANALYZE sdmin.co_code_dtl;
+VACUUM ANALYZE sdmin.co_olap_date;
+VACUUM ANALYZE sdmin.co_yn;
+VACUUM ANALYZE sdmin.cu_vendor;
+--VACUUM ANALYZE sdmin.dm_campaign_cust_effect;
+--VACUUM ANALYZE sdmin.dm_order_dtl_fact;
+VACUUM ANALYZE sdmin.mk_uc_campaign_dtl;
+VACUUM ANALYZE sdmin.mk_uc_campaign_effect_goal;
+VACUUM ANALYZE sdmin.olap_co_b2e_channel;
+VACUUM ANALYZE sdmin.olap_disp_ctg_connect;
+VACUUM ANALYZE sdmin.olap_or_buyer;
+VACUUM ANALYZE sdmin.pd_brand;
+VACUUM ANALYZE sdmin.pd_disp_ctg;
+VACUUM ANALYZE sdmin.pd_disp_ctg_6_level;
+VACUUM ANALYZE sdmin.pd_item;
+VACUUM ANALYZE sdmin.pd_std_dtl_ctg;
+VACUUM ANALYZE sdmin.pd_std_large_ctg;
+VACUUM ANALYZE sdmin.pd_std_middle_ctg;
+VACUUM ANALYZE sdmin.pd_std_small_ctg;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

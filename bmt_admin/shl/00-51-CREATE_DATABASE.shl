@@ -1,0 +1,27 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+###### query start
+psql -U gpadmin -d postgres -e > $LOGFILE 2>&1 <<-!
+
+drop database if exists shinsegae;
+create database uec encoding='UTF8';
+
+select 'shinsegae' dbname, pg_size_pretty(pg_Database_size('shinsegae'));
+\dt *.*
+select * from gp_segment_configuration order by 1;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

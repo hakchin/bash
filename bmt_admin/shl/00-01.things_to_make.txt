@@ -1,0 +1,2 @@
+1. count check and insert it to table
+

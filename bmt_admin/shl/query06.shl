@@ -1,0 +1,37 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+CREATE TABLE TEMP_DM_CAMPAIGN_CUST_EFFECT
+AS
+SELECT *
+, SUM(ODRSWITCH_RGRP_ODR_SWITCH_CUST_CNT) OVER (PARTITION BY STD_DATE) AS SUM_CUST_CNT
+FROM DM_CAMPAIGN_CUST_EFFECT
+--DISTRIBUTED BY (std_date, campaign_code, cell_id, daily_sum_yn);
+DISTRIBUTED RANDOMLY;
+
+DROP TABLE TEMP_DM_CAMPAIGN_CUST_EFFECT;
+
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

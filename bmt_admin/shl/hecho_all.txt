@@ -1,0 +1,26 @@
+
+INSERT INTO masdapdw.tb_fda_pdw_apd_detail_bk SELECT * FROM masdapdw.tb_fda_pdw_apd_detail;
+ALTER TABLE masdapdw.tb_fda_pdw_apd_detail RENAME TO tb_fda_pdw_apd_detail_b9;
+ALTER TABLE masdapdw.tb_fda_pdw_apd_detail_bk RENAME TO tb_fda_pdw_apd_detail;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_detail_b9;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_detail;
+INSERT INTO masdapdw.tb_fda_pdw_gls_insp_def_detail_bk SELECT * FROM masdapdw.tb_fda_pdw_gls_insp_def_detail;
+ALTER TABLE masdapdw.tb_fda_pdw_gls_insp_def_detail RENAME TO tb_fda_pdw_gls_insp_def_detail_b9;
+ALTER TABLE masdapdw.tb_fda_pdw_gls_insp_def_detail_bk RENAME TO tb_fda_pdw_gls_insp_def_detail;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_detail_b9;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_detail;
+INSERT INTO masdapdw.tb_fda_pdw_gls_insp_def_h_bk SELECT * FROM masdapdw.tb_fda_pdw_gls_insp_def_h;
+ALTER TABLE masdapdw.tb_fda_pdw_gls_insp_def_h RENAME TO tb_fda_pdw_gls_insp_def_h_b9;
+ALTER TABLE masdapdw.tb_fda_pdw_gls_insp_def_h_bk RENAME TO tb_fda_pdw_gls_insp_def_h;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_h_b9;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_def_h;
+INSERT INTO masdapdw.tb_fda_pdw_gls_insp_detail_bk SELECT * FROM masdapdw.tb_fda_pdw_gls_insp_detail;
+ALTER TABLE masdapdw.tb_fda_pdw_gls_insp_detail RENAME TO tb_fda_pdw_gls_insp_detail_b9;
+ALTER TABLE masdapdw.tb_fda_pdw_gls_insp_detail_bk RENAME TO tb_fda_pdw_gls_insp_detail;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_detail_b9;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_detail;
+INSERT INTO masdapdw.tb_fda_pdw_gls_insp_pnl_detail_bk SELECT * FROM masdapdw.tb_fda_pdw_gls_insp_pnl_detail;
+ALTER TABLE masdapdw.tb_fda_pdw_gls_insp_pnl_detail RENAME TO tb_fda_pdw_gls_insp_pnl_detail_b9;
+ALTER TABLE masdapdw.tb_fda_pdw_gls_insp_pnl_detail_bk RENAME TO tb_fda_pdw_gls_insp_pnl_detail;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_pnl_detail_b9;
+SELECT count(*) FROM masdapdw.tb_fda_pdw_gls_insp_pnl_detail;

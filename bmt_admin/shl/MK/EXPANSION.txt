@@ -1,0 +1,71 @@
+1. expansion을 위한 database 생성
+$ createdb expansion
+
+2.추가되는 segment 노드 
+sdw9
+sdw10
+sdw11
+sdw12
+
+3 standby master 제거 (1 min)
+$ gpinitstandby -r    (참고: 잘 안 죽으면 [gpadmin@mdw bmt]$ gpinitstandby -r -M fast)
+                      (참고: gpstate)
+
+4.증설 (카탈로그 신규 서버에 Copy, Offline)
+$ gpexpand -f new_host_file -D expansion
+
+5. 증설 작업 (이때 카탈로그 테이블 이관함) (이 부분이 offline이다.)
+$ gpexpand -i gpexpand_inputfile_20130227_101112 -D expansion
+이 작업 후에 바로 gpexpand 작업이 들어가야 하며 db restart등 하면 안 된다.
+
+6. gpexpand (분산작업)
+$ gpexpand -D expansion -n 8
+
+7. 진행 상황 확인
+$ psql -d expansion
+# select * from gpexpand.expansion_progress;
+# SELECT status, expansion_started, source_bytes FROM gpexpand.status_detail ;
+
+8. 롤백 
+$ gpexpand -r -D expansion
+$ gpstop -af
+$ gpstart -a
+
+
+
+
+
+
+
+------------------------------------------------------------------------
+시스템 증설 전
+------------------------------------------------------------------------
+
+[gpadmin@mdw ~]$ psql
+psql (8.2.15)
+Type "help" for help.
+
+masda=# select 'masda' dbname, pg_size_pretty(pg_Database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | 6079 GB
+(1 row)
+
+
+
+------------------------------------------------------------------------
+시스템 증설 후 : DB 사이즈가 줄어든 것은 vacuum 작업이 있게되고 확장전 delete 마크된 것이 실제로 삭제되기 때문이다.
+------------------------------------------------------------------------
+분산 START : 20130305:14:37:52:001831
+분산 END   : 20130305:15:33:03:015328
+
+[gpadmin@mdw ~]$ psql
+psql (8.2.15)
+Type "help" for help.
+
+masda=# select 'masda' dbname, pg_size_pretty(pg_Database_size('masda'));
+ dbname | pg_size_pretty 
+--------+----------------
+ masda  | 5689 GB
+(1 row)
+

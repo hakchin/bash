@@ -1,0 +1,47 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+###### query start
+echo "========================= Disk infomation ========================" > $LOGFILE
+df -k >> $LOGFILE
+echo "==================================================================" >> $LOGFILE
+
+echo "========================= User information =======================" >> $LOGFILE
+psql -U gpadmin -ec "show all;" >> $LOGFILE 
+echo "==================================================================" >> $LOGFILE
+
+echo "========================= User information =======================" >> $LOGFILE
+psql -U gpadmin -ec "select usename, useconfig from pg_catalog.pg_user;" >> $LOGFILE 
+echo "==================================================================" >> $LOGFILE
+
+echo "========================= table infomation =======================" >> $LOGFILE
+psql -ec "select * from pg_tables where schemaname in ('admin') and tablename not like '%_prt_%' order by schemaname, tablename;" >> $LOGFILE
+echo "==================================================================" >> $LOGFILE
+
+
+echo "========================= index infomation =======================" >> $LOGFILE
+psql -ec "select tablename, indexname, indexdef  from pg_indexes where schemaname in ('shinsegaepdm', 'shinsegaepdw', 'admin', 'shinsegaecmn');" >> $LOGFILE
+echo "==================================================================" >> $LOGFILE
+
+echo "========================= Database size check ====================" >> $LOGFILE
+psql -ec "select 'shinsegae' dbname, pg_size_pretty(pg_Database_size('shinsegae'));" >> $LOGFILE
+echo "==================================================================" >> $LOGFILE
+
+ls -l $SHLDIR >> $LOGFILE
+ls -l $SQLDIR   >> $LOGFILE
+ls -l $LOGDIR   >> $LOGFILE
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1

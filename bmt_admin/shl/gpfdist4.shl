@@ -1,0 +1,37 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+
+gpssh -h etl3 "pkill gpfdist"
+sleep 1
+gpssh -h etl3 "gpfdist -d /data/bmt/dat -p 8091 -l /data/bmt/log/gpfdist8091.log &"
+gpssh -h etl3 "gpfdist -d /data/bmt/dat -p 8092 -l /data/bmt/log/gpfdist8092.log &"
+gpssh -h etl3 "gpfdist -d /data/bmt/dat -p 8093 -l /data/bmt/log/gpfdist8093.log &"
+gpssh -h etl3 "gpfdist -d /data/bmt/dat -p 8094 -l /data/bmt/log/gpfdist8094.log &"
+gpssh -h etl3 "gpfdist -d /data/bmt/dat -p 8095 -l /data/bmt/log/gpfdist8095.log &"
+
+########################################################################
+
+#pkill gpfdist
+#sleep 1
+#gpfdist -d /fileserver/bmt_admin/dat1 -p 8091 -l /fileserver/bmt_admin/log/gpfdist8091.log &
+#gpfdist -d /fileserver/bmt_admin/dat1 -p 8092 -l /fileserver/bmt_admin/log/gpfdist8092.log &
+#gpfdist -d /fileserver/bmt_admin/dat2 -p 8191 -l /fileserver/bmt_admin/log/gpfdist8191.log &
+#gpfdist -d /fileserver/bmt_admin/dat2 -p 8192 -l /fileserver/bmt_admin/log/gpfdist8192.log &
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+

@@ -1,0 +1,42 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+SELECT count(*) FROM sdmin.co_code_dtl;
+SELECT count(*) FROM sdmin.co_olap_date;
+SELECT count(*) FROM sdmin.co_yn;
+SELECT count(*) FROM sdmin.cu_vendor;
+SELECT count(*) FROM sdmin.dm_campaign_cust_effect;
+SELECT count(*) FROM sdmin.dm_order_dtl_fact;
+SELECT count(*) FROM sdmin.mk_uc_campaign_dtl;
+SELECT count(*) FROM sdmin.mk_uc_campaign_effect_goal;
+SELECT count(*) FROM sdmin.olap_co_b2e_channel;
+SELECT count(*) FROM sdmin.olap_disp_ctg_connect;
+SELECT count(*) FROM sdmin.olap_or_buyer;
+SELECT count(*) FROM sdmin.pd_brand;
+SELECT count(*) FROM sdmin.pd_disp_ctg;
+SELECT count(*) FROM sdmin.pd_disp_ctg_6_level;
+SELECT count(*) FROM sdmin.pd_item;
+SELECT count(*) FROM sdmin.pd_std_dtl_ctg;
+SELECT count(*) FROM sdmin.pd_std_large_ctg;
+SELECT count(*) FROM sdmin.pd_std_middle_ctg;
+SELECT count(*) FROM sdmin.pd_std_small_ctg;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

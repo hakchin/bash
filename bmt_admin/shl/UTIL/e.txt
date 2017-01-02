@@ -1,0 +1,2 @@
+cat /home/gpadmin/bmt/dat/bmtsample/CRM_DM_CAMPAIGN_CUST_EFFECT.TXT | awk -F"|" '{print $14}'
+gpload -f DM_CAMPAIGN_CUST_EFFECT.yml -v > ../log/DM_CAMPAIGN_CUST_EFFECT.out 2>&1

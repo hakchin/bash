@@ -1,0 +1,38 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+
+while [ true ];
+do
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+
+INSERT INTO DM_ORDER_DTL_FACT
+SELECT * FROM INS_SET_DM_ORDER_DTL_FACT
+
+!
+
+sleep 0.5
+
+done
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

@@ -1,0 +1,55 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=${0}
+LOGDIR=../../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d hanwha -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+SET search_path=sdmin, sdmin_err, public, pg_catalog, oracompat;
+
+ANALYZE cus_ctm (ctmno);
+ANALYZE ins_incm_prm (ppdt);
+ANALYZE ins_incm_prm (ikd_grpcd);
+ANALYZE ins_ins_cr (ikd_grpcd);
+ANALYZE ins_cr_dh_stf_crr (ikd_grpcd);
+ANALYZE ins_cr_relpc (ikd_grpcd);
+ANALYZE sam_incm_prm_bz_av (ikd_grpcd);
+ANALYZE ins_cr_cvr (ikd_grpcd);
+ANALYZE m_lcr_ltrm_incm_prm (pvl_yymm);
+ANALYZE cls_ltrm_cvr_rnd_prm (cls_yymm);
+ANALYZE cls_ltrm_mnrt (cls_yymm);
+ANALYZE ins_cr_cvr (plyno);
+
+
+ANALYZE adm_dw_wrk_rst (dw_wrknm);
+
+ANALYZE cus_ctm_p01 (ctmno);
+ANALYZE ins_incm_prm_p01 (ppdt);
+ANALYZE ins_incm_prm_p01 (ikd_grpcd);
+ANALYZE ins_ins_cr_p01 (ikd_grpcd);
+ANALYZE ins_cr_dh_stf_crr_p01 (ikd_grpcd);
+ANALYZE ins_cr_relpc_p01 (ikd_grpcd);
+ANALYZE sam_incm_prm_bz_av_p01 (ikd_grpcd);
+ANALYZE ins_cr_cvr_p01 (ikd_grpcd);
+ANALYZE m_lcr_ltrm_incm_prm_p01 (pvl_yymm);
+ANALYZE cls_ltrm_cvr_rnd_prm_p01 (cls_yymm);
+ANALYZE cls_ltrm_mnrt_p01 (cls_yymm);
+ANALYZE ins_cr_cvr_p01 (plyno);
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

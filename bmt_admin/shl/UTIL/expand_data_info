@@ -1,0 +1,10 @@
+-- 8 years data
+SELECT to_char(('20120229'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) as std_date
+from GENERATE_SERIES(1,2921) i
+order by 1 desc;
+
+-- 4 years data
+SELECT to_char(('20120229'::timestamp - (interval '1 day' * i)), 'yyyymmdd')::character varying(8) as std_date
+from GENERATE_SERIES(1,1460) i
+order by 1 desc;
+

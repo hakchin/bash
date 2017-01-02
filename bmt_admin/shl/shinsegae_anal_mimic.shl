@@ -1,0 +1,21 @@
+psql -U letl <<!
+
+drop table if exists sdmin.${1}_bk;
+
+create table sdmin.${1}_bk 
+as
+select * from sdmin.${1};
+
+truncate table sdmin.${1};
+
+insert into sdmin.${1}
+select * from sdmin.${1}_bk
+limit 1;
+
+analyze sdmin.${1};
+delete from sdmin.${1};
+
+insert into sdmin.${1}
+select * from sdmin.${1}_bk;
+
+!

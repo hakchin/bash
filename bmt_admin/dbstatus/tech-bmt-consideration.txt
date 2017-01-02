@@ -1,0 +1,8 @@
+------------------------------------------------------------------------
+BMT Consideratin
+------------------------------------------------------------------------
+1. AUTO STAT
+gp_autostats_mode 를 체크할 것
+ 
+2. WORK FILE Compressioin
+gp_workfile_compress_algorithm =(none|zlib)

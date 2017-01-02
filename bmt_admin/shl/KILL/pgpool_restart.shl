@@ -1,0 +1,11 @@
+sh /usr/local/greenplum-db/bin/pgpool_stop.sh
+sleep 1
+rm /tmp/pgpool.pid
+sleep 1
+pkill -11 pgpool
+sleep 1
+sh /usr/local/greenplum-db/bin/pgpool_start.sh
+sleep 1
+psql -p 9999 -c 'SELECT now();'
+sleep 1
+psql -p 9999 -c 'SELECT now();'

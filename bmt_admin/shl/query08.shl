@@ -1,0 +1,35 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+UPDATE DM_ORDER_DTL_FACT A
+SET BUY_AMT = 0, BUY_QTY = 0
+FROM INS_SET_DM_ORDER_DTL_FACT B
+WHERE EXISTS (
+SELECT 1 FROM INS_SET_DM_ORDER_DTL_FACT B WHERE A.ORDER_ID = B.ORDER_ID) 
+AND A.ORDER_DATE > TO_CHAR(TO_DATE('20130417','YYYYMMDD')-7,'YYYYMMDD'
+);
+
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

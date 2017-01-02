@@ -1,0 +1,58 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+CREATE INDEX tb_fda_pdw_gls_insp_pnl_detail_ix2
+  ON masdapdw.tb_fda_pdw_gls_insp_pnl_detail
+  USING btree
+  (etl_insert_update_timestamp);
+
+CREATE INDEX tb_fda_inf_ea_def_cf_def_detail_ix1
+  ON masdainf.tb_fda_inf_ea_def_cf_def_detail
+  USING btree
+  (etl_insert_update_timestamp)
+
+CREATE INDEX tb_fda_inf_ea_def_tft_def_h_ix1
+  ON tb_fda_inf_ea_def_tft_def_h
+  USING btree
+  (etl_insert_update_timestamp);
+
+CREATE INDEX TB_FDA_INF_EA_SPC_POINT_H_ix1
+  ON MASDAINF.TB_FDA_INF_EA_SPC_POINT_H
+  USING btree
+  (etl_insert_update_timestamp)
+
+CREATE INDEX TB_FDA_INF_MG_MOD_PROD_PROCESS_H_ix1
+  ON MASDAINF.TB_FDA_INF_MG_MOD_PROD_PROCESS_H
+  USING btree
+  (etl_insert_update_timestamp)
+
+CREATE INDEX TB_FDA_INF_EA_DEF_CELL_AF_PNL_DETAIL_ix1
+  ON MASDAINF.TB_FDA_INF_EA_DEF_CELL_AF_PNL_DETAIL
+  USING btree
+  (etl_insert_update_timestamp)
+
+CREATE INDEX tb_fda_inf_ea_apd_pre_prcs_ix1
+  ON masdainf.tb_fda_inf_ea_apd_pre_prcs
+  USING btree
+  (etl_insert_update_timestamp)
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

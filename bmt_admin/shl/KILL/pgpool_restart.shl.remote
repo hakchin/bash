@@ -1,0 +1,11 @@
+ssh gpadmin@10.35.106.180 'export GPHOME=/usr/local/greenplum-db/ ; sh /usr/local/greenplum-db/bin/pgpool_stop.sh'
+sleep 1
+ssh gpadmin@10.35.106.180 'export GPHOME=/usr/local/greenplum-db/ ; rm /tmp/pgpool.pid'
+sleep 1
+ssh gpadmin@10.35.106.180 'export GPHOME=/usr/local/greenplum-db/ ; pkill -11 pgpool'
+sleep 1
+ssh gpadmin@10.35.106.180 'export GPHOME=/usr/local/greenplum-db/ ; sh /usr/local/greenplum-db/bin/pgpool_start.sh'
+sleep 1
+psql -h 10.35.106.180 -p 9999 -c 'SELECT now();'
+sleep 1
+psql -h 10.35.106.180 -p 9999 -c 'SELECT now();'

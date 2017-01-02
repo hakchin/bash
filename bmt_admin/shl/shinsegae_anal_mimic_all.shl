@@ -1,0 +1,22 @@
+#query1
+sh shinsegae_anal_mimic.shl pd_disp_ctg
+sh shinsegae_anal_mimic.shl pd_disp_ctg_6_level
+
+# query2
+sh shinsegae_anal_mimic.shl co_code_dtl
+#sh shinsegae_anal_mimic.shl olap_disp_ctg_connect
+
+# query3
+sh shinsegae_anal_mimic.shl pd_brand
+sh shinsegae_anal_mimic.shl cu_vendor
+sh shinsegae_anal_mimic.shl olap_or_buyer
+
+# query4
+sh shinsegae_anal_mimic.shl pd_std_dtl_ctg
+sh shinsegae_anal_mimic.shl pd_std_small_ctg
+sh shinsegae_anal_mimic.shl pd_std_middle_ctg
+sh shinsegae_anal_mimic.shl pd_std_large_ctg
+
+# query5
+sh shinsegae_anal_mimic.shl mk_uc_campaign_dtl
+sh shinsegae_anal_mimic.shl mk_uc_campaign_effect_goal

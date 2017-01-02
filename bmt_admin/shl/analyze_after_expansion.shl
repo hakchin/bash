@@ -1,0 +1,38 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=$0
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment nodemaster
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+ANALYZE masdacmn.tb_dda_cmn_condition_m(factory_code, condition_name, process_code);
+ANALYZE masdainf.tb_fda_inf_ea_apd_detail(equipment_group_id, receive_ymdhms, apd_seq_no, apd_data_id);
+ANALYZE masdapdm.tb_fda_pdm_product_h_s(product_id);
+ANALYZE masdapdm.tb_fda_pdm_product_m(product_id);
+ANALYZE masdapdm.tb_fda_pdm_product_prog_insp_h(progress_product_id);
+ANALYZE masdapdm.tb_fda_pdm_product_prog_insp_h_scale_up(progress_product_id);
+ANALYZE masdapdm.tb_fda_pdm_product_prog_insp_h_t1(progress_product_id);
+ANALYZE masdapdw.tb_fda_pdw_apd_detail(product_id);
+ANALYZE masdapdw.tb_fda_pdw_apd_detail_t(product_id);
+ANALYZE masdapdw.tb_fda_pdw_product_h(product_id);
+-------------------------------------------------------
+ANALYZE masdapdw.tb_fda_pdw_apd_detail_scale_up(product_id);
+ANALYZE MASDAPDW.TB_FDA_PDW_APD_H(product_id);                        ;
+ANALYZE masdapdw.tb_fda_pdw_gls_insp_flag(glass_id);
+ANALYZE masdapdw.tb_fda_pdw_gls_insp_h(glass_id);
+ANALYZE masdapdw.tb_fda_pdw_gls_insp_h_scale_up(glass_id);
+!
+###### query end
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

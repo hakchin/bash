@@ -1,0 +1,40 @@
+Timing is on.
+Timing is on.
+SELECT count(*) FROM card_flc_mihando ;
+ count 
+-------
+     0
+(1 row)
+
+Time: 33.043 ms
+SELECT count(*) FROM comm_br_brch     ;
+ count 
+-------
+     0
+(1 row)
+
+Time: 34.169 ms
+SELECT count(*) FROM card_flc_mst     ;
+ count 
+-------
+     0
+(1 row)
+
+Time: 31.559 ms
+SELECT count(*) FROM audt_ja_confirm  ;
+ERROR:  permission denied for relation audt_ja_confirm
+SELECT count(*) FROM acnt_ac_code     ;
+ERROR:  permission denied for relation acnt_ac_code
+SELECT count(*) FROM cust_ba_base     ;
+ count 
+-------
+     0
+(1 row)
+
+Time: 22.827 ms
+SELECT count(*) FROM cust_ba_juso     ;
+ERROR:  permission denied for relation cust_ba_juso
+SELECT count(*) FROM depo_ac_comm     ;
+ERROR:  permission denied for relation depo_ac_comm
+black_memqcache_table_list_count.shl:Start Time:2013-05-21 20:27:53
+black_memqcache_table_list_count.shl:End Time  :2013-05-21 20:27:54

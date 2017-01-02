@@ -1,0 +1,26 @@
+#!/bin/bash
+# to shutdown master segment
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1
+
+echo $SHELLFILE":Start Time:"$START_TM1 >  $LOGFILE
+
+###### query start
+su - gpadmin -c "gpactivatestandby -d /data/master/gpxeg-1 -a -q -f "
+
+su - gpadmin -c "gpstart -a -q "
+#exit 0
+wait
+
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

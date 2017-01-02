@@ -1,0 +1,103 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+SET search_path=sdmin;
+CREATE TABLE dm_order_dtl_fact_b (LIKE dm_order_dtl_fact)
+-- DISTRIBUTED BY (order_id ,item_id ,unit_id ,payment_finish_date_i)
+-- DISTRIBUTED BY (order_id)
+DISTRIBUTED BY (order_id)
+
+PARTITION BY RANGE(payment_finish_date_i)
+(
+PARTITION p200503 START ('20050301'::bigint) INCLUSIVE END ('20050501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200505 START ('20050501'::bigint) INCLUSIVE END ('20050701'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200507 START ('20050701'::bigint) INCLUSIVE END ('20050901'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200509 START ('20050901'::bigint) INCLUSIVE END ('20051101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200511 START ('20051101'::bigint) INCLUSIVE END ('20060101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+PARTITION p200601 START ('20060101'::bigint) INCLUSIVE END ('20060301'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200603 START ('20060301'::bigint) INCLUSIVE END ('20060501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200605 START ('20060501'::bigint) INCLUSIVE END ('20060701'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200607 START ('20060701'::bigint) INCLUSIVE END ('20060901'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200609 START ('20060901'::bigint) INCLUSIVE END ('20061101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200611 START ('20061101'::bigint) INCLUSIVE END ('20070101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+PARTITION p200701 START ('20070101'::bigint) INCLUSIVE END ('20070301'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200703 START ('20070301'::bigint) INCLUSIVE END ('20070501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200705 START ('20070501'::bigint) INCLUSIVE END ('20070701'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200707 START ('20070701'::bigint) INCLUSIVE END ('20070901'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200709 START ('20070901'::bigint) INCLUSIVE END ('20071101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200711 START ('20071101'::bigint) INCLUSIVE END ('20080101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+PARTITION p200801 START ('20080101'::bigint) INCLUSIVE END ('20080301'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200803 START ('20080301'::bigint) INCLUSIVE END ('20080501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200805 START ('20080501'::bigint) INCLUSIVE END ('20080701'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200807 START ('20080701'::bigint) INCLUSIVE END ('20080901'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200809 START ('20080901'::bigint) INCLUSIVE END ('20081101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200811 START ('20081101'::bigint) INCLUSIVE END ('20090101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+PARTITION p200901 START ('20090101'::bigint) INCLUSIVE END ('20090301'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200903 START ('20090301'::bigint) INCLUSIVE END ('20090501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200905 START ('20090501'::bigint) INCLUSIVE END ('20090701'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200907 START ('20090701'::bigint) INCLUSIVE END ('20090901'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200909 START ('20090901'::bigint) INCLUSIVE END ('20091101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p200911 START ('20091101'::bigint) INCLUSIVE END ('20100101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+PARTITION p201001 START ('20100101'::bigint) INCLUSIVE END ('20100301'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201003 START ('20100301'::bigint) INCLUSIVE END ('20100501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201005 START ('20100501'::bigint) INCLUSIVE END ('20100701'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201007 START ('20100701'::bigint) INCLUSIVE END ('20100901'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201009 START ('20100901'::bigint) INCLUSIVE END ('20101101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201011 START ('20101101'::bigint) INCLUSIVE END ('20110101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+PARTITION p201101 START ('20110101'::bigint) INCLUSIVE END ('20110301'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201103 START ('20110301'::bigint) INCLUSIVE END ('20110501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201105 START ('20110501'::bigint) INCLUSIVE END ('20110701'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201107 START ('20110701'::bigint) INCLUSIVE END ('20110901'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201109 START ('20110901'::bigint) INCLUSIVE END ('20111101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201111 START ('20111101'::bigint) INCLUSIVE END ('20120101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+PARTITION p201201 START ('20120101'::bigint) INCLUSIVE END ('20120301'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201203 START ('20120301'::bigint) INCLUSIVE END ('20120501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201205 START ('20120501'::bigint) INCLUSIVE END ('20120701'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201207 START ('20120701'::bigint) INCLUSIVE END ('20120901'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201209 START ('20120901'::bigint) INCLUSIVE END ('20121101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201211 START ('20121101'::bigint) INCLUSIVE END ('20130101'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+PARTITION p201301 START ('20130101'::bigint) INCLUSIVE END ('20130301'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+PARTITION p201303 START ('20130301'::bigint) INCLUSIVE END ('20130501'::bigint) EXCLUSIVE WITH (orientation=column, appendonly=true,  compresslevel=5, compresstype=zlib),
+
+DEFAULT PARTITION pdefault
+);
+
+
+INSERT INTO dm_order_dtl_fact_b
+SELECT * FROM dm_order_dtl_fact;
+
+
+ALTER TABLE dm_order_dtl_fact   RENAME TO dm_order_dtl_fact_bk;
+ALTER TABLE dm_order_dtl_fact_b RENAME TO dm_order_dtl_fact;
+
+VACUUM ANALYZE dm_order_dtl_fact;
+;
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

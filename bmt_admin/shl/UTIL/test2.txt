@@ -1,0 +1,21 @@
+ANALYZE ins_ins_cr;
+ANALYZE ins_ins_cr_p01;
+ANALYZE ins_ins_cr_p02;
+ANALYZE ins_ins_cr_p03;
+ANALYZE ins_ins_cr_p04;
+ANALYZE ins_ins_cr_p05;
+ANALYZE ins_ins_cr_p06;
+ANALYZE ins_ins_cr_p07;
+ANALYZE ins_ins_cr_p08;
+ANALYZE ins_ins_cr_p09;
+ANALYZE ins_cr_dh_stf_crr;
+ANALYZE ins_cr_dh_stf_crr_p01;
+ANALYZE ins_cr_dh_stf_crr_p02;
+ANALYZE ins_cr_dh_stf_crr_p03;
+ANALYZE ins_cr_dh_stf_crr_p04;
+ANALYZE ins_cr_dh_stf_crr_p05;
+ANALYZE ins_cr_dh_stf_crr_p06;
+ANALYZE ins_cr_dh_stf_crr_p07;
+ANALYZE ins_cr_dh_stf_crr_p08;
+ANALYZE ins_cr_dh_stf_crr_p09;
+

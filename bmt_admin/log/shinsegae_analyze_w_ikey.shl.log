@@ -1,0 +1,81 @@
+Timing is on.
+SET search_path=sdmin, sdmin_err, public, pg_catalog, oracompat;
+SET
+Time: 659.186 ms
+ANALYZE cus_ctm (ctmno);
+ANALYZE
+Time: 941.678 ms
+ANALYZE ins_incm_prm (ppdt);
+ANALYZE
+Time: 10665.523 ms
+ANALYZE ins_incm_prm (ikd_grpcd);
+ANALYZE
+Time: 2956.742 ms
+ANALYZE ins_ins_cr (ikd_grpcd);
+ANALYZE
+Time: 3096.478 ms
+ANALYZE ins_cr_dh_stf_crr (ikd_grpcd);
+ANALYZE
+Time: 2561.677 ms
+ANALYZE ins_cr_relpc (ikd_grpcd);
+ANALYZE
+Time: 6948.803 ms
+ANALYZE sam_incm_prm_bz_av (ikd_grpcd);
+ANALYZE
+Time: 6842.944 ms
+ANALYZE ins_cr_cvr (ikd_grpcd);
+ANALYZE
+Time: 23902.364 ms
+ANALYZE m_lcr_ltrm_incm_prm (pvl_yymm);
+ANALYZE
+Time: 1562.539 ms
+ANALYZE cls_ltrm_cvr_rnd_prm (cls_yymm);
+ANALYZE
+Time: 5840.699 ms
+ANALYZE cls_ltrm_mnrt (cls_yymm);
+ANALYZE
+Time: 14183.964 ms
+ANALYZE ins_cr_cvr (plyno);
+ANALYZE
+Time: 16215.493 ms
+ANALYZE adm_dw_wrk_rst (dw_wrknm);
+ANALYZE
+Time: 107.684 ms
+ANALYZE cus_ctm_p01 (ctmno);
+ANALYZE
+Time: 703.340 ms
+ANALYZE ins_incm_prm_p01 (ppdt);
+ANALYZE
+Time: 10090.799 ms
+ANALYZE ins_incm_prm_p01 (ikd_grpcd);
+ANALYZE
+Time: 3113.068 ms
+ANALYZE ins_ins_cr_p01 (ikd_grpcd);
+ANALYZE
+Time: 3041.691 ms
+ANALYZE ins_cr_dh_stf_crr_p01 (ikd_grpcd);
+ANALYZE
+Time: 2537.735 ms
+ANALYZE ins_cr_relpc_p01 (ikd_grpcd);
+ANALYZE
+Time: 6310.757 ms
+ANALYZE sam_incm_prm_bz_av_p01 (ikd_grpcd);
+ANALYZE
+Time: 6618.864 ms
+ANALYZE ins_cr_cvr_p01 (ikd_grpcd);
+ANALYZE
+Time: 21140.046 ms
+ANALYZE m_lcr_ltrm_incm_prm_p01 (pvl_yymm);
+ANALYZE
+Time: 6037.482 ms
+ANALYZE cls_ltrm_cvr_rnd_prm_p01 (cls_yymm);
+ANALYZE
+Time: 47404.468 ms
+ANALYZE cls_ltrm_mnrt_p01 (cls_yymm);
+ANALYZE
+Time: 17822.865 ms
+ANALYZE ins_cr_cvr_p01 (plyno);
+ANALYZE
+Time: 21249.726 ms
+shinsegae_analyze_w_ikey.shl:Start Time:2013-05-09 13:40:11
+shinsegae_analyze_w_ikey.shl:End Time  :2013-05-09 13:44:14

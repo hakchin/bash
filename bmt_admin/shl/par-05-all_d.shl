@@ -1,0 +1,30 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+SRCDIR=../src
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+###### query start
+
+###{ Partition Exchange for masdapdw.tb_fda_pdw_gls_insp_def_h 
+sh par-05-backup_d.shl
+sh par-05-create_empty_table.shl
+sh par-05-count-before_exchange.shl
+sh par-05-exchange.shl
+sh par-05-count-after_exchange.shl
+sh par-05-drop_table.shl
+###} Partition Exchange for masdapdw.tb_fda_pdw_gls_insp_def_h 
+
+###### query end
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 > $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

@@ -1,0 +1,25 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+SQLDIR=../sql/ddl_3
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d uec -ef $SQLDIR"/"m_lcr_ltrm_incm_prm_bmt.sql   >  $LOGFILE 2>&1 
+psql -U letl -d uec -ef $SQLDIR"/"m_sam_ltrm_mn_cr_crst_bmt.sql >> $LOGFILE 2>&1
+psql -U letl -d uec -ef $SQLDIR"/"m_sam_w2_aw_chln_crst_bmt.sql >> $LOGFILE 2>&1
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

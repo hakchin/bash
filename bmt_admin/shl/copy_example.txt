@@ -1,0 +1,4 @@
+COPY masdapdw.tb_fda_pdw_apd_detail          TO '/data/dat/tb_fda_pdw_apd_detail.csv'          WITH DELIMITER ',' NULL '' CSV;
+
+COPY masdapdw.tb_fda_pdw_apd_detail          FROM '/data/dat/tb_fda_pdw_apd_detail.csv'          WITH DELIMITER ',' NULL '' CSV;
+

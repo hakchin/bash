@@ -1,0 +1,117 @@
+CREATE TABLE sam_aw_py_spc
+(
+  stfno character(7) NOT NULL, -- 직원번호
+  pydt date NOT NULL, -- 지급일자
+  prpt_av_yymm character(6) NOT NULL, -- 비례성실적년월
+  nprpn_av_yymm character(6) NOT NULL, -- 비비례성실적년월
+  psgcd character(7) NOT NULL, -- 소속기관코드
+  cm_aw_t_uramt numeric(15) NOT NULL, -- 당월수당총발생금액
+  prpt_aw_smamt numeric(15) NOT NULL, -- 비례성수당합계금액
+  nprpn_aw_smamt numeric(15) NOT NULL, -- 비비례성수당합계금액
+  ltrm_aw_smamt numeric(15) NOT NULL, -- 장기수당합계금액
+  gn_aw_smamt numeric(15) NOT NULL, -- 일반수당합계금액
+  cr_aw_smamt numeric(15) NOT NULL, -- 자동차수당합계금액
+  ltrm_tm_gdce_awamt numeric(15) NOT NULL, -- 장기TM상품모집수당금액
+  ltrm_bncgd_ce_awamt numeric(15) NOT NULL, -- 장기방카상품모집수당금액
+  ltrm_gnte_ce_awamt numeric(15) NOT NULL, -- 장기보장성모집수당금액
+  ltrm_cumt_ce_awamt numeric(15) NOT NULL, -- 장기적립성모집수당금액
+  ltrm_tm_gscmn_awamt numeric(15) NOT NULL, -- 장기TM상품본인계약유지수당금액
+  ltrm_tm_gsamn_awamt numeric(15) NOT NULL, -- 장기TM상품타인계약유지수당금액
+  ltrm_bncgd_scrmn_awamt numeric(15) NOT NULL, -- 장기방카상품본인계약유지수당금액
+  ltrm_bncgd_ncrmn_awamt numeric(15) NOT NULL, -- 장기방카상품타인계약유지수당금액
+  ltrm_gnte_scrmn_awamt numeric(15) NOT NULL, -- 장기보장성본인계약유지수당금액
+  ltrm_gnte_ncrmn_awamt numeric(15) NOT NULL, -- 장기보장성타인계약유지수당금액
+  ltrm_cumt_scrmn_awamt numeric(15) NOT NULL, -- 장기적립성본인계약유지수당금액
+  ltrm_cumt_ncrmn_awamt numeric(15) NOT NULL, -- 장기적립성타인계약유지수당금액
+  ltrm_tm_gdcm_awamt numeric(15) NOT NULL, -- 장기TM상품수금수당금액
+  ltrm_bncgd_cm_awamt numeric(15) NOT NULL, -- 장기방카상품수금수당금액
+  ltrm_cm_awamt numeric(15) NOT NULL, -- 장기수금수당금액
+  ltrm_ce_ou_awamt numeric(15) NOT NULL, -- 장기모집성과수당금액
+  ltrm_mn_ou_awamt numeric(15) NOT NULL, -- 장기유지성과수당금액
+  rtman_ce_aw numeric(15) NOT NULL, -- 퇴직연금모집수당금액
+  rtman_self_cr_mnaw numeric(15) NOT NULL, -- 퇴직연금본인계약유지수당
+  rtman_anpe_cr_mnaw numeric(15) NOT NULL, -- 퇴직연금타인계약유지수당
+  ltrm_nrins_ce_aw numeric(15) NOT NULL, -- 장기통합보험모집수당
+  ltrm_nrins_self_mnaw numeric(15) NOT NULL, -- 장기통합보험본인유지수당
+  ltrm_nrins_anpe_mnaw numeric(15) NOT NULL, -- 장기통합보험타인유지수당
+  ltrm_nrins_cm_aw numeric(15) NOT NULL, -- 장기통합보험수금수당
+  cr_gnbcs_bznrp_awamt numeric(15) NOT NULL, -- 자동차일반물건비사업용책임수당금액
+  cr_gnbcs_bznop_awamt numeric(15) NOT NULL, -- 자동차일반물건비사업용임의수당금액
+  cr_gnb_bznrp_awamt numeric(15) NOT NULL, -- 자동차일반물건사업용책임수당금액
+  cr_gnb_bznop_awamt numeric(15) NOT NULL, -- 자동차일반물건사업용임의수당금액
+  cr_co_obj_awamt numeric(15) NOT NULL, -- 자동차공동물건수당금액
+  bnc_hse_awamt numeric(15) NOT NULL, -- 방카가계성수당금액
+  bncrt_hse_awamt numeric(15) NOT NULL, -- 방카비가계성수당금액
+  fire_hse_awamt numeric(15) NOT NULL, -- 화재가계성수당금액
+  fire_nhsec_awamt numeric(15) NOT NULL, -- 화재비가계성수당금액
+  spc_hse_awamt numeric(15) NOT NULL, -- 특종가계성수당금액
+  spc_nhsec_awamt numeric(15) NOT NULL, -- 특종비가계성수당금액
+  marne_hse_awamt numeric(15) NOT NULL, -- 해상가계성수당금액
+  marne_nhsec_awamt numeric(15) NOT NULL, -- 해상비가계성수당금액
+  cm_po_cr_tamt numeric(15) NOT NULL, -- 당월시책발생총액
+  pvpy_poamt numeric(15) NOT NULL, -- 기지급시책금액
+  ltrm_poamt numeric(15) NOT NULL, -- 장기시책금액
+  gn_poamt numeric(15) NOT NULL, -- 일반시책금액
+  cr_poamt numeric(15) NOT NULL, -- 자동차시책금액
+  orgn_poamt numeric(15) NOT NULL, -- 조직시책금액
+  et_poamt numeric(15) NOT NULL, -- 기타시책금액
+  payup_poamt numeric(15) NOT NULL, -- PAYUP시책금액
+  purt_ltrm_nwcrc_aw numeric(15) NOT NULL, -- 순수장기신계약모집수당
+  cult_nwcr_ce_aw numeric(15) NOT NULL, -- 적립장기신계약모집수당
+  anlt_nwcr_ce_aw numeric(15) NOT NULL, -- 연금장기신계약모집수당
+  purlt_nwcr_mn_aw numeric(15) NOT NULL, -- 순수장기신계약유지수당
+  cult_nwcr_mn_aw numeric(15) NOT NULL, -- 적립장기신계약유지수당
+  anlt_nwcr_mn_aw numeric(15) NOT NULL, -- 연금장기신계약유지수당
+  purlt_ctu_ce_aw numeric(15) NOT NULL, -- 순수장기계속모집수당
+  cult_ctu_ce_aw numeric(15) NOT NULL, -- 적립장기계속모집수당
+  anlt_ctu_ce_aw numeric(15) NOT NULL, -- 연금장기계속모집수당
+  purlt_ctu_mn_aw numeric(15) NOT NULL, -- 순수장기계속유지수당
+  cult_ctu_mn_aw numeric(15) NOT NULL, -- 적립장기계속유지수당
+  anlt_ctu_mn_aw numeric(15) NOT NULL, -- 연금장기계속유지수당
+  purlt_cm_aw numeric(15) NOT NULL, -- 순수장기수금수당
+  cult_cm_aw numeric(15) NOT NULL, -- 적립장기수금수당
+  anlt_cm_aw numeric(15) NOT NULL, -- 연금장기수금수당
+  purlt_frdc_aw numeric(15) NOT NULL, -- 순수장기선공제수당
+  cult_frdc_aw numeric(15) NOT NULL, -- 적립장기선공제수당
+  anlt_frdc_aw numeric(15) NOT NULL, -- 연금장기선공제수당
+  purlt_nwcr_xclk_aw numeric(15) NOT NULL, -- 순수장기신계약과부족수당
+  cult_nwcr_xclk_aw numeric(15) NOT NULL, -- 적립장기신계약과부족수당
+  anlt_nwcr_xclk_aw numeric(15) NOT NULL, -- 연금장기신계약과부족수당
+  cm_dc_bjamt numeric(15) NOT NULL, -- 당월공제대상금액
+  ltrm_bll_rsamt numeric(15) NOT NULL, -- 장기어음보류금액
+  cr_bll_rsamt numeric(15) NOT NULL, -- 자동차어음보류금액
+  gn_bll_rsamt numeric(15) NOT NULL, -- 일반어음보류금액
+  mdem_ntl_uiamt numeric(15) NOT NULL, -- 모뎀설치공제금액
+  rcamt numeric(15) NOT NULL, -- 환수금액
+  ictx numeric(15) NOT NULL, -- 소득세
+  rstx numeric(15) NOT NULL, -- 주민세
+  gu_tzamt numeric(15) NOT NULL, -- 구가압류금액
+  nw_tzamt numeric(15) NOT NULL, -- 신가압류금액
+  ictx_rtamt numeric(15) NOT NULL, -- 소득세환급금액
+  rstx_rtamt numeric(15) NOT NULL, -- 주민세환급금액
+  prm_slr_tf_uiamt numeric(15) NOT NULL, -- 보험료급여이체공제금액
+  ln_uiamt numeric(15) NOT NULL, -- 대출공제금액
+  idnty_gu_prm_uiamt numeric(15) NOT NULL, -- 신원보증보험료공제금액
+  exec_gu_prm_uiamt numeric(15) NOT NULL, -- 이행보증보험료공제금액
+  cndo_uiamt numeric(15) NOT NULL, -- 콘도공제금액
+  usr_tkxm_cm numeric(15) NOT NULL, -- 사용인응시수수료
+  usr_rgt_cm numeric(15) NOT NULL, -- 사용인등록수수료
+  ntf_aw_pyamt numeric(15) NOT NULL, -- 불이체수당지급금액
+  aw_mncs_itg_uiamt numeric(15) NOT NULL, -- 수당운영비보전공제금액
+  dbtr_pyamt numeric(15) NOT NULL, -- 차인지급금액
+  bz_atrcd character(10) NOT NULL, -- 영업속성코드
+  inp_usr_id character(7) NOT NULL, -- 입력사용자ID
+  inp_dthms timestamp(0) without time zone NOT NULL, -- 입력일시
+  mdf_usr_id character(7) NOT NULL, -- 수정사용자ID
+  mdf_dthms timestamp(0) without time zone NOT NULL, -- 수정일시
+  idac_prm_uiamt numeric(15) NOT NULL, -- 산재보험료공제금액
+  idac_prm_rtamt numeric(15) NOT NULL, -- 산재보험료환급금액
+  sppt_uiamt numeric(15) NOT NULL, -- 후원공제금액
+  aw_et_uiamt numeric(15) NOT NULL, -- 수당기타공제금액
+  cld_uiamt numeric(15) NOT NULL, -- 달력공제금액
+  sv_cradm_awamt numeric(15), -- 저축계약관리수당금액
+  load_dthms timestamp(0) without time zone
+)
+
+WITH (APPENDONLY=true, COMPRESSLEVEL=5,   OIDS=FALSE )
+DISTRIBUTED BY (stfno, pydt);

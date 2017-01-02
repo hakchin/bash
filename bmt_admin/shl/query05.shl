@@ -1,0 +1,69 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_DATE=`echo $1 |sed 's/-//g'`
+END_DATE=`echo $2 |sed 's/-//g'`
+
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at master or segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+set gp_segments_for_planner=1;
+
+
+SELECT COUNT(DISTINCT 년도) 년도
+	,COUNT(DISTINCT 월) 월
+	,COUNT(파일럿여부) 파일럿여부
+	,SUM(c5) ODRSWITCH_RGRP_ODR_SWITCH_CUST_CNT
+	,MAX(c5) ODRSWITCH_RGRP_ODR_SWITCH_CUST_MAX
+FROM (
+	SELECT T0.C0 년도
+		,T0.C1 월
+		,T0.C2 파일럿여부
+		,T0.C3 c4
+		,T0.C3 c5
+	FROM (
+		SELECT CO_OLAP_DATE_BASIC.YEAR_CODE C0
+			,CO_OLAP_DATE_BASIC.MONTH_NAME C1
+			,CO_YN_PILOT.YN_NAME C2
+			,sum(DM_CAMPAIGN_CUST_EFFECT.ODRSWITCH_RGRP_ODR_SWITCH_CUST_CNT) C3
+		FROM SDMIN.CO_OLAP_DATE CO_OLAP_DATE_BASIC
+			,SDMIN.CO_YN CO_YN_PILOT
+			,SDMIN.DM_CAMPAIGN_CUST_EFFECT DM_CAMPAIGN_CUST_EFFECT
+			,SDMIN.MK_UC_CAMPAIGN_DTL coguda30
+			,SDMIN.MK_UC_CAMPAIGN_EFFECT_GOAL coguda31
+--		WHERE CO_OLAP_DATE_BASIC.DATE_NAME BETWEEN '${1}' AND '${2}'
+		WHERE CO_OLAP_DATE_BASIC.DATE_CODE BETWEEN '${START_DATE}' AND '${END_DATE}'
+			AND CO_OLAP_DATE_BASIC.DATE_CODE = DM_CAMPAIGN_CUST_EFFECT.STD_DATE
+			AND coguda30.CAMPAIGN_CODE = DM_CAMPAIGN_CUST_EFFECT.CAMPAIGN_CODE
+			AND CO_YN_PILOT.YN_CODE = coguda30.PILOT_YN
+			AND coguda30.LAST_PROC_STEP_CODE IN (
+				'50'
+				,'55'
+				,'60'
+				)
+			AND coguda31.CAMPAIGN_CODE = coguda30.CAMPAIGN_CODE
+		GROUP BY CO_OLAP_DATE_BASIC.YEAR_CODE
+			,CO_OLAP_DATE_BASIC.MONTH_NAME
+			,CO_YN_PILOT.YN_NAME
+		) T0
+	) T01;
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1
+

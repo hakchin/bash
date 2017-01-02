@@ -1,0 +1,3 @@
+http://www.rodericksmith.plus.com/outlines/manuals/bashdbOutline.html
+
+http://bashdb.sourceforge.net/bashdb-man.html

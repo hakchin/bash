@@ -1,0 +1,123 @@
+Timing is on.
+Timing is on.
+SELECT min(cls_yymm ), max(cls_yymm ) FROM CLS_CR_RND_PRM_MMCLS     ;
+  min   |  max   
+--------+--------
+ 200201 | 201212
+(1 row)
+
+Time: 14623.187 ms
+SELECT min(cls_yymm ), max(cls_yymm ) FROM CLS_LTRM_CVR_RND_PRM     ;
+  min   |  max   
+--------+--------
+ 201001 | 201212
+(1 row)
+
+Time: 38517.202 ms
+SELECT min(cls_yymm ), max(cls_yymm ) FROM CLS_LTRM_MNRT            ;
+  min   |  max   
+--------+--------
+ 201001 | 201212
+(1 row)
+
+Time: 11441.763 ms
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_CR_CVR               ;
+ min | max 
+-----+-----
+ CA  | MA
+(1 row)
+
+Time: 20681.715 ms
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_CR_DH_STF_CRR        ;
+ min | max 
+-----+-----
+ CA  | SA
+(1 row)
+
+Time: 2507.003 ms
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_CR_RELPC             ;
+ min | max 
+-----+-----
+ CA  | SA
+(1 row)
+
+Time: 6394.632 ms
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_INCM_PRM             ;
+ min | max 
+-----+-----
+ CA  | MA
+(1 row)
+
+Time: 10004.536 ms
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_INS_CR               ;
+ min | max 
+-----+-----
+ CA  | SA
+(1 row)
+
+Time: 2481.899 ms
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM INS_PRM_PYM_PR           ;
+ min | max 
+-----+-----
+ FA  | MA
+(1 row)
+
+Time: 10462.350 ms
+SELECT min(av_yymm  ), max(av_yymm  ) FROM SAM_AW_CC_ACHV           ;
+  min   |  max   
+--------+--------
+ 199411 | 201304
+(1 row)
+
+Time: 3245.304 ms
+SELECT min(ikd_grpcd), max(ikd_grpcd) FROM SAM_INCM_PRM_BZ_AV       ;
+ min | max 
+-----+-----
+ CA  | MA
+(1 row)
+
+Time: 5303.510 ms
+SELECT min(pvl_yymm ), max(pvl_yymm ) FROM M_LCR_LTRM_INCM_PRM      ;
+  min   |  max   
+--------+--------
+ 200301 | 201304
+(1 row)
+
+Time: 3613.349 ms
+SELECT min(vl_yymm  ), max(vl_yymm  ) FROM M_LWT_DM_RD_RPTG_LIST    ;
+  min   |  max   
+--------+--------
+ 200801 | 201304
+(1 row)
+
+Time: 42.121 ms
+SELECT min(cls_yymm ), max(cls_yymm ) FROM M_ORG_MTHY_BZ_ORGN       ;
+  min   |  max   
+--------+--------
+ 200101 | 201304
+(1 row)
+
+Time: 1099.823 ms
+SELECT min(st_yymm  ), max(st_yymm  ) FROM M_SAM_STF_SRTR_ORGN      ;
+  min   |  max   
+--------+--------
+ 199001 | 201304
+(1 row)
+
+Time: 1223.321 ms
+SELECT min(av_yymm  ), max(av_yymm  ) FROM M_SAM_DYB_BZFML_PRSN_CRST;
+  min   |  max   
+--------+--------
+ 200212 | 201304
+(1 row)
+
+Time: 205.761 ms
+SELECT min(st_yymm  ), max(st_yymm  ) FROM M_SAM_BZ_FML_STYRT       ;
+  min   |  max   
+--------+--------
+ 200301 | 201302
+(1 row)
+
+Time: 59.494 ms
+min_max.shl:Start Time:2013-05-05 13:55:09
+min_max.shl:End Time  :2013-05-05 13:57:21

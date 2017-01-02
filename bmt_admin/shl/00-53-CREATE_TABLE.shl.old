@@ -1,0 +1,335 @@
+#!/bin/bash
+source ./env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U letl -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+
+--BGN of dm_campaign_cust_effect--
+CREATE TABLE admin.dm_campaign_cust_effect
+(
+  std_date character varying(8) NOT NULL,
+  daily_sum_yn character varying(2) NOT NULL,
+  campaign_code character varying(32) NOT NULL,
+  proc_step_code character varying(6) NOT NULL,
+  cell_id bigint NOT NULL,
+  gender_code character varying(1) NOT NULL,
+  age_code character varying(6) NOT NULL,
+  job_gubun_code character varying(6) NOT NULL,
+  married_yn character varying(1) NOT NULL,
+  zipcode character varying(6) NOT NULL,
+  child_yn character varying(1) NOT NULL,
+  child_cnt smallint NOT NULL,
+  member_grade_id character varying(2) NOT NULL,
+  value_base_seg_code character varying(6) NOT NULL,
+  potential_value_seg_code character varying(6) NOT NULL,
+  cgrp_cust_cnt bigint DEFAULT 0,
+  rgrp_cust_cnt bigint DEFAULT 0,
+  rgrp_buy_cust_cnt bigint DEFAULT 0,
+  cgrp_buy_cust_cnt bigint DEFAULT 0,
+  upsale_rgrp_cust_cnt bigint DEFAULT 0,
+  upsale_cgrp_cust_cnt bigint DEFAULT 0,
+  upsale_rgrp_natural_sale_amt bigint DEFAULT 0,
+  upsale_cgrp_natural_sale_amt bigint DEFAULT 0,
+  upsale_cgrp_natural_sale_amt_up_cust_cnt bigint DEFAULT 0,
+  upsale_rsvramt_use_cust_cnt bigint DEFAULT 0,
+  upsale_rsvramt_use_amt bigint DEFAULT 0,
+  upsale_direct_chnnl_order_cust_cnt bigint DEFAULT 0,
+  upsale_direct_channel_order_amt bigint DEFAULT 0,
+  odrswitch_rgrp_cust_cnt bigint DEFAULT 0,
+  odrswitch_cgrp_cust_cnt bigint DEFAULT 0,
+  odrswitch_target_exp_odr_switch_cust_cnt bigint DEFAULT 0,
+  odrswitch_rgrp_odr_switch_cust_cnt bigint DEFAULT 0,
+  odrswitch_cgrp_odr_switch_cust_cnt bigint DEFAULT 0,
+  odrswitch_target_exp_odr_switch_amt bigint DEFAULT 0,
+  odrswitch_rgrp_order_amt bigint DEFAULT 0,
+  odrswitch_cgrp_order_amt bigint DEFAULT 0,
+  custtran_rgrp_cust_cnt bigint DEFAULT 0,
+  custtran_cgrp_cust_cnt bigint DEFAULT 0,
+  custtran_rgrp_order_cnt bigint DEFAULT 0,
+  custtran_cgrp_order_cnt bigint DEFAULT 0,
+  custtran_rgrp_order_unit_amt_inc_cust_cnt bigint DEFAULT 0,
+  custtran_rgrp_order_unit_amt_inc_buy_amt bigint DEFAULT 0,
+  custtran_rgrp_order_unit_amt_inc_buy_cnt bigint DEFAULT 0,
+  custtran_rgrp_order_amt bigint DEFAULT 0,
+  custtran_cgrp_order_amt bigint DEFAULT 0,
+  custinfo_rgrp_cust_cnt bigint DEFAULT 0,
+  custinfo_rgrp_info_gain_cust_cnt bigint DEFAULT 0,
+  royalty_rgrp_cust_cnt bigint DEFAULT 0,
+  royalty_cgrp_cust_cnt bigint DEFAULT 0,
+  royalty_rgrp_natural_sale_amt bigint DEFAULT 0,
+  royalty_cgrp_natural_sale_amt bigint DEFAULT 0,
+  royalty_member_grade_keep_cust_cnt bigint DEFAULT 0,
+  royalty_member_grade_up_cust_cnt bigint DEFAULT 0,
+  royalty_item_eval_cnt bigint DEFAULT 0,
+  royalty_item_eval_cust_cnt bigint DEFAULT 0,
+  load_date character varying(8)
+--  CONSTRAINT dm_campaign_cust_effect_pkey PRIMARY KEY (std_date, daily_sum_yn, campaign_code, proc_step_code, cell_id, gender_code, age_code, job_gubun_code, married_yn, zipcode, child_yn, child_cnt, member_grade_id, value_base_seg_code, potential_value_seg_code)
+)
+DISTRIBUTED BY (campaign_code, proc_step_code, cell_id, gender_code, age_code, job_gubun_code, married_yn, zipcode, child_yn, child_cnt, member_grade_id, value_base_seg_code, potential_value_seg_code);
+ALTER TABLE admin.dm_campaign_cust_effect OWNER TO letl;
+
+--ALTER TABLE admin.dm_campaign_cust_effect
+--ADD CONSTRAINT dm_campaign_cust_effect_pk
+--PRIMARY KEY (std_date, daily_sum_yn, campaign_code, proc_step_code, cell_id, gender_code, age_code, job_gubun_code, married_yn, zipcode, child_yn, child_cnt, member_grade_id, value_base_seg_code, potential_value_seg_code);
+
+--END of dm_campaign_cust_effect--
+
+
+
+--BGN of dm_daily_item_reg_fact--
+CREATE TABLE admin.dm_daily_item_reg_fact
+(
+  std_date character(8) NOT NULL,
+  shop_id bigint NOT NULL,
+  item_id bigint NOT NULL,
+  shop_type_code character varying(6),
+  std_dtl_ctg_id bigint,
+  item_reg_date character(8),
+  organize_code character varying(6),
+  buyer_id character varying(50),
+  first_shop_running_reg_date character(8),
+  recent_shop_running_reg_date character(8),
+  vendor_id bigint,
+  brand_id bigint,
+  running_continue_day_cnt integer,
+  sale_item_yn character(1),
+  item_eval_cnt integer,
+  item_price_range_code character varying(6),
+  order_cust_cnt bigint DEFAULT 0,
+  order_cnt bigint DEFAULT 0,
+  order_amt bigint DEFAULT 0,
+  order_qty bigint DEFAULT 0,
+  order_item_cnt bigint DEFAULT 0,
+  order_sku_cnt bigint DEFAULT 0,
+  natural_order_cust_cnt bigint DEFAULT 0,
+  natural_order_cnt bigint DEFAULT 0,
+  natural_order_amt bigint DEFAULT 0,
+  natural_order_qty bigint DEFAULT 0,
+  natural_order_item_cnt bigint DEFAULT 0,
+  natural_order_sku_cnt bigint DEFAULT 0,
+  buy_cust_cnt bigint DEFAULT 0,
+  buy_cnt bigint DEFAULT 0,
+  buy_amt bigint DEFAULT 0,
+  buy_qty bigint DEFAULT 0,
+  buy_item_cnt bigint DEFAULT 0,
+  buy_sku_cnt bigint DEFAULT 0,
+  cancel_cust_cnt bigint DEFAULT 0,
+  cancel_cnt bigint DEFAULT 0,
+  cancel_amt bigint DEFAULT 0,
+  cancel_qty bigint DEFAULT 0,
+  cancel_item_cnt bigint DEFAULT 0,
+  cancel_sku_cnt bigint DEFAULT 0,
+  shortage_cancel_cust_cnt bigint DEFAULT 0,
+  shortage_cancel_cnt bigint DEFAULT 0,
+  shortage_cancel_amt bigint DEFAULT 0,
+  shortage_cancel_qty bigint DEFAULT 0,
+  shortage_cancel_item_cnt bigint DEFAULT 0,
+  shortage_cancel_sku_cnt bigint DEFAULT 0,
+  general_cancel_cust_cnt bigint DEFAULT 0,
+  general_cancel_cnt bigint DEFAULT 0,
+  general_cancel_amt bigint DEFAULT 0,
+  general_cancel_qty bigint DEFAULT 0,
+  general_cancel_item_cnt bigint DEFAULT 0,
+  general_cancel_sku_cnt bigint DEFAULT 0,
+  return_cust_cnt bigint DEFAULT 0,
+  return_cnt bigint DEFAULT 0,
+  return_amt bigint DEFAULT 0,
+  return_qty bigint DEFAULT 0,
+  return_item_cnt bigint DEFAULT 0,
+  return_sku_cnt bigint DEFAULT 0,
+  change_cust_cnt bigint DEFAULT 0,
+  change_cnt bigint DEFAULT 0,
+  change_amt bigint DEFAULT 0,
+  change_qty bigint DEFAULT 0,
+  change_item_cnt bigint DEFAULT 0,
+  change_sku_cnt bigint DEFAULT 0,
+  deli_delay_cnt bigint DEFAULT 0,
+  enter_delay_cnt bigint DEFAULT 0,
+  margin_amt bigint DEFAULT 0,
+  supply_cost bigint DEFAULT 0,
+  vat_exp_supply_cost bigint DEFAULT 0,
+  item_price bigint DEFAULT 0,
+  vat_exp_item_price bigint DEFAULT 0,
+  sale_amt bigint DEFAULT 0,
+  vat_exp_sale_amt bigint DEFAULT 0,
+  natural_sale_amt bigint DEFAULT 0,
+  vat_exp_natural_sale_amt bigint DEFAULT 0,
+  dc_inc_sale_amt bigint DEFAULT 0,
+  vat_exp_dc_inc_sale_amt bigint DEFAULT 0,
+  buy_origin_cost bigint DEFAULT 0,
+  vat_exp_buy_origin_cost bigint DEFAULT 0,
+  ssg_dc_amt bigint DEFAULT 0,
+  vat_exp_ssg_dc_amt bigint DEFAULT 0,
+  md_dc_amt bigint DEFAULT 0,
+  vat_exp_md_dc_amt bigint DEFAULT 0,
+  vendor_dc_amt bigint DEFAULT 0,
+  vat_exp_vendor_dc_amt bigint DEFAULT 0,
+  dc_amt bigint DEFAULT 0,
+  vat_exp_dc_amt bigint DEFAULT 0,
+  item_sale_profit_amt bigint DEFAULT 0,
+  promo_dc_amt bigint DEFAULT 0,
+  promo_vendor_charge_dc_amt bigint DEFAULT 0,
+  promo_mkt_charge_dc_amt bigint DEFAULT 0,
+  promo_buyer_charge_dc_amt bigint DEFAULT 0,
+  coupon_dc_amt bigint DEFAULT 0,
+  coupon_vendor_charge_dc_amt bigint DEFAULT 0,
+  coupon_marketing_charge_dc_amt bigint DEFAULT 0,
+  coupon_buyer_charge_dc_amt bigint DEFAULT 0,
+  manual_dc_amt bigint DEFAULT 0,
+  real_dc_amt bigint DEFAULT 0,
+  rsvramt bigint DEFAULT 0,
+  vendor_charge_rsvramt bigint DEFAULT 0,
+  load_date character(8)
+--  CONSTRAINT dm_daily_item_reg_fact_pkey PRIMARY KEY (std_date, shop_id, item_id)
+)
+DISTRIBUTED BY (std_date, shop_id, item_id);
+--ALTER TABLE admin.dm_daily_item_reg_fact OWNER TO letl;
+
+
+--ALTER TABLE admin.dm_daily_item_reg_fact
+--ADD CONSTRAINT dm_daily_item_reg_fact_pk
+--PRIMARY KEY (std_date, shop_id, item_id);
+
+--END of dm_daily_item_reg_fact--
+
+--BGN of dm_order_dtl_fact--
+CREATE TABLE admin.dm_order_dtl_fact
+(
+  order_id character varying(14) NOT NULL,
+  item_id bigint NOT NULL,
+  unit_id bigint NOT NULL,
+  payment_finish_date_i bigint,
+  payment_finish_date character(8) NOT NULL,
+  payment_time_range_code character varying(6) NOT NULL,
+  sale_shop_id bigint NOT NULL,
+  o_id character varying(20),
+  post_name character varying(200),
+  dprice_amt bigint,
+  disp_ctg_id bigint,
+  shop_type_code character varying(6),
+  order_chnl_code character varying(6),
+  channel_gubun_code character varying(6),
+  mall_id character varying(3),
+  cust_zipcode character(6),
+  std_dtl_ctg_id bigint,
+  order_date_i bigint,
+  order_date character(8),
+  order_time_range_code character varying(6),
+  b2e_memcomp_id bigint,
+  channel_id bigint,
+  cust_id bigint,
+  member_gubun_code character varying(6),
+  gender_code character varying(6),
+  age_code character varying(6),
+  member_grade_id character varying(2),
+  fix_grade_code character varying(6),
+  item_type_code character varying(6),
+  brand_id bigint,
+  vendor_id bigint,
+  organize_code character varying(6),
+  buyer_id character varying(50),
+  coupon_id bigint,
+  shop_area_id bigint,
+  order_yn character(1),
+  natural_order_yn character(1),
+  buy_yn character(1),
+  cancel_yn character(1),
+  shortage_cancel_yn character(1),
+  general_cancel_yn character(1),
+  return_yn character(1),
+  chng_yn character(1),
+  unsatify_reason_code character varying(6),
+  order_act_cnt bigint,
+  cancel_act_cnt bigint,
+  general_cancel_act_cnt bigint,
+  shortage_cancel_act_cnt bigint,
+  return_act_cnt bigint,
+  chng_act_cnt bigint,
+  order_amt bigint,
+  order_qty bigint,
+  order_sku_cnt bigint,
+  natural_order_amt bigint,
+  natural_order_qty bigint,
+  natural_order_sku_cnt bigint,
+  buy_amt bigint,
+  buy_qty bigint,
+  buy_sku_cnt bigint,
+  cancel_amt bigint,
+  cancel_qty bigint,
+  cancel_sku_cnt bigint,
+  shortage_cancel_amt bigint,
+  shortage_cancel_qty bigint,
+  shortage_cancel_sku_cnt bigint,
+  general_cancel_amt bigint,
+  general_cancel_qty bigint,
+  general_cancel_sku_cnt bigint,
+  return_amt bigint,
+  return_qty bigint,
+  return_sku_cnt bigint,
+  chng_amt bigint,
+  chng_qty bigint,
+  chng_sku_cnt bigint,
+  margin_amt bigint,
+  supply_cost bigint,
+  vat_exp_supply_cost bigint,
+  item_price bigint,
+  vat_exp_item_price bigint,
+  sale_amt bigint,
+  vat_exp_sale_amt bigint,
+  natural_sale_amt bigint,
+  vat_exp_natural_sale_amt bigint,
+  dc_inc_sale_amt bigint,
+  vat_exp_dc_inc_sale_amt bigint,
+  buy_origin_cost bigint,
+  vat_exp_buy_origin_cost bigint,
+  ssg_dc_amt bigint,
+  vat_exp_ssg_dc_amt bigint,
+  md_dc_amt bigint,
+  vat_exp_md_dc_amt bigint,
+  mkt_dc_amt bigint,
+  vat_exp_mkt_dc_amt bigint,
+  vendor_dc_amt bigint,
+  vat_exp_vendor_dc_amt bigint,
+  dc_amt bigint,
+  vat_exp_dc_amt bigint,
+  item_sale_profit_amt bigint,
+  promo_dc_amt bigint,
+  promo_vendor_charge_dc_amt bigint,
+  promo_mkt_charge_dc_amt bigint,
+  promo_buyer_charge_dc_amt bigint,
+  coupon_dc_amt bigint,
+  coupon_vendor_charge_dc_amt bigint,
+  coupon_mkt_charge_dc_amt bigint,
+  coupon_buyer_charge_dc_amt bigint,
+  manual_dc_amt bigint,
+  vat_exp_manual_dc_amt bigint,
+  real_dc_amt bigint,
+  rsvramt bigint,
+  vendor_charge_rsvramt bigint,
+  rsvr_ssg_point bigint,
+  rsvr_okcashbag_point bigint,
+  load_date character(8)
+)
+DISTRIBUTED BY (order_id, item_id, unit_id, payment_finish_date_i);
+--ALTER TABLE admin.dm_order_dtl_fact OWNER TO letl;
+
+--END of dm_order_dtl_fact--
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

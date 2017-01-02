@@ -1,0 +1,35 @@
+#!/bin/bash
+source ../cmn/env.profile
+
+SHELLFILE=${0}
+LOGDIR=../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+echo $SHELLFILE":Start Time:"$START_TM1
+
+## please run at segment node
+###### query start
+psql -U gpadmin -d uec -e > $LOGFILE 2>&1 <<-!
+\timing on
+--INSERT INTO masdapdw.tb_fda_pdw_apd_detail_B          SELECT * FROM masdapdw.tb_fda_pdw_apd_detail         ;
+--ALTER TABLE masdapdw.tb_fda_pdw_apd_detail            RENAME TO tb_fda_pdw_apd_detail_B2          ;
+--ALTER TABLE masdapdw.tb_fda_pdw_apd_detail_B          RENAME TO tb_fda_pdw_apd_detail          ;
+--ANALYZE masdapdw.tb_fda_pdw_apd_detail(product_id)       ;
+--SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_detail         ;
+--SELECT count(*) FROM masdapdw.tb_fda_pdw_apd_detail_B2          ;
+
+ALTER TABLE masdapdm.tb_fda_pdm_product_prog_insp_h SET WITH (REORGANIZE=TRUE) DISTRIBUTED BY (progress_product_id);
+VACUUM ANALYZE masdapdm.tb_fda_pdm_product_prog_insp_h (progress_product_id);
+
+
+
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE'|Start Time         |End Time' >> $LOGFILE
+echo $SHELLFILE'|'$START_TM1'|'$END_TM1 >> $LOGFILE
+
+echo $SHELLFILE":End Time  :"$END_TM1

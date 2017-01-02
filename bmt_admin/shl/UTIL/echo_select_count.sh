@@ -1,0 +1,50 @@
+#!/bin/bash
+source ../env.profile
+
+SHELLFILE=$0
+LOGDIR=../../log
+LOGFILE=$LOGDIR"/"$SHELLFILE".log"
+
+START_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+#echo $SHELLFILE":Start Time:"$START_TM1
+
+###### query start
+psql -U gpadmin -d hanwha -AXt <<!
+SELECT 'SELECT count(*) FROM '||nspname||'.'||relname||';' AS select_count
+FROM
+(
+SELECT
+--    nspname||'.'||relname AS t_name
+    nspname, relname
+  , string_agg(attname, ', ' ORDER BY colorder) AS dist_keys
+  FROM
+  (
+      SELECT
+          localoid
+        , unnest(attrnums) as colnum
+        , generate_series(1, array_upper(attrnums, 1)) as colorder
+        FROM gp_distribution_policy
+  )
+   d
+    JOIN pg_attribute a
+      ON (a.attrelid = d.localoid
+          AND a.attnum = d.colnum)
+    JOIN pg_class c
+      ON (c.oid = d.localoid
+          AND c.oid NOT IN (SELECT parchildrelid FROM pg_partition_rule))
+    JOIN pg_namespace n
+      ON (n.oid = c.relnamespace
+          AND n.nspname LIKE 'sdmi%')
+  GROUP BY nspname, relname
+)
+cnt
+;
+!
+###### query end
+
+END_TM1=`date "+%Y-%m-%d %H:%M:%S"`
+
+echo $SHELLFILE":Start Time:"$START_TM1 >> $LOGFILE
+echo $SHELLFILE":End Time  :"$END_TM1   >> $LOGFILE
+
+#echo $SHELLFILE":End Time  :"$END_TM1

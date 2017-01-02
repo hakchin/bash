@@ -1,0 +1,209 @@
+Timing is on.
+ANALYZE sdmin.cls_cr_rnd_prm_mmcls           ;
+ANALYZE
+Time: 27358.565 ms
+ANALYZE sdmin.cls_cr_rnd_prm_mmcls_p01       ;
+ANALYZE
+Time: 28864.651 ms
+ANALYZE sdmin.cls_ltrm_cvr_rnd_prm           ;
+ANALYZE
+Time: 41048.348 ms
+ANALYZE sdmin.cls_ltrm_cvr_rnd_prm_p01       ;
+ANALYZE
+Time: 55178.156 ms
+ANALYZE sdmin.cls_ltrm_mnrt                  ;
+ANALYZE
+Time: 97793.593 ms
+ANALYZE sdmin.cls_ltrm_mnrt_p01              ;
+ANALYZE
+Time: 23552.348 ms
+ANALYZE sdmin.cus_ctm                        ;
+ANALYZE
+Time: 11091.634 ms
+ANALYZE sdmin.cus_ctm_p01                    ;
+ANALYZE
+Time: 10954.627 ms
+ANALYZE sdmin.igd_gd                         ;
+ANALYZE
+Time: 11955.683 ms
+ANALYZE sdmin.igd_gd_csf                     ;
+ANALYZE
+Time: 2164.124 ms
+ANALYZE sdmin.igd_gd_csf_p01                 ;
+ANALYZE
+Time: 1953.112 ms
+ANALYZE sdmin.igd_gd_cvr_acm_rk              ;
+ANALYZE
+Time: 1559.089 ms
+ANALYZE sdmin.igd_gd_cvr_acm_rk_p01          ;
+ANALYZE
+Time: 1630.093 ms
+ANALYZE sdmin.igd_gd_p01                     ;
+ANALYZE
+Time: 9417.539 ms
+ANALYZE sdmin.ins_cmins_ins_re_cls           ;
+ANALYZE
+Time: 5890.337 ms
+ANALYZE sdmin.ins_cmins_ins_re_cls_p01       ;
+ANALYZE
+Time: 5997.343 ms
+ANALYZE sdmin.ins_cr_cvr                     ;
+ANALYZE
+Time: 38051.176 ms
+ANALYZE sdmin.ins_cr_cvr_p01                 ;
+ANALYZE
+Time: 37719.158 ms
+ANALYZE sdmin.ins_cr_dh_stf_crr              ;
+ANALYZE
+Time: 15716.899 ms
+ANALYZE sdmin.ins_cr_dh_stf_crr_p01          ;
+ANALYZE
+Time: 15180.868 ms
+ANALYZE sdmin.ins_cr_relpc                   ;
+ANALYZE
+Time: 36676.098 ms
+ANALYZE sdmin.ins_cr_relpc_p01               ;
+ANALYZE
+Time: 36813.105 ms
+ANALYZE sdmin.ins_incm_prm                   ;
+ANALYZE
+Time: 27027.546 ms
+ANALYZE sdmin.ins_incm_prm_p01               ;
+ANALYZE
+Time: 29517.689 ms
+ANALYZE sdmin.ins_ins_cr                     ;
+ANALYZE
+Time: 32966.885 ms
+ANALYZE sdmin.ins_ins_cr_p01                 ;
+ANALYZE
+Time: 33366.909 ms
+ANALYZE sdmin.ins_prm_pym_pr                 ;
+ANALYZE
+Time: 19552.118 ms
+ANALYZE sdmin.ins_prm_pym_pr_p01             ;
+ANALYZE
+Time: 18625.065 ms
+ANALYZE sdmin.m_ccr_cr_ins_cr                ;
+ANALYZE
+Time: 17091.978 ms
+ANALYZE sdmin.m_ccr_cr_ins_cr_p01            ;
+ANALYZE
+Time: 16984.972 ms
+ANALYZE sdmin.m_cod_bzus_ins_itm_csfcd       ;
+ANALYZE
+Time: 923.052 ms
+ANALYZE sdmin.m_cod_bzus_ins_itm_csfcd_p01   ;
+ANALYZE
+Time: 801.046 ms
+ANALYZE sdmin.m_cod_cvrcd                    ;
+ANALYZE
+Time: 1000.057 ms
+ANALYZE sdmin.m_cod_cvrcd_p01                ;
+ANALYZE
+Time: 961.055 ms
+ANALYZE sdmin.m_cod_gdcd                     ;
+ANALYZE
+Time: 1098.063 ms
+ANALYZE sdmin.m_cod_gdcd_p01                 ;
+ANALYZE
+Time: 888.051 ms
+ANALYZE sdmin.m_lcr_ltins_cr                 ;
+ANALYZE
+Time: 11743.672 ms
+ANALYZE sdmin.m_lcr_ltins_cr_p01             ;
+ANALYZE
+Time: 14098.806 ms
+ANALYZE sdmin.m_lcr_ltrm_incm_prm            ;
+ANALYZE
+Time: 28447.627 ms
+ANALYZE sdmin.m_lcr_ltrm_incm_prm_p01        ;
+ANALYZE
+Time: 14849.850 ms
+ANALYZE sdmin.m_lwt_dm_rd_rptg_list          ;
+ANALYZE
+Time: 8573.490 ms
+ANALYZE sdmin.m_lwt_dm_rd_rptg_list_p01      ;
+ANALYZE
+Time: 9227.528 ms
+ANALYZE sdmin.m_org_bz_orgn                  ;
+ANALYZE
+Time: 7109.406 ms
+ANALYZE sdmin.m_org_bz_orgn_p01              ;
+ANALYZE
+Time: 7861.450 ms
+ANALYZE sdmin.m_org_mthy_bz_orgn             ;
+ANALYZE
+Time: 8887.508 ms
+ANALYZE sdmin.m_org_mthy_bz_orgn_p01         ;
+ANALYZE
+Time: 7996.458 ms
+ANALYZE sdmin.m_org_org_ordr                 ;
+ANALYZE
+Time: 898.051 ms
+ANALYZE sdmin.m_org_org_ordr_p01             ;
+ANALYZE
+Time: 748.043 ms
+ANALYZE sdmin.m_sam_bz_fml_styrt             ;
+ANALYZE
+Time: 2523.144 ms
+ANALYZE sdmin.m_sam_bz_fml_styrt_p01         ;
+ANALYZE
+Time: 2649.152 ms
+ANALYZE sdmin.m_sam_dyb_bzfml_prsn_crst      ;
+ANALYZE
+Time: 8587.491 ms
+ANALYZE sdmin.m_sam_dyb_bzfml_prsn_crst_p01  ;
+ANALYZE
+Time: 8520.487 ms
+ANALYZE sdmin.m_sam_stf_srtr_orgn            ;
+ANALYZE
+Time: 27385.567 ms
+ANALYZE sdmin.m_sam_stf_srtr_orgn_p01        ;
+ANALYZE
+Time: 33235.901 ms
+ANALYZE sdmin.m_sam_vl_wkdgr_adm             ;
+ANALYZE
+Time: 4438.253 ms
+ANALYZE sdmin.m_sam_vl_wkdgr_adm_p01         ;
+ANALYZE
+Time: 1090.062 ms
+ANALYZE sdmin.met_subo_rel_cd_defn           ;
+ANALYZE
+Time: 6178.353 ms
+ANALYZE sdmin.met_subo_rel_cd_defn_p01       ;
+ANALYZE
+Time: 1668.096 ms
+ANALYZE sdmin.sam_aw_cc_achv                 ;
+ANALYZE
+Time: 38309.191 ms
+ANALYZE sdmin.sam_aw_cc_achv_p01             ;
+ANALYZE
+Time: 36558.091 ms
+ANALYZE sdmin.sam_aw_cc_achv_stf             ;
+ANALYZE
+Time: 27810.591 ms
+ANALYZE sdmin.sam_aw_cc_achv_stf_p01         ;
+ANALYZE
+Time: 27064.548 ms
+ANALYZE sdmin.sam_aw_py_spc                  ;
+ANALYZE
+Time: 23109.321 ms
+ANALYZE sdmin.sam_aw_py_spc_p01              ;
+ANALYZE
+Time: 22316.277 ms
+ANALYZE sdmin.sam_incm_prm_bz_av             ;
+ANALYZE
+Time: 18223.042 ms
+ANALYZE sdmin.sam_incm_prm_bz_av_p01         ;
+ANALYZE
+Time: 76164.357 ms
+ANALYZE sdmin.sam_org                        ;
+ANALYZE
+Time: 57003.260 ms
+ANALYZE sdmin.sam_org_p01                    ;
+Cancel request sent
+ERROR:  canceling statement due to user request
+CONTEXT:  SQL statement "select avg(pg_column_size(Ta.orgcd))::float4 from only sdmin.sam_org_p01 as Ta where Ta.orgcd is not null"
+Time: 1970.113 ms
+shinsegae_analyze.shl:Start Time:2013-05-08 23:46:12
+shinsegae_analyze.shl:End Time  :2013-05-09 00:07:15

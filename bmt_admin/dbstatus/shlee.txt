@@ -1,0 +1,24 @@
+--"Settings: set enable_nestloop=off; set random_page_cost=100"
+
+/* ......_..._........ */
+SELECT  '2. ......_..._........' AS PGM_NAME
+     , COUNT(*)--, MIN(GLASS1), MAX(PANEL), MIN(GLATEST2)
+FROM ( 
+     d
+) AS AAA --WITH UR;
+
+N1, T3
+103,188,420      => 15
+
+N1, T2, T3       => 169 sec
+9,388,964,610
+
+N1, T2, T3, T4,  => 267 sec
+19,009,094,175
+
+N1, T2, T3, T4,T5  => 607 sec
+57,027,282,525
+
+
+
+1870,831,755

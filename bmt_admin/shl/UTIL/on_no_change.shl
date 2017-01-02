@@ -1,0 +1,2 @@
+gpconfig -c gp_autostats_mode -v on_no_stats
+gpstop -u
