@@ -90,9 +90,12 @@ for file in *.jpg; do mv "$file" "$(echo $file | tr a-z A-Z)" ; done
   .. command rename
 cd/' *.png   ## 단순히 display 하고자 할 때
 
-
 ------------------------------------------------------------------------
 . 표준 입출력 파일 descriptor : 김태용 p81
   .. 표준입력(stdin) - 키보드       0
   .. 표준출력(stdout) - 모니터       1
   .. 표준에러(stderr) - 모니터       2
+
+------------------------------------------------------------------------
+. gcloud
+gcloud compute --project "hakchin-167514" ssh --zone "us-central1-c" "hakchin@gcp-micro"
