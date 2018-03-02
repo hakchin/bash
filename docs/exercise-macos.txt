@@ -4,6 +4,9 @@
 
 . find what you want
   $ find / -iname LocalSettings.php -print
+
+. find files ONLY in current directory
+  find . -maxdepth 1 -type f -name '*abc*'
 ------------------------------------------------------------------------
 . collect and compress
   .. tar 묶기
@@ -25,7 +28,7 @@ imgcat filename
 it2dl filename
   Downloads the specified file, saving it in your Downloads folder.
 
-------------------------------------------------------------------------
+--------------------------------------------------------
 . check file type
 $ file 1.html
 1.html: HTML document text
