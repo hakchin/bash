@@ -1,12 +1,28 @@
 ------------------------------------------------------------------------
 . find files and delete them
   $ find . -type f -name "*.bak" -exec rm -f {} \;
+  $ find . -type f -name "Thumbs.db" -exec rm -f {} \;
 
 . find what you want
   $ find / -iname LocalSettings.php -print
 
 . find files ONLY in current directory
-  find . -maxdepth 1 -type f -name '*abc*'
+  $ find . -maxdepth 1 -type f -name '*abc*'
+------------------------------------------------------------------------
+. differences
+  $ opendiff dir1 dir2
+  $ opendiff /Volumes/DATA/downloads/imsi/Dropbox/Photo/ /Volumes/ED-OneDrive/od/Photo/
+
+
+------------------------------------------------------------------------
+. Disk List
+   $ diskutil list
+
+. Unmount USB
+  $ diskutil unmountDisk /dev/disk4
+
+. Mount USB
+  $ diskutil mountDisk /dev/disk4
 ------------------------------------------------------------------------
 . collect and compress
   .. tar 묶기
